@@ -1,6 +1,9 @@
 # Ignore compiled files
 /*/target/
 
+# Ignore runner
+runner/
+
 # Eclipse gitignore (from https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore)
 .metadata
 bin/
