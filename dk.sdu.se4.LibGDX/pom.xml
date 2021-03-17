@@ -28,7 +28,7 @@
   <dependencies>
     <dependency>
         <groupId>org.osgi</groupId>
-        <artifactId>osgi_R4_core</artifactId>
+        <artifactId>org.osgi.core</artifactId>
         <scope>provided</scope>
     </dependency>
     <dependency>
