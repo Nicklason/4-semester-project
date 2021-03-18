@@ -15,16 +15,17 @@ import java.util.UUID;
  * @author steffen
  */
 public class Entity{
-    private final String id = UUID.randomUUID().toString();
+    private final String id;
     private Map<Class, EntityPart> PartStorage;
     
 
     public String getId() {
-        return id;
+        return this.id;
     }
     
 
     public Entity() {
+        this.id = UUID.randomUUID().toString();
         this.PartStorage = new HashMap<Class, EntityPart>();
     }
     
@@ -34,9 +35,10 @@ public class Entity{
     public void removePart(Class partClass){
         this.PartStorage.remove(partClass);
     }
-    public <E extends Entity> E getPart(Class partClass){
-        return (E) PartStorage.get(partClass);
+    public <E extends EntityPart> E getPart(Class partClass){
+        return (E) this.PartStorage.get(partClass);
     }
+
     
     
     
