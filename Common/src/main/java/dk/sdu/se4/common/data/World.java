@@ -5,10 +5,17 @@
  */
 package dk.sdu.se4.common.data;
 
+import dk.sdu.se4.common.entity.Entity;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  *
  * @author steff
  */
 public class World {
+   private Map<String, Entity> entityMap = new ConcurrentHashMap<String, Entity>();
+   
+   
    
 }
