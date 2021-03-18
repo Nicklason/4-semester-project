@@ -29,7 +29,7 @@ public class Entity {
     public void RemovePart(Class partClass){
         this.PartStorage.remove(partClass);
     }
-    public <E extends Entity> E getpart(Class partClass){
+    public <E extends Entity> E GetPart(Class partClass){
         return (E) PartStorage.get(partClass);
     }
     

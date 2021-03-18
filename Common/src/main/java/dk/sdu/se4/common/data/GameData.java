@@ -10,5 +10,6 @@ package dk.sdu.se4.common.data;
  * @author steff
  */
 public class GameData {
+    private float deltatime;
     
 }
