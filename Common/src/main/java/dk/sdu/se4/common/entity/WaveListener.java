@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.se4.common.Entity;
+package dk.sdu.se4.common.entity;
 
-import dk.sdu.se4.common.Data.GameData;
-import dk.sdu.se4.common.Data.World;
+import dk.sdu.se4.common.data.GameData;
+import dk.sdu.se4.common.data.World;
 
 /**
  *
