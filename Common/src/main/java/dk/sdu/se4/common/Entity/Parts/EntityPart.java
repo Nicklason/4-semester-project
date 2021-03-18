@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.se4.common.Entiry;
+package dk.sdu.se4.common.Entity.Parts;
 
 import dk.sdu.se4.common.Data.GameData;
 import dk.sdu.se4.common.Data.World;
@@ -12,6 +12,6 @@ import dk.sdu.se4.common.Data.World;
  *
  * @author steff
  */
-public interface AIControllSystem {
-    void PathFinding(World world, GameData gameData);
+public interface EntityPart {
+    void process(World world, GameData gameData);
 }

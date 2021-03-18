@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.se4.common.Entiry.Parts;
+package dk.sdu.se4.common.Entity;
 
 import dk.sdu.se4.common.Data.GameData;
 import dk.sdu.se4.common.Data.World;
@@ -12,6 +12,7 @@ import dk.sdu.se4.common.Data.World;
  *
  * @author steff
  */
-public interface EntiryPart {
-    void process(World world, GameData gameData);
+public interface WaveListener {
+    void Started(World world, GameData gameData);
+    void Ended(World World, GameData gameData);
 }

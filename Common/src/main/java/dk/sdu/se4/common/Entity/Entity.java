@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.se4.common.Entiry;
+package dk.sdu.se4.common.Entity;
 
 /**
  *

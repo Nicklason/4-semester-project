@@ -10,5 +10,5 @@ package dk.sdu.se4.common.Service;
  * @author steff
  */
 public interface GameService {
-    
+    // TO Do skal vi lige snakke om ?
 }
