@@ -6,21 +6,39 @@
 package dk.sdu.se4.common.data;
 
 import dk.sdu.se4.common.entity.Entity;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
  * @author steff
  */
 public class World {
-   private Map<String, Entity> entityMap = new ConcurrentHashMap<String, Entity>();
+   private  Map<String, Entity> entityMap;
    
+   private static World worldInstance = null;
    
-   public void addEntiry(Entity entity){
+   private World(){
+       entityMap = new HashMap<String, Entity>();
+   }
+   public static World getInstance(){
+       if (worldInstance==null){
+           worldInstance=new World();
+       }
+       return worldInstance;
+   }
+   
+   public void addEntity(Entity entity){
        this.entityMap.put(entity.getId(), entity);
        
    }
+   public void reomveEntity(Entity entity){
+       this.entityMap.remove(entity.getId());
+   }
+
+    public Map<String, Entity> getEntityMap() {
+        return this.entityMap;
+    }
    
    
 }

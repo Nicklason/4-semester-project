@@ -14,9 +14,10 @@ import java.util.UUID;
  *
  * @author steffen
  */
-public class Entity {
+public class Entity{
     private final String id = UUID.randomUUID().toString();
     private Map<Class, EntityPart> PartStorage;
+    
 
     public String getId() {
         return id;
