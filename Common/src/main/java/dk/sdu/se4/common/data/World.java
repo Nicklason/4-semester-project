@@ -17,5 +17,10 @@ public class World {
    private Map<String, Entity> entityMap = new ConcurrentHashMap<String, Entity>();
    
    
+   public void addEntiry(Entity entity){
+       this.entityMap.put(entity.getId(), entity);
+       
+   }
+   
    
 }

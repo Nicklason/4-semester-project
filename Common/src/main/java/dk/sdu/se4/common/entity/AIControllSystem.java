@@ -13,5 +13,5 @@ import dk.sdu.se4.common.data.World;
  * @author steff
  */
 public interface AIControllSystem {
-    void PathFinding(World world, GameData gameData);
+    void pathFinding(World world, GameData gameData);
 }

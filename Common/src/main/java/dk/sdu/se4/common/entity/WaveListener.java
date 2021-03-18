@@ -13,6 +13,6 @@ import dk.sdu.se4.common.data.World;
  * @author steff
  */
 public interface WaveListener {
-    void Started(World world, GameData gameData);
-    void Ended(World World, GameData gameData);
+    void started(World world, GameData gameData);
+    void ended(World World, GameData gameData);
 }

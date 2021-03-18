@@ -17,19 +17,23 @@ import java.util.UUID;
 public class Entity {
     private final String id = UUID.randomUUID().toString();
     private Map<Class, EntityPart> PartStorage;
+
+    public String getId() {
+        return id;
+    }
     
 
     public Entity() {
         this.PartStorage = new HashMap<Class, EntityPart>();
     }
     
-    public void AddPart(EntityPart entitypart){
+    public void addPart(EntityPart entitypart){
         this.PartStorage.put(entitypart.getClass(), entitypart);
     }
-    public void RemovePart(Class partClass){
+    public void removePart(Class partClass){
         this.PartStorage.remove(partClass);
     }
-    public <E extends Entity> E GetPart(Class partClass){
+    public <E extends Entity> E getPart(Class partClass){
         return (E) PartStorage.get(partClass);
     }
     
