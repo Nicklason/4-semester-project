@@ -52,7 +52,11 @@
   <packaging>pom</packaging>
     
   <modules>
-
+        
+    <module>dk.sdu.se4.LibGDX</module>
+        
+    <module>Core</module>
+      
   </modules>
     
   <build>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <parent>
+    <relativePath>../poms/libgdxwrapper/</relativePath>
+    <groupId>dk.sdu.se4.semester-project.build</groupId>
+    <artifactId>libgdxwrapper-bundle-settings</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+    
+  <properties>
+    <bundle.symbolicName>dk.sdu.se4.LibGDX</bundle.symbolicName>
+    <wrapped.groupId>dk.sdu.se4</wrapped.groupId>
+    <wrapped.artifactId>LibGDX</wrapped.artifactId>
+    <wrapped.version>1.0-SNAPSHOT</wrapped.version>
+    <libGDX.version>1.5.0</libGDX.version>
+  </properties>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>dk.sdu.se4.semester-project</groupId>
+  <artifactId>dk.sdu.se4.LibGDX</artifactId>
+  <version>1.0-SNAPSHOT-001-SNAPSHOT</version>
+
+  <name>${bundle.symbolicName} ${wrapped.version} [osgi]</name>
+
+  <packaging>bundle</packaging>
+
+  <dependencies>
+    <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.core</artifactId>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx</artifactId>
+        <version>${libGDX.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx-platform</artifactId>
+        <version>${libGDX.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx-backend-lwjgl</artifactId>
+        <version>${libGDX.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx-box2d</artifactId>
+        <version>${libGDX.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx-freetype</artifactId>
+        <version>${libGDX.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx-platform</artifactId>
+        <version>${libGDX.version}</version>
+        <classifier>natives-desktop</classifier>
+    </dependency>
+    <dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx-box2d-platform</artifactId>
+        <classifier>natives-desktop</classifier>
+        <version>${libGDX.version}</version>
+        <scope>compile</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx-freetype-platform</artifactId>
+        <classifier>natives-desktop</classifier>
+        <version>${libGDX.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.badlogicgames.gdx</groupId>
+        <artifactId>gdx-jnigen</artifactId>
+        <version>${libGDX.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.diffplug.osgi</groupId>
+        <artifactId>com.diffplug.osgi.extension.sun.misc</artifactId>
+        <version>0.0.0</version>
+    </dependency>
+    <dependency>
+        <groupId>com.diffplug.osgi</groupId>
+        <artifactId>com.diffplug.osgi.extension.sun.reflect</artifactId>
+        <version>0.0.0</version>
+</dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.ops4j</groupId>
+        <artifactId>maven-pax-plugin</artifactId>
+        <version>1.6.0</version>
+        <!--
+           | enable improved OSGi compilation support for the bundle life-cycle.
+           | to switch back to the standard bundle life-cycle, move this setting
+           | down to the maven-bundle-plugin section
+          -->
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>1.4.3</version>
+        <!--
+         | the following instructions are optimized for wrapping third-party libraries as OSGi bundles
+        -->
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>${bundle.symbolicName}</Bundle-SymbolicName>
+            <Bundle-Version>${wrapped.version}</Bundle-Version>
+            <!--
+             | export wrapped contents: don't use Export-Package:* as this bundles everything on the classpath
+            -->
+            <_exportcontents>*</_exportcontents>
+            <Private-Package>!*</Private-Package>
+            <!--
+             | each module can override these defaults in their osgi.bnd file
+            -->
+            <_include>-osgi.bnd</_include>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
