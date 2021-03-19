@@ -13,16 +13,16 @@ public class GameData {
     private float delta;
     private int displayWidth;
     private int displayHeight;
-    private GameData gameDataInstance = null;
+    private static GameData gameDataInstance = null;
     
     private GameData(){
         
     }
-    public GameData getInstance(){
-        if(this.gameDataInstance==null){
-            this.gameDataInstance= new GameData();
+    public static GameData getInstance(){
+        if(gameDataInstance==null){
+            gameDataInstance= new GameData();
         }
-        return this.gameDataInstance;
+        return gameDataInstance;
     }
 
     public float getDelta() {
