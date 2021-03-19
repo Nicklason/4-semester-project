@@ -10,7 +10,7 @@ package dk.sdu.se4.common.service;
  * @author steff
  */
 public interface MapService {
-    String getid();
+    String getId();
     String getName();
     int getHeight();
     int getWeight();
