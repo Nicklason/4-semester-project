@@ -44,13 +44,10 @@ public class WorldTest {
      */
     @Test
     public void testGetInstance() {
-        System.out.println("getInstance");
         World expResult = World.getInstance();
         World result = World.getInstance();
         assertSame(expResult, result);
         assertNotNull(result);
-       
-        
     }
 
     /**
@@ -58,7 +55,6 @@ public class WorldTest {
      */
     @Test
     public void testAddEntity() {
-        System.out.println("addEntity");
         Entity entity = new Entity();
         World instance = World.getInstance();
         instance.addEntity(entity);
@@ -72,14 +68,12 @@ public class WorldTest {
      */
     @Test
     public void testReomveEntity() {
-        System.out.println("reomveEntity");
         Entity entity = new Entity();
         World instance = World.getInstance();
         instance.addEntity(entity);
         assertTrue("Entity add to map", instance.getEntityMap().containsKey(entity.getId()));
         instance.reomveEntity(entity);
         assertTrue("Entity removed from map", !instance.getEntityMap().containsKey(entity.getId()));
-        
     }
 
     /**
@@ -87,12 +81,9 @@ public class WorldTest {
      */
     @Test
     public void testGetEntityMap() {
-        System.out.println("getEntityMap");
         World instance = World.getInstance();
         Map<String, Entity> expResult = instance.getEntityMap();
         Map<String, Entity> result = instance.getEntityMap();
         assertEquals(expResult, result);
-        
     }
-    
 }

@@ -20,9 +20,7 @@ public class TestPart implements EntityPart{
     public TestPart() {
     }
     
-    public void process(World world, GameData gameData) {
-        System.out.println("TEST Call");
-    }
+    public void process(World world, GameData gameData) {}
 
     public String getName() {
         return name;
