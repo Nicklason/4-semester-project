@@ -8,7 +8,6 @@ package dk.sdu.se4.common.entity;
 import dk.sdu.se4.common.data.GameData;
 import dk.sdu.se4.common.data.World;
 import dk.sdu.se4.common.entity.parts.EntityPart;
-import dk.sdu.se4.common.entity.parts.TestPart;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
