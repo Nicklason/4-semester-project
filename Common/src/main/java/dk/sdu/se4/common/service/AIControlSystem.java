@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.se4.common.entity;
+package dk.sdu.se4.common.service;
 
 import dk.sdu.se4.common.data.GameData;
 import dk.sdu.se4.common.data.World;
@@ -12,7 +12,6 @@ import dk.sdu.se4.common.data.World;
  *
  * @author steff
  */
-public interface WaveListener {
-    void started(World world, GameData gameData);
-    void ended(World World, GameData gameData);
+public interface AIControlSystem {
+    void pathFinding(World world, GameData gameData);
 }
