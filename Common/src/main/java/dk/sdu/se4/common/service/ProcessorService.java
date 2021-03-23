@@ -5,15 +5,13 @@
  */
 package dk.sdu.se4.common.service;
 
-import dk.sdu.se4.common.data.GameData;
-import dk.sdu.se4.common.data.World;
-
 /**
  *
  * @author steff
  */
 public interface ProcessorService {
-    
-    void process(World world, GameData gameData);
-    
+    /**
+     * Method called each frame
+     */
+    void process();
 }

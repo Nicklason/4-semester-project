@@ -5,14 +5,18 @@
  */
 package dk.sdu.se4.common.service;
 
-import dk.sdu.se4.common.data.GameData;
-import dk.sdu.se4.common.data.World;
-
 /**
  *
  * @author steff
  */
 public interface WaveListener {
-    void started(World world, GameData gameData);
-    void ended(World World, GameData gameData);
+    /**
+     * Method called when a wave has started
+     */
+    void waveStarted();
+    
+    /**
+     * Method called when a wave has ended
+     */
+    void waveEnded();
 }
