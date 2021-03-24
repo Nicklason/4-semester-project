@@ -20,7 +20,7 @@ public class TestPart implements EntityPart{
     public TestPart() {
     }
     
-    public void process(World world, GameData gameData) {}
+   
 
     public String getName() {
         return name;
@@ -29,6 +29,10 @@ public class TestPart implements EntityPart{
     @Override
     public String toString() {
         return "TestPart{" + "name=" + name + '}';
+    }
+
+    public void process(Entity entity) {
+     
     }
     
 }

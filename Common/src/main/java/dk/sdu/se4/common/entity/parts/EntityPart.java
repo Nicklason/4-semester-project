@@ -5,13 +5,13 @@
  */
 package dk.sdu.se4.common.entity.parts;
 
-import dk.sdu.se4.common.data.GameData;
-import dk.sdu.se4.common.data.World;
+
+import dk.sdu.se4.common.entity.Entity;
 
 /**
  *
  * @author steff
  */
 public interface EntityPart {
-    void process(World world, GameData gameData);
+    void process(Entity entity);
 }

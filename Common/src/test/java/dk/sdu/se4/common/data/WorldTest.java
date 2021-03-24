@@ -61,6 +61,7 @@ public class WorldTest {
         assertTrue("Entity add to map", instance.getEntityMap().containsKey(entity.getId()));
         assertSame(instance.getEntityMap().get(entity.getId()), entity);
         
+        
     }
 
     /**
