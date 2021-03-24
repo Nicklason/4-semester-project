@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Entity{
     private final String id;
     private Map<Class, EntityPart> partStorage;
-    
+
 
     public String getId() {
         return this.id;
@@ -38,7 +38,7 @@ public class Entity{
     public <E extends EntityPart> E getPart(Class partClass){
         return (E) this.partStorage.get(partClass);
     }
-
+    
     
     
     

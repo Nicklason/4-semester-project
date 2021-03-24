@@ -77,7 +77,8 @@
           
     
     <module>Common</module>
-      
+    <module>player</module>
+    <module>commonPlayer</module>
   </modules>
       
   
