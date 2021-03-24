@@ -41,24 +41,6 @@ public class MapServiceImplementationTest {
     }
 
     /**
-     * Test of load method, of class MapServiceImplementation.
-     */
-    @Test
-    public void testLoad() {
-        MapServiceImplementation instance = new MapServiceImplementation();
-        instance.load();
-    }
-
-    /**
-     * Test of unload method, of class MapServiceImplementation.
-     */
-    @Test
-    public void testUnload() {
-        MapServiceImplementation instance = new MapServiceImplementation();
-        instance.unload();
-    }
-
-    /**
      * Test of getHeight method, of class MapServiceImplementation.
      */
     @Test

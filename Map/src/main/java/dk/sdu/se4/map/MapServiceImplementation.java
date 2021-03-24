@@ -15,9 +15,6 @@ public class MapServiceImplementation implements MapService {
     public MapServiceImplementation() {
         this.entities = new HashMap();
     }
-    
-    public void load() {}
-    public void unload() {}
 
     public int getHeight() {
         return this.height;
