@@ -5,13 +5,10 @@
  */
 package dk.sdu.se4.common.service;
 
-import dk.sdu.se4.common.data.GameData;
-import dk.sdu.se4.common.data.World;
-
 /**
  *
  * @author steff
  */
 public interface AIControlSystem {
-    void pathFinding(World world, GameData gameData);
+    void pathFinding();
 }

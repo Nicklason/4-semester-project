@@ -5,8 +5,6 @@
  */
 package dk.sdu.se4.common.entity;
 
-import dk.sdu.se4.common.data.GameData;
-import dk.sdu.se4.common.data.World;
 import dk.sdu.se4.common.entity.parts.EntityPart;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,7 +43,6 @@ public class EntityTest {
      */
     @Test
     public void testGetId() {
-        System.out.println("getId");
         Entity instance = new Entity();
         String expResult = "";
         String result = instance.getId();
@@ -61,8 +58,6 @@ public class EntityTest {
      */
     @Test
     public void testAddPart() {
-        System.out.println("addPart");
-        
         Entity instance = new Entity();
         instance.addPart(new TestPart());
         TestPart testPart = instance.getPart(TestPart.class);
@@ -74,7 +69,6 @@ public class EntityTest {
      */
     @Test
     public void testRemovePart() {
-        System.out.println("removePart");
         TestPart partClass = new TestPart();
         Entity instance = new Entity();
         instance.addPart(partClass);
@@ -90,7 +84,6 @@ public class EntityTest {
      */
     @Test
     public void testGetPart() {
-        System.out.println("getPart");
         EntityPart partClass = new TestPart();
         Entity instance = new Entity();
         instance.addPart(partClass);

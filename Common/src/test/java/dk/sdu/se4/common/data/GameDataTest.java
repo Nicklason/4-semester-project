@@ -42,7 +42,6 @@ public class GameDataTest {
      */
     @Test
     public void testGetInstance() {
-        System.out.println("getInstance");
         GameData instance = GameData.getInstance();
         GameData expResult = GameData.getInstance();
         GameData result = instance.getInstance();
@@ -50,10 +49,4 @@ public class GameDataTest {
         assertSame(expResult, result);
         assertNotNull(result);
     }
-
-   
-    
-
-    
-    
 }

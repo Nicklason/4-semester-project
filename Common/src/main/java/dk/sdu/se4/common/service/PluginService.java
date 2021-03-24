@@ -5,15 +5,18 @@
  */
 package dk.sdu.se4.common.service;
 
-import dk.sdu.se4.common.data.GameData;
-import dk.sdu.se4.common.data.World;
-
 /**
  *
  * @author steff
  */
 public interface PluginService {
+    /**
+     * Method called when the service has been loaded
+     */
+    void load();
     
-    void load(World world, GameData gamedata);
-    void unload(World world, GameData gamedata);
+    /**
+     * Method called when the service has been unloaded
+     */
+    void unload();
 }
