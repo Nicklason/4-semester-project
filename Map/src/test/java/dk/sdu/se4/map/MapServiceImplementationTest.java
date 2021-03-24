@@ -87,7 +87,7 @@ public class MapServiceImplementationTest {
     public void testGetEntities_0args() {
         MapServiceImplementation instance = new MapServiceImplementation();
         Collection<Entity> result = instance.getEntities();
-        assertEquals(result.size(), 0);
+        assertEquals(0, result.size());
     }
 
     /**
