@@ -1,0 +1,21 @@
+?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.ServicesStorage">
+    <implementation class="dk.sdu.se4.ServicesStorage"/>
+
+    <reference bind="addPluginService" cardinality="0..n"
+               interface="dk.sdu.se4.common.service.PluginService"
+               name="PluginService" policy="dynamic" unbind="removePluginService"/>
+
+    <reference bind="addPostProcessorService" cardinality="0..n"
+               interface="dk.sdu.se4.common.service.PostProcessorService"
+               name="PostProcessorService" policy="dynamic" unbind="removePostProcessorService"/>
+    
+    <reference bind="addProcessorService" cardinality="0..n"
+               interface="dk.sdu.se4.common.service.ProcessorService"
+               name="ProcessorService" policy="dynamic" unbind="removeProcessorService"/>
+    
+    
+    
+    
+</scr:component>
+        
