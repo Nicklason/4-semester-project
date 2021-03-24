@@ -78,6 +78,7 @@
     
     <module>Common</module>
       
+    <module>Map</module>
   </modules>
       
   
