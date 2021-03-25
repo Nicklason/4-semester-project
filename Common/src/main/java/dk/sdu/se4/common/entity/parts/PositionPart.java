@@ -14,7 +14,8 @@ import java.awt.Point;
  *
  * @author steff
  */
-public class PositionPart implements EntityPart{
+public class PositionPart implements EntityPart {
+
     private Point point;
     private float radians;
 
@@ -34,11 +35,9 @@ public class PositionPart implements EntityPart{
     public float getRadians() {
         return radians;
     }
-    
+
     public void process(Entity entity) {
-        
+
     }
-    
-    
-    
+
 }

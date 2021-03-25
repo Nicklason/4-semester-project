@@ -4,12 +4,10 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
-
 public class Game implements ApplicationListener {
+
     private ServicesStorage servicesStorage;
-    
-    
-    
+
     @Override
     public void create() {
         this.servicesStorage = new ServicesStorage();
@@ -24,14 +22,18 @@ public class Game implements ApplicationListener {
     }
 
     @Override
-    public void resize(int width, int height) {}
+    public void resize(int width, int height) {
+    }
 
     @Override
-    public void pause() {}
+    public void pause() {
+    }
 
     @Override
-    public void resume() {}
+    public void resume() {
+    }
 
     @Override
-    public void dispose() {}
+    public void dispose() {
+    }
 }

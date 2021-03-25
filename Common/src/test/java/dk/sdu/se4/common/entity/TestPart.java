@@ -14,25 +14,24 @@ import dk.sdu.se4.common.entity.parts.EntityPart;
  *
  * @author steff
  */
-public class TestPart implements EntityPart{    
-    private String name="TestPart";
+public class TestPart implements EntityPart {
+
+    private String name = "TestPart";
 
     public TestPart() {
     }
-    
-   
 
     public String getName() {
         return name;
     }
-    
+
     @Override
     public String toString() {
         return "TestPart{" + "name=" + name + '}';
     }
 
     public void process(Entity entity) {
-     
+
     }
-    
+
 }

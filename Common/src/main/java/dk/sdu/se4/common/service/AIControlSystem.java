@@ -10,6 +10,8 @@ package dk.sdu.se4.common.service;
  * @author steff
  */
 public interface AIControlSystem {
+
     void addPathFinding();
+
     void removePathFinding();
 }

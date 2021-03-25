@@ -8,10 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapServiceImplementation implements MapService {
+
     private int height = 600;
     private int width = 600;
     private Map<String, Entity> entities;
-    
+
     public MapServiceImplementation() {
         this.entities = new HashMap();
     }
@@ -49,9 +50,9 @@ public class MapServiceImplementation implements MapService {
     }
 
     public void removeEntities(Collection<Entity> removeEntities) {
-        for (Entity entity: removeEntities) {
+        for (Entity entity : removeEntities) {
             this.entities.remove(entity);
         }
     }
-    
+
 }

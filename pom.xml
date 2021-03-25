@@ -2,148 +2,148 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
       
   
-  <!--
-   | put company details here
-  <organization>
-    <name>...</name>
-    <url>http://...</url>
-  </organization>
-  -->
-      
-  
-  <!--
-   | put license details here
-  <licenses>
-    <license>
+    <!--
+     | put company details here
+    <organization>
       <name>...</name>
       <url>http://...</url>
-      <comments>
-      </comments>
-    </license>
-  </licenses>
-  -->
-      
-  
-  <modelVersion>4.0.0</modelVersion>
-      
-  
-  <groupId>dk.sdu.se4</groupId>
-      
-  
-  <artifactId>semester-project</artifactId>
-      
-  
-  <version>1.0-SNAPSHOT</version>
-      
-  
-  <name>SemesterProject (OSGi project)</name>
-      
-  
-  <!--
-   | describe your project here
-  -->
-      
-  
-  <description>Generated using Pax-Construct</description>
-      
-  
-  <properties>
-            
-    
-    <!--
-     | some example OSGi runtime properties
+    </organization>
     -->
+      
+  
+    <!--
+     | put license details here
+    <licenses>
+      <license>
+        <name>...</name>
+        <url>http://...</url>
+        <comments>
+        </comments>
+      </license>
+    </licenses>
+    -->
+      
+  
+    <modelVersion>4.0.0</modelVersion>
+      
+  
+    <groupId>dk.sdu.se4</groupId>
+      
+  
+    <artifactId>semester-project</artifactId>
+      
+  
+    <version>1.0-SNAPSHOT</version>
+      
+  
+    <name>SemesterProject (OSGi project)</name>
+      
+  
+    <!--
+     | describe your project here
+    -->
+      
+  
+    <description>Generated using Pax-Construct</description>
+      
+  
+    <properties>
             
     
-    <org.osgi.service.http.port>8080</org.osgi.service.http.port>
+        <!--
+         | some example OSGi runtime properties
+        -->
             
     
-    <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
+        <org.osgi.service.http.port>8080</org.osgi.service.http.port>
+            
+    
+        <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
           
   
-  </properties>
+    </properties>
       
   
-  <packaging>pom</packaging>
+    <packaging>pom</packaging>
       
   
-  <modules>
+    <modules>
             
     
-    <module>dk.sdu.se4.LibGDX</module>
+        <module>dk.sdu.se4.LibGDX</module>
             
     
-    <module>Core</module>
+        <module>Core</module>
           
     
-    <module>Common</module>
+        <module>Common</module>
       
-    <module>Map</module>
-  </modules>
+        <module>Map</module>
+    </modules>
       
   
-  <build>
+    <build>
             
     
-    <plugins>
+        <plugins>
                   
       
-      <plugin>
+            <plugin>
                         
         
-        <groupId>org.ops4j</groupId>
+                <groupId>org.ops4j</groupId>
                         
         
-        <artifactId>maven-pax-plugin</artifactId>
+                <artifactId>maven-pax-plugin</artifactId>
                         
         
-        <version>1.6.0</version>
+                <version>1.6.0</version>
                         
         
-        <configuration>
+                <configuration>
                               
           
-          <!--
-           | some example Pax-Runner settings
-          -->
+                    <!--
+                     | some example Pax-Runner settings
+                    -->
                               
           
-          <provision>
+                    <provision>
                                     
             
-            <param>--platform=felix</param>
+                        <param>--platform=felix</param>
                                   
           
-          </provision>
+                    </provision>
                             
         
-        </configuration>
+                </configuration>
                         
         
-        <executions>
+                <executions>
                               
           
-          <!--
-           | uncomment to auto-generate IDE files
-          <execution>
-            <id>ide-support</id>
-            <goals>
-              <goal>eclipse</goal>
-            </goals>
-          </execution>
-          -->
+                    <!--
+                     | uncomment to auto-generate IDE files
+                    <execution>
+                      <id>ide-support</id>
+                      <goals>
+                        <goal>eclipse</goal>
+                      </goals>
+                    </execution>
+                    -->
                             
         
-        </executions>
+                </executions>
                       
       
-      </plugin>
+            </plugin>
                 
     
-    </plugins>
+        </plugins>
           
   
-  </build>
+    </build>
     
 
 </project>

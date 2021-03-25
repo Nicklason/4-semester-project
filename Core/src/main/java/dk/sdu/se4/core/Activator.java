@@ -6,7 +6,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 public class Activator implements BundleActivator {
-    
+
     LwjglApplication application = null;
 
     public void start(BundleContext context) throws Exception {
@@ -26,4 +26,3 @@ public class Activator implements BundleActivator {
     }
 
 }
-

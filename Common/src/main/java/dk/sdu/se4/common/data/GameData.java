@@ -10,17 +10,19 @@ package dk.sdu.se4.common.data;
  * @author steff
  */
 public class GameData {
+
     private float delta;
     private int displayWidth;
     private int displayHeight;
     private static GameData gameDataInstance = null;
-    
-    private GameData(){
-        
+
+    private GameData() {
+
     }
-    public static GameData getInstance(){
-        if(gameDataInstance==null){
-            gameDataInstance= new GameData();
+
+    public static GameData getInstance() {
+        if (gameDataInstance == null) {
+            gameDataInstance = new GameData();
         }
         return gameDataInstance;
     }
@@ -48,7 +50,5 @@ public class GameData {
     public void setDisplayHeight(int displayHeight) {
         this.displayHeight = displayHeight;
     }
-    
-    
-    
+
 }

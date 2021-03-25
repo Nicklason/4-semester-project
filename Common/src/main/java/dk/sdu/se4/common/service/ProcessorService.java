@@ -10,6 +10,7 @@ package dk.sdu.se4.common.service;
  * @author steff
  */
 public interface ProcessorService {
+
     /**
      * Method called each frame
      */

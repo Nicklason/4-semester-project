@@ -12,10 +12,6 @@
     
     <reference bind="addProcessorService" cardinality="0..n"
                interface="dk.sdu.se4.common.service.ProcessorService"
-               name="ProcessorService" policy="dynamic" unbind="removeProcessorService"/>
-    
-    
-    
-    
+               name="ProcessorService" policy="dynamic" unbind="removeProcessorService"/>  
 </scr:component>
         

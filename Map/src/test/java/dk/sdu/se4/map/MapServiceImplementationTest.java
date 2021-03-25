@@ -20,22 +20,22 @@ import static org.junit.Assert.*;
  * @author nickl
  */
 public class MapServiceImplementationTest {
-    
+
     public MapServiceImplementationTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -68,13 +68,13 @@ public class MapServiceImplementationTest {
     @Test
     public void testAddEntity() {
         MapServiceImplementation instance = new MapServiceImplementation();
-        
+
         assertTrue(instance.getEntities().isEmpty());
         assertEquals(0, instance.getEntities().size());
-        
+
         Entity entity = new Entity();
         instance.addEntity(entity);
-        
+
         assertTrue(!instance.getEntities().isEmpty());
         assertEquals(1, instance.getEntities().size());
         assertEquals(entity, instance.getEntities().toArray()[0]);
@@ -107,15 +107,15 @@ public class MapServiceImplementationTest {
     @Test
     public void testRemoveEntity() {
         MapServiceImplementation instance = new MapServiceImplementation();
-        
+
         Entity entity = new Entity();
-        
+
         instance.addEntity(entity);
-        
+
         assertTrue(!instance.getEntities().isEmpty());
-        
+
         instance.removeEntity(entity);
-        
+
         assertTrue(instance.getEntities().isEmpty());
     }
 
@@ -128,5 +128,5 @@ public class MapServiceImplementationTest {
         MapServiceImplementation instance = new MapServiceImplementation();
         instance.removeEntities(removeEntities);
     }
-    
+
 }

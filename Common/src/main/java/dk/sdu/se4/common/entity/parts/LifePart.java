@@ -11,33 +11,34 @@ import dk.sdu.se4.common.entity.Entity;
  *
  * @author steff
  */
-public class LifePart implements EntityPart{
-    
+public class LifePart implements EntityPart {
+
     private int hp;
     private int MAX_HP;
     private boolean alive;
 
     public LifePart(int MAX_HP) {
         this.hp = MAX_HP;
-        this.MAX_HP=MAX_HP;
+        this.MAX_HP = MAX_HP;
         this.alive = true;
     }
-    
-    public void removeHP(int amount){
-        if(alive){
-            this.hp-=amount;
-            if (this.hp<=0){
-                this.alive=false;
+
+    public void removeHP(int amount) {
+        if (alive) {
+            this.hp -= amount;
+            if (this.hp <= 0) {
+                this.alive = false;
             }
         }
     }
-    public void addHP(int amount){
-        if (this.alive){
-            this.hp+=amount;
-            if (this.hp>this.MAX_HP){
-                this.hp=MAX_HP;
+
+    public void addHP(int amount) {
+        if (this.alive) {
+            this.hp += amount;
+            if (this.hp > this.MAX_HP) {
+                this.hp = MAX_HP;
             }
-            
+
         }
     }
 
@@ -56,11 +57,9 @@ public class LifePart implements EntityPart{
     public boolean isAlive() {
         return alive;
     }
-    
-    
-    
+
     public void process(Entity entity) {
-        
+
     }
-    
+
 }

@@ -18,22 +18,22 @@ import static org.junit.Assert.*;
  * @author steff
  */
 public class EntityTest {
-    
+
     public EntityTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -49,8 +49,7 @@ public class EntityTest {
         System.out.println(result);
         assertNotEquals(expResult, result);
         assertNotNull(instance);
-        
-        
+
     }
 
     /**
@@ -75,8 +74,7 @@ public class EntityTest {
         assertNotNull("Map  null", instance.getPart(TestPart.class));
         instance.removePart(partClass.getClass());
         assertNull("Map not null", instance.getPart(TestPart.class));
-        
-        
+
     }
 
     /**
@@ -90,7 +88,7 @@ public class EntityTest {
         EntityPart expResult = partClass;
         TestPart result = instance.getPart(TestPart.class);
         assertSame(expResult, result);
-        
+
     }
-    
+
 }

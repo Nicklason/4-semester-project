@@ -12,17 +12,16 @@ import java.awt.Point;
  *
  * @author steff
  */
+public class MovingPart implements EntityPart {
 
-public class MovingPart implements EntityPart{
     private Point deltaPoint;
     private float speed;
-    private boolean UP,DOWN,RIGTH,LEFT;
-    
-    public MovingPart( float speed) {
-        this.speed=speed;
-        
+    private boolean UP, DOWN, RIGTH, LEFT;
+
+    public MovingPart(float speed) {
+        this.speed = speed;
+
     }
-    
 
     public Point getDeltaPoint() {
         return deltaPoint;
@@ -31,8 +30,6 @@ public class MovingPart implements EntityPart{
     public void setDeltaPoint(Point deltaPoint) {
         this.deltaPoint = deltaPoint;
     }
-
-   
 
     public boolean isUP() {
         return UP;
@@ -65,35 +62,26 @@ public class MovingPart implements EntityPart{
     public void setLEFT(boolean LEFT) {
         this.LEFT = LEFT;
     }
-    
-    
-    
-    
-    
-    
-    
 
     public void process(Entity entity) {
-       PositionPart positionPart = entity.getPart(PositionPart.class);
-       Point p = positionPart.getPoint();
-       
-       
-       if (this.UP){
-           p.translate(0,1);
-       }
-       if (this.DOWN){
-           
-           p.translate(0, -1);
-       }
-       if(this.RIGTH){
-           p.translate(1, 0);
-           
-       }
-       if (this.LEFT){
-          p.translate(-1, 0);
-       }
-       positionPart.setPoint(p);
+        PositionPart positionPart = entity.getPart(PositionPart.class);
+        Point p = positionPart.getPoint();
+
+        if (this.UP) {
+            p.translate(0, 1);
+        }
+        if (this.DOWN) {
+
+            p.translate(0, -1);
+        }
+        if (this.RIGTH) {
+            p.translate(1, 0);
+
+        }
+        if (this.LEFT) {
+            p.translate(-1, 0);
+        }
+        positionPart.setPoint(p);
     }
-    
-    
+
 }

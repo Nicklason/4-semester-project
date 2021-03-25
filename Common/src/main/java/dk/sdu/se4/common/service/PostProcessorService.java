@@ -10,6 +10,7 @@ package dk.sdu.se4.common.service;
  * @author steffen
  */
 public interface PostProcessorService {
+
     /**
      * Method called each frame after processor services
      */

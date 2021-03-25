@@ -5,7 +5,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 
 public class Activator implements BundleActivator {
-    
+
     ServiceRegistration serviceRegistration;
 
     public void start(BundleContext context) throws Exception {
@@ -17,4 +17,3 @@ public class Activator implements BundleActivator {
     }
 
 }
-

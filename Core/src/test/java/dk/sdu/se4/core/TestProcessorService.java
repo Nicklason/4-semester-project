@@ -11,10 +11,10 @@ import dk.sdu.se4.common.service.ProcessorService;
  *
  * @author steff
  */
-public class TestProcessorService implements ProcessorService{
+public class TestProcessorService implements ProcessorService {
 
     public void process() {
         System.out.println("TestProcessor is called");
     }
-    
+
 }

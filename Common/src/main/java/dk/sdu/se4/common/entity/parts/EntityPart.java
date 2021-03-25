@@ -5,7 +5,6 @@
  */
 package dk.sdu.se4.common.entity.parts;
 
-
 import dk.sdu.se4.common.entity.Entity;
 
 /**
@@ -13,5 +12,6 @@ import dk.sdu.se4.common.entity.Entity;
  * @author steff
  */
 public interface EntityPart {
+
     void process(Entity entity);
 }

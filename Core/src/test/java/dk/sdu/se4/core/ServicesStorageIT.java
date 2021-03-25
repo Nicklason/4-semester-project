@@ -20,27 +20,25 @@ import static org.junit.Assert.*;
  * @author steff
  */
 public class ServicesStorageIT {
-    
+
     public ServicesStorageIT() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
-
-  
 
     /**
      * Test of updateProcessServices method, of class ServicesStorage.
@@ -53,7 +51,7 @@ public class ServicesStorageIT {
         instance.addPostProcessorService(testPostProcessorService);
         instance.addProcessorService(testProcessorService);
         instance.updateProcessServices();
-  
+
     }
-    
+
 }
