@@ -20,7 +20,8 @@ public class LifePart implements EntityPart {
     public LifePart(int MAX_HP) {
         this.hp = MAX_HP;
         this.MAX_HP = MAX_HP;
-        this.alive = true;
+        this.alive= this.MAX_HP>0;
+        
     }
 
     public void removeHP(int amount) {
@@ -38,7 +39,6 @@ public class LifePart implements EntityPart {
             if (this.hp > this.MAX_HP) {
                 this.hp = MAX_HP;
             }
-
         }
     }
 
