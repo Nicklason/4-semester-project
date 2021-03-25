@@ -52,7 +52,7 @@ public class ServicesStorage {
         
     }
     
-    public void UpdateServices(){
+    public void updateProcessServices(){
         for (PostProcessorService postProcessorService: this.postProcessorServicesList){
             postProcessorService.process();
         }

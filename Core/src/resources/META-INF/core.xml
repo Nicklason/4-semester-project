@@ -1,6 +1,6 @@
 ?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.ServicesStorage">
-    <implementation class="dk.sdu.se4.ServicesStorage"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.Core.ServicesStorage">
+    <implementation class="dk.sdu.se4.Core.ServicesStorage"/>
 
     <reference bind="addPluginService" cardinality="0..n"
                interface="dk.sdu.se4.common.service.PluginService"

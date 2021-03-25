@@ -12,7 +12,7 @@ public class Game implements ApplicationListener {
     
     @Override
     public void create() {
-    this.servicesStorage = new ServicesStorage();
+        this.servicesStorage = new ServicesStorage();
     }
 
     @Override
@@ -20,8 +20,7 @@ public class Game implements ApplicationListener {
         // Clear screen to black
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
-        this.servicesStorage.UpdateServices();
+        this.servicesStorage.updateProcessServices();
     }
 
     @Override

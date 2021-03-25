@@ -49,7 +49,7 @@
                 <configuration>
                     <instructions>
                         <Bundle-Activator>dk.sdu.se4.common.Activator</Bundle-Activator>
-                        <Export-Package />
+                        <Export-Package>dk.sdu.se4.common.*</Export-Package>
                     </instructions>
                 </configuration>
             </plugin>
