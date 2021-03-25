@@ -14,7 +14,6 @@ import java.awt.Point;
  */
 public class MovingPart implements EntityPart {
 
-    private Point deltaPoint;
     private float speed;
     private boolean UP, DOWN, RIGTH, LEFT;
 
@@ -23,13 +22,6 @@ public class MovingPart implements EntityPart {
 
     }
 
-    public Point getDeltaPoint() {
-        return deltaPoint;
-    }
-
-    public void setDeltaPoint(Point deltaPoint) {
-        this.deltaPoint = deltaPoint;
-    }
 
     public boolean isUP() {
         return UP;
