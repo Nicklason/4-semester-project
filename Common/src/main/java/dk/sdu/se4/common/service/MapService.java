@@ -35,4 +35,16 @@ public interface MapService {
      * @return A collection of entities with the same entity type
      */
     <E extends Entity> Collection<Entity> getEntities(Class<E> entityType);
+    
+    /**
+     * Remove an entity from the map
+     * @param entity The entity to remove
+     */
+    void removeEntity(Entity entity);
+    
+    /**
+     * Remove a collection of entities
+     * @param entities The collection of entities
+     */
+    void removeEntities(Collection<Entity> entities);
 }
