@@ -5,12 +5,12 @@
  */
 package dk.sdu.se4.common.services;
 
-import dk.sdu.se4.common.data.GameObject;
+import dk.sdu.se4.common.data.GameSpace;
 
 /**
  *
  * @author steff
  */
 public interface IGameObjectProcesssingService {
-   void process(GameObject gameObject);
+   void process(GameSpace gameSpace);
 }
