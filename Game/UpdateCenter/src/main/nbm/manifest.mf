@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module-Localizing-Bundle: dk/sdu/se4/updatecenter/Bundle.properties
-OpenIDE-Module-Install: dk/sdu/se4/updatecenter/UpdateActivator.class
-OpenIDE-Module-Layer: dk/sdu/se4/updatecenter/resources/layer.xml

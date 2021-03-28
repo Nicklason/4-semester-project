@@ -69,7 +69,8 @@
     </modules>
 
     <properties>
-        <netbeans.version>RELEASE90</netbeans.version>
+         <netbeans.version>RELEASE112</netbeans.version>
         <brandingToken>game</brandingToken>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 </project>
