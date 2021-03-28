@@ -8,12 +8,24 @@ package dk.sdu.se4.core;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-
+import dk.sdu.se4.common.data.GameSpace;
+import dk.sdu.se4.common.services.IPluginService;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import org.openide.util.Lookup;
+import org.openide.util.LookupEvent;
+import org.openide.util.LookupListener;
 /**
  *
  * @author steff
  */
 public class Game  implements ApplicationListener{
+    private GameSpace gamespace;
+    
+    private final Lookup lookup = Lookup.getDefault();
+    private Lookup.Result<IPluginService> result;
+    private List<IPluginService> gamePlugins = new CopyOnWriteArrayList<>();
 
     public Game() {
         
@@ -23,6 +35,7 @@ public class Game  implements ApplicationListener{
         cfg.height = 600;
         cfg.useGL30 = false;
         cfg.resizable = false;
+        this.gamespace=new GameSpace();
 
         new LwjglApplication(this, cfg);
     }
@@ -30,6 +43,18 @@ public class Game  implements ApplicationListener{
     @Override
     public void create() {
         System.out.println("Start Game");
+        
+        result = this.lookup.lookupResult(IPluginService.class);
+        result.addLookupListener(this.lookupListener);
+        result.allItems();
+
+        
+        for (IPluginService plugin : result.allInstances()) {
+            System.out.println(plugin.getClass().toString());
+            plugin.load(this.gamespace);
+            gamePlugins.add(plugin);
+        }
+        System.out.println("************************");
     }
 
     @Override
@@ -56,5 +81,34 @@ public class Game  implements ApplicationListener{
     public void dispose() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+
+    
+    
+    
+    
+    
+    private final LookupListener lookupListener = new LookupListener() {
+        @Override
+        public void resultChanged(LookupEvent le) {
+
+            Collection<? extends IPluginService> updated = result.allInstances();
+
+            for (IPluginService us : updated) {
+                // Newly installed modules
+                if (!gamePlugins.contains(us)) {
+                    us.load(gamespace);
+                    gamePlugins.add(us);
+                }
+            }
+            for (IPluginService gs : gamePlugins) {
+                if (!updated.contains(gs)) {
+                    gs.unload(gamespace);
+                    gamePlugins.remove(gs);
+                }
+            }
+        }
+
+    };
     
 }
