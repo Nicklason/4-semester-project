@@ -5,15 +5,25 @@
  */
 package dk.sdu.se4.core;
 
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import org.openide.modules.ModuleInstall;
 
 public class Installer extends ModuleInstall {
     
-    private static Game game;
+    
 
     @Override
     public void restored() {
-        this.game = new Game();
+         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
+        cfg.title = "Semester 4";
+        cfg.width = 800;
+        cfg.height = 600;
+        cfg.useGL30 = false;
+        cfg.resizable = false;
+
+        new LwjglApplication(new GameStarter(), cfg);
+        
     }
 
 }
