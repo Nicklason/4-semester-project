@@ -66,6 +66,7 @@
         <module>Common</module>
         <module>Enemy</module>
         <module>SilentUpdate</module>
+        <module>MenuScreen</module>
     </modules>
 
     <properties>
