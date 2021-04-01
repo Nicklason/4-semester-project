@@ -1,11 +1,11 @@
 package dk.sdu.se4.core;
 
-import dk.sdu.se4.common.service.MapService;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
+import dk.sdu.se4.common.service.MapService;
 
 public final class Game implements ApplicationListener  {
     private MapService mapService = null;
@@ -49,11 +49,11 @@ public final class Game implements ApplicationListener  {
 
     public void addMapService(MapService mapService) {
         this.mapService = mapService;
-        //System.out.println("ADDED MapService TO Game");
+        System.out.println("ADDED MapService TO Game");
     }
 
     public void removeMapService(MapService mapService) {
         this.mapService = null;
-        //System.out.println("REMOVED MapService FROM Game");
+        System.out.println("REMOVED MapService FROM Game");
     }
 }
