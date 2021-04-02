@@ -6,9 +6,19 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import dk.sdu.se4.common.service.MapService;
+import dk.sdu.se4.common.service.PluginService;
+import dk.sdu.se4.common.service.PostProcessorService;
+import dk.sdu.se4.common.service.ProcessorService;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Game implements ApplicationListener  {
     private MapService mapService = null;
+    
+    private List<PluginService> pluginlist = new ArrayList<>();
+    private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
+    private List<ProcessorService> processorServiceslist = new ArrayList<>();
+    
     
     LwjglApplication application = null;
     
@@ -26,13 +36,19 @@ public final class Game implements ApplicationListener  {
     }
 
     @Override
-    public void create() {}
+    public void create() {
+    for(PluginService p :pluginlist){
+        p.load();
+    }
+    
+    }
 
     @Override
     public void render() {
         // Clear screen to black
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+       
     }
 
     @Override
@@ -45,7 +61,9 @@ public final class Game implements ApplicationListener  {
     public void resume() {}
 
     @Override
-    public void dispose() {}
+    public void dispose() {
+       
+    }
 
     public void addMapService(MapService mapService) {
         this.mapService = mapService;
@@ -56,4 +74,31 @@ public final class Game implements ApplicationListener  {
         this.mapService = null;
         System.out.println("REMOVED MapService FROM Game");
     }
+    public void addPlugin(PluginService pluginService){
+        this.pluginlist.add(pluginService);
+    }
+    public void removePlugin(PluginService pluginService){
+        this.pluginlist.remove(pluginService);
+        
+    }
+    
+    public void addProcessorService(ProcessorService ProcessorService){
+        this.processorServiceslist.add(ProcessorService);
+    }
+    
+    public void removeProcessorService(ProcessorService ProcessorService){
+        this.processorServiceslist.remove(ProcessorService);
+        
+    }
+    
+    public void addPostProcessorService(PostProcessorService postProcessorService){
+        this.postProcessorServiceslist.add(postProcessorService);
+    }
+    
+    public void removePostProcessorService(PostProcessorService postProcessorService){
+        this.postProcessorServiceslist.remove(postProcessorService);
+    }
+    
+    
+    
 }

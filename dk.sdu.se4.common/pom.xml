@@ -21,8 +21,22 @@
   <name>${bundle.symbolicName}</name>
 
   <packaging>bundle</packaging>
-
-  <dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Export-Package>dk.sdu.se4.common.*;version="1.0-SNAPSHOT",dk.sdu.se4.common.entity,dk.sdu.se4.common.entity.part,dk.sdu.se4.common.service</Export-Package>
+                        <Private-Package>dk.sdu.se4.common.entity.*,dk.sdu.se4.common.service.*</Private-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
     <!--
      | uncomment to add all imported (non-local) bundles to your compilation classpath
     <dependency>
@@ -41,6 +55,12 @@
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.compendium</artifactId>
       <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.badlogicgames.gdx</groupId>
+      <artifactId>gdx</artifactId>
+      <version>1.9.14</version>
+      <type>jar</type>
     </dependency>
   </dependencies>
 
