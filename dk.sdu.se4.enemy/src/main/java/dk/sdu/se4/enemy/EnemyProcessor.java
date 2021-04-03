@@ -11,11 +11,14 @@ import dk.sdu.se4.common.service.ProcessorService;
  *
  * @author steff
  */
-public class EnemyProcessor implements ProcessorService{
+public class EnemyProcessor extends EnemyCore implements ProcessorService{
 
     @Override
     public void process() {
-        // TODO nå AI er fordig skal alt hånteres herinde 
+       
+        System.out.println("enemy processing");
     }
+    
+    
     
 }

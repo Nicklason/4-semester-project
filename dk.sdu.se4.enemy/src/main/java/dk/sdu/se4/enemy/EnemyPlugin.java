@@ -9,7 +9,6 @@ import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
-import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
 import java.awt.Point;
 
@@ -17,9 +16,9 @@ import java.awt.Point;
  *
  * @author steff
  */
-public class EnemyPlugin implements PluginService{
+public class EnemyPlugin extends EnemyCore implements PluginService{
     
-    private MapService mapService=null;
+    
     private Entity enemy;
 
     @Override
@@ -31,7 +30,7 @@ public class EnemyPlugin implements PluginService{
             enemy.addPart(new MovingPart());
             enemy.addPart(new LifePart(100));
             this.mapService.addEntity(new Enemy());
-            System.out.println("Loading Enemy");
+            System.out.println("Loading Enemy to "+this.mapService.toString());
         }
         else{
             System.out.println("Map is Null");
@@ -51,14 +50,6 @@ public class EnemyPlugin implements PluginService{
         }
         
     }
-    public void addMapService(MapService mapService) {
-        this.mapService = mapService;
-        System.out.println("ADDED MapService TO Enemy");
-    }
-
-    public void removeMapService(MapService mapService) {
-        this.mapService = null;
-        System.out.println("REMOVED MapService FROM Enemy");
-    }
+  
     
 }

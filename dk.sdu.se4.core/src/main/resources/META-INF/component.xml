@@ -10,9 +10,9 @@
                interface="dk.sdu.se4.common.service.PluginService"
                name="PluginService" policy="dynamic" unbind="removePlugin" />
     
-    <reference bind="addPorcessorServices" cardinality="0..1"
+    <reference bind="addProcessorService" cardinality="0..1"
                interface="dk.sdu.se4.common.service.ProcessorService"
-               name="ProcessorService" policy="dynamic" unbind="removePorcessorServices" />
+               name="ProcessorService" policy="dynamic" unbind="removeProcessorService" />
     
     <reference bind="addPostProcessorService" cardinality="0..1"
                interface="dk.sdu.se4.common.service.PostProcessorService"
