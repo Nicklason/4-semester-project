@@ -4,4 +4,7 @@
     <service>
         <provide interface="dk.sdu.se4.common.service.ProcessorService"/>
     </service>
+    <reference bind="addMapService" cardinality="0..1"
+               interface="dk.sdu.se4.common.service.MapService"
+               name="MapService" policy="dynamic" unbind="removeMapService" />
 </scr:component>

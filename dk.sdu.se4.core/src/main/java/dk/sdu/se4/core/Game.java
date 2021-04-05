@@ -5,7 +5,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.ImagePart;
+import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.common.service.PostProcessorService;
@@ -13,20 +17,18 @@ import dk.sdu.se4.common.service.ProcessorService;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class Game implements ApplicationListener  {
+public final class Game implements ApplicationListener {
+
     private MapService mapService = null;
-    
+
     private List<PluginService> pluginlist = new ArrayList<>();
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
-    ;
+    private SpriteBatch batch;
+    private Sprite worSprite;
 
-    
-   
-    
-    
     LwjglApplication application = null;
-    
+
     public Game() {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "4. semester project";
@@ -34,18 +36,22 @@ public final class Game implements ApplicationListener  {
         cfg.height = 600;
         cfg.useGL30 = false;
         cfg.resizable = false;
-      
+
         application = new LwjglApplication(this, cfg);
-        
+
         //System.out.println("CREATED Game");
     }
 
     @Override
     public void create() {
-    for(PluginService p :pluginlist){
-        p.load();
-    }
-    
+        this.batch = new SpriteBatch();
+        for(PluginService p : this.pluginlist){
+            p.load();
+        }
+            
+
+        
+
     }
 
     @Override
@@ -53,67 +59,82 @@ public final class Game implements ApplicationListener  {
         // Clear screen to black
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        this.batch.begin();
         
         
-        
-        for(Entity entity: this.mapService.getEntities()){
-            
+        for (ProcessorService processorService : this.processorServiceslist) {
+             processorService.process();
         }
-        for (ProcessorService processorService:this.processorServiceslist){
-            processorService.process();
+        
+        for (Entity entity : this.mapService.getEntities()) {
+             ImagePart imagePart = entity.getPart(ImagePart.class);
+             PositionPart p = entity.getPart(PositionPart.class);
+
+             if (imagePart!=null){
+                 this.batch.draw(imagePart.getTexture(),p.getPoint().x , p.getPoint().y);
+             }
+             
         }
-       
+        batch.end();
+
     }
 
     @Override
-    public void resize(int width, int height) {}
+    public void resize(int width, int height) {
+    }
 
     @Override
-    public void pause() {}
+    public void pause() {
+    }
 
     @Override
-    public void resume() {}
+    public void resume() {
+    }
 
     @Override
     public void dispose() {
-       
+
     }
 
     public void addMapService(MapService mapService) {
         this.mapService = mapService;
-        
-        System.out.println("ADDED MapService TO Game to "+this.mapService.toString());
+
+        System.out.println("ADDED MapService TO Game to " + this.mapService.toString());
     }
 
     public void removeMapService(MapService mapService) {
         this.mapService = null;
-        System.out.println("REMOVED MapService FROM Game to "+this.mapService.toString());
+        System.out.println("REMOVED MapService FROM Game to " + this.mapService.toString());
     }
-    public void addPlugin(PluginService pluginService){
+
+    public void addPlugin(PluginService pluginService) { 
         this.pluginlist.add(pluginService);
+        
+        
+        
     }
-    public void removePlugin(PluginService pluginService){
+
+    public void removePlugin(PluginService pluginService) {
         this.pluginlist.remove(pluginService);
         
+
     }
-    
-    public void addProcessorService(ProcessorService ProcessorService){
+
+    public void addProcessorService(ProcessorService ProcessorService) {
         this.processorServiceslist.add(ProcessorService);
     }
-    
-    public void removeProcessorService(ProcessorService ProcessorService){
+
+    public void removeProcessorService(ProcessorService ProcessorService) {
         this.processorServiceslist.remove(ProcessorService);
-        
+
     }
-    
-    public void addPostProcessorService(PostProcessorService postProcessorService){
+
+    public void addPostProcessorService(PostProcessorService postProcessorService) {
         this.postProcessorServiceslist.add(postProcessorService);
     }
-    
-    public void removePostProcessorService(PostProcessorService postProcessorService){
+
+    public void removePostProcessorService(PostProcessorService postProcessorService) {
         this.postProcessorServiceslist.remove(postProcessorService);
     }
-    
-    
-    
+
 }

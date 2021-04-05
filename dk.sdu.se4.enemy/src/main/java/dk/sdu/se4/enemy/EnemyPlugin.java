@@ -6,11 +6,13 @@
 package dk.sdu.se4.enemy;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.PluginService;
 import java.awt.Point;
+import java.io.File;
 
 /**
  *
@@ -26,10 +28,11 @@ public class EnemyPlugin extends EnemyCore implements PluginService{
         System.out.println("loading Enemy");
         if (this.mapService!=null){
             enemy = new Enemy();
-            enemy.addPart(new PositionPart(new Point(10, 10)));
+            enemy.addPart(new PositionPart(new Point(300, 400)));
             enemy.addPart(new MovingPart());
             enemy.addPart(new LifePart(100));
-            this.mapService.addEntity(new Enemy());
+            enemy.addPart(new ImagePart(new File("C:/Users/steff/OneDrive/Documents/GitHub/4-semester-project/dk.sdu.se4.enemy/src/main/resources/Image/zombi.png"),50,50));
+            this.mapService.addEntity(enemy);
             System.out.println("Loading Enemy to "+this.mapService.toString());
         }
         else{

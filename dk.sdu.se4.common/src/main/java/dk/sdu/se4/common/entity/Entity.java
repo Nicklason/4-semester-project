@@ -1,9 +1,9 @@
 package dk.sdu.se4.common.entity;
 
 import dk.sdu.se4.common.entity.part.EntityPart;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Entity {
     private final String id;
@@ -15,7 +15,7 @@ public class Entity {
 
     public Entity() {
         this.id = UUID.randomUUID().toString();
-        this.partStorage = new HashMap<Class, EntityPart>();
+        this.partStorage = new ConcurrentHashMap<>();
     }
     
     public void addPart(EntityPart entitypart){
