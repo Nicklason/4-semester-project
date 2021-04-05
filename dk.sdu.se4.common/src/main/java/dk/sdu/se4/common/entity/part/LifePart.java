@@ -13,13 +13,13 @@ import dk.sdu.se4.common.entity.Entity;
  */
 public class LifePart implements EntityPart{
 
-    private int MAX_HIT_POINTS;
+    private int max_hit_point;
     private int hit_point;
     private boolean alive;
 
     public LifePart(int hit_point) {
         this.hit_point = hit_point;
-        this.MAX_HIT_POINTS = hit_point;
+        this.max_hit_point = hit_point;
         this.alive = this.hit_point > 0;
     }
     
@@ -30,13 +30,13 @@ public class LifePart implements EntityPart{
     }
     public void addHitPoint(int amount){
         this.hit_point+=amount;
-        if (this.hit_point>this.MAX_HIT_POINTS){
-            this.hit_point=this.MAX_HIT_POINTS;
+        if (this.hit_point>this.max_hit_point){
+            this.hit_point=this.max_hit_point;
         }
     }
 
     public void setMAX_HIT_POINTS(int MAX_HIT_POINTS) {
-        this.MAX_HIT_POINTS = MAX_HIT_POINTS;
+        this.max_hit_point = MAX_HIT_POINTS;
     }
 
     @Override
