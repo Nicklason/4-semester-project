@@ -53,6 +53,7 @@
     <module>dk.sdu.se4.libgdx</module>
     <module>dk.sdu.se4.keyboardinput</module>
     <module>dk.sdu.se4.commongameinput</module>
+    <module>dk.sdu.se4.enemy</module>
   </modules>
 
   <build>
