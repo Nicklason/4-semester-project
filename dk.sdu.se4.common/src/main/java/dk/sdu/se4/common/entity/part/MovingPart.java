@@ -45,16 +45,16 @@ public class MovingPart implements EntityPart{
     public void process(Entity entity) {
         PositionPart p = entity.getPart(PositionPart.class);
         if (UP){
-             p.getPoint().translate(0,1);
+             p.getPoint().translate(0,10);
         }
         if(DOWN){
-            p.getPoint().translate(0, -1);
+            p.getPoint().translate(0, -10);
         }
         if (RIGHT){
-            p.getPoint().translate(1, 0);
+            p.getPoint().translate(10, 0);
         }
         if(LEFT){
-            p.getPoint().translate(-1, 0);
+            p.getPoint().translate(-10, 0);
         }
        
     }

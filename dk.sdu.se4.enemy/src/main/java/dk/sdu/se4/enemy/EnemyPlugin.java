@@ -18,41 +18,43 @@ import java.io.File;
  *
  * @author steff
  */
-public class EnemyPlugin extends EnemyCore implements PluginService{
-    
-    
-    private Entity enemy;
+public class EnemyPlugin extends EnemyCore implements PluginService {
+
+    private Entity[] enemy = new Enemy[10];
 
     @Override
     public void load() {
         System.out.println("loading Enemy");
-        if (this.mapService!=null){
-            enemy = new Enemy();
-            enemy.addPart(new PositionPart(new Point(300, 400)));
-            enemy.addPart(new MovingPart());
-            enemy.addPart(new LifePart(100));
-            enemy.addPart(new ImagePart(new File("C:/Users/steff/OneDrive/Documents/GitHub/4-semester-project/dk.sdu.se4.enemy/src/main/resources/Image/zombi.png"),50,50));
-            this.mapService.addEntity(enemy);
-            System.out.println("Loading Enemy to "+this.mapService.toString());
+        if (this.mapService != null) {
+           for (int i =0; i<enemy.length;i++){
+            enemy[i] = new Enemy();
+            int x = (int) (Math.random() * 800) + 1;
+            int y = (int) (Math.random() * 600) + 1;
+            enemy[i].addPart(new PositionPart(new Point(x, y)));
+            enemy[i].addPart(new MovingPart());
+            enemy[i].addPart(new LifePart(100));
+            enemy[i].addPart(new ImagePart(new File("C:/Users/steff/OneDrive/Documents/GitHub/4-semester-project/dk.sdu.se4.enemy/src/main/resources/img/zombi.png"), 150, 150));
+            this.mapService.addEntity(enemy[i]);
+            }
+            
+            
+
         }
-        else{
-            System.out.println("Map is Null");
-        }
-        
-        
+
     }
 
     @Override
     public void unload() {
-        if (this.mapService!=null){
-            for(Entity e :this.mapService.getEntities()){
-                if(e.equals(this.enemy)){
+        if (this.mapService != null) {
+            for (Entity e : this.mapService.getEntities(Enemy.class)) {
+                 for (int i =0; i<enemy.length;i++){
+                if (e.equals(enemy[i])) {
                     this.mapService.removeEntity(e);
                 }
+                 }
             }
         }
-        
+
     }
-  
-    
+
 }

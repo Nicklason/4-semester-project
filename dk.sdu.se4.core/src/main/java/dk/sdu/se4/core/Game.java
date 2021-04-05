@@ -4,8 +4,10 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
@@ -14,6 +16,7 @@ import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.common.service.ProcessorService;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +28,9 @@ public final class Game implements ApplicationListener {
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
     private SpriteBatch batch;
-    private Sprite worSprite;
+    private OrthographicCamera cam;
+    private final Texture map = new Texture(new FileHandle(new File("C:/Users/steff/OneDrive/Documents/GitHub/4-semester-project/dk.sdu.se4.core/src/main/resources/img/world.png")));
+ 
 
     LwjglApplication application = null;
 
@@ -38,7 +43,9 @@ public final class Game implements ApplicationListener {
         cfg.resizable = false;
 
         application = new LwjglApplication(this, cfg);
-
+        cam = new OrthographicCamera(1280 ,720);
+        cam.translate(Gdx.graphics.getWidth()/2, Gdx.graphics.getWidth()/2, 0);
+        cam.update();
         //System.out.println("CREATED Game");
     }
 
@@ -60,6 +67,7 @@ public final class Game implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
+        this.batch.draw(map, 0, 0);
         
         
         for (ProcessorService processorService : this.processorServiceslist) {

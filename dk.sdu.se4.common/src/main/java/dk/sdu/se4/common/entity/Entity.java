@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class Entity {
     private final String id;
+    
     private final Map<Class, EntityPart> partStorage;
 
     public String getId() {
