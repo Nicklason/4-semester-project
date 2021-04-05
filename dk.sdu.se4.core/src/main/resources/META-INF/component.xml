@@ -9,7 +9,6 @@
     <reference bind="addGameInput" cardinality="0..1"
                interface="dk.sdu.se4.commongameinput.GameInput"
                name="GameInput" policy="dynamic" unbind="removeGameInput"/>
-               name="MapService" policy="dynamic" unbind="removeMapService" />
     
     <reference bind="addPlugin" cardinality="0..1"
                interface="dk.sdu.se4.common.service.PluginService"
