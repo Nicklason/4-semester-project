@@ -103,13 +103,11 @@ public final class Game implements ApplicationListener {
 
     public void addMapService(MapService mapService) {
         this.mapService = mapService;
-
-        System.out.println("ADDED MapService TO Game to " + this.mapService.toString());
     }
 
     public void removeMapService(MapService mapService) {
         this.mapService = null;
-        System.out.println("REMOVED MapService FROM Game to " + this.mapService.toString());
+        
     }
 
     public void addPlugin(PluginService pluginService) { 
