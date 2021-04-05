@@ -3,12 +3,15 @@ package dk.sdu.se4.core;
 import dk.sdu.se4.common.service.MapService;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
+import dk.sdu.se4.commongameinput.GameInput;
 
 public final class Game implements ApplicationListener  {
     private MapService mapService = null;
+    private GameInput gameInput = null;
     
     LwjglApplication application = null;
     
@@ -55,5 +58,17 @@ public final class Game implements ApplicationListener  {
     public void removeMapService(MapService mapService) {
         this.mapService = null;
         //System.out.println("REMOVED MapService FROM Game");
+    }
+    
+    public void addGameInput(GameInput gameInput) {
+        this.gameInput = gameInput;
+        // Cast game input as an InputProcessor (should probably fix this)
+        Gdx.input.setInputProcessor((InputProcessor)gameInput);
+        //System.out.println("ADDED GameInput TO Game");
+    }
+    
+    public void removeGameInput(GameInput gameInput) {
+        this.gameInput = null;
+        //System.out.println("REMOVED GameInput FROM Game");
     }
 }
