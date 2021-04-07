@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.weapon">
+    <implementation class="dk.sdu.se4.core.Game"/>
+    
+    <reference bind="addGameInput" cardinality="0..1"
+               interface="dk.sdu.se4.commongameinput.GameInput"
+               name="GameInput" policy="dynamic" unbind="removeGameInput"/>
+
+
+</scr:component>
