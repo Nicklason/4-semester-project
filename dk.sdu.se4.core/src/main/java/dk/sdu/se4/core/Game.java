@@ -26,8 +26,6 @@ public final class Game implements ApplicationListener {
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
     private SpriteBatch batch;
     private OrthographicCamera cam;
-    
- 
 
     LwjglApplication application = null;
 
@@ -52,10 +50,6 @@ public final class Game implements ApplicationListener {
         for(PluginService p : this.pluginlist){
             p.load();
         }
-            
-
-        
-
     }
 
     @Override
@@ -64,24 +58,21 @@ public final class Game implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
-        
-        
-        
+
         for (ProcessorService processorService : this.processorServiceslist) {
-             processorService.process();
+            processorService.process();
         }
         
         for (Entity entity : this.mapService.getEntities()) {
-             ImagePart imagePart = entity.getPart(ImagePart.class);
-             PositionPart p = entity.getPart(PositionPart.class);
+            ImagePart imagePart = entity.getPart(ImagePart.class);
+            PositionPart p = entity.getPart(PositionPart.class);
 
-             if (imagePart!=null){
-                 this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
-             }
-             
+            if (imagePart!=null){
+                this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
+            }
         }
-        batch.end();
 
+        batch.end();
     }
 
     @Override
@@ -112,15 +103,10 @@ public final class Game implements ApplicationListener {
 
     public void addPlugin(PluginService pluginService) { 
         this.pluginlist.add(pluginService);
-        
-        
-        
     }
 
     public void removePlugin(PluginService pluginService) {
         this.pluginlist.remove(pluginService);
-        
-
     }
 
     public void addProcessorService(ProcessorService ProcessorService) {
@@ -129,7 +115,6 @@ public final class Game implements ApplicationListener {
 
     public void removeProcessorService(ProcessorService ProcessorService) {
         this.processorServiceslist.remove(ProcessorService);
-
     }
 
     public void addPostProcessorService(PostProcessorService postProcessorService) {
