@@ -76,7 +76,7 @@ public final class Game implements ApplicationListener {
              PositionPart p = entity.getPart(PositionPart.class);
 
              if (imagePart!=null){
-                 this.batch.draw(imagePart.getTexture(),p.getPoint().x , p.getPoint().y);
+                 this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
              }
              
         }
