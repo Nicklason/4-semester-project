@@ -1,0 +1,3 @@
+Bundle-SymbolicName: dk.sdu.se4.Equipment
+Bundle-ActivationPolicy: lazy
+Service-Component: META-INF/Plugin.xml, META-INF/Processor.xml
