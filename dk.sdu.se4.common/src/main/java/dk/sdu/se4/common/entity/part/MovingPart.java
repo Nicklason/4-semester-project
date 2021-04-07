@@ -71,7 +71,7 @@ public class MovingPart implements EntityPart {
         
         if (changeHorizontal != 0 && changeVertical != 0) {
             // If we move diagonally, then we need to decrease the change in x
-            // and y by roughly 0.70 (DIAGONAL_SCALING_CONSTANT) to make sure that we move stepSize.
+            // and y by DIAGONAL_SCALING_CONSTANT (roughly 0.7) to make sure that we move stepSize.
             deltaX = DIAGONAL_SCALING_CONSTANT * changeHorizontal * this.stepSize;
             deltaY = DIAGONAL_SCALING_CONSTANT * changeVertical * this.stepSize;
         } else {
@@ -79,9 +79,9 @@ public class MovingPart implements EntityPart {
             deltaY += changeVertical * this.stepSize;
         }
         
-        // We can't use the Point class if we want to move the correct distance
-        // diagonally but it is probably not that important anyway (if stepSize
-        // is 10, then the change in distance in both x and y is 7.0...)
-        positionPart.getPoint().translate((int)Math.round(deltaX), (int)Math.round(deltaY));
+        // x and y should be a float to move the correct distance
+        // diagonally, but it is probably not that important anyway; if stepSize
+        // is 10, then the change in x and y is +-7.0...
+        positionPart.translate((int)Math.round(deltaX), (int)Math.round(deltaY));
     }
 }

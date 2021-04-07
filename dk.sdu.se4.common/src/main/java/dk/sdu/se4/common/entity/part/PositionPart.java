@@ -6,31 +6,33 @@
 package dk.sdu.se4.common.entity.part;
 
 import dk.sdu.se4.common.entity.Entity;
-import java.awt.Point;
 
 /**
  *
  * @author Steffen and Kasper Jalris
  */
 public class PositionPart implements EntityPart{
-    private Point point;
+    private int x;
+    private int y;
 
     public PositionPart(int x, int y) {
-        this.point = new Point(x, y);
+        this.x = x;
+        this.y = y;
     }
 
-    public Point getPoint() {
-        return point;
+    public int getX() {
+        return x;
+    }
+    
+    public int getY() {
+        return y;
+    }
+    
+    public void translate(int deltaX, int deltaY) {
+        this.x += deltaX;
+        this.y += deltaY;
     }
 
     @Override
-    public void process(Entity entity) {
-       
-    }
-
-    
-    
-    
-    
-    
+    public void process(Entity entity) {}
 }
