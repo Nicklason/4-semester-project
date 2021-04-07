@@ -31,7 +31,7 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy[i] = new Enemy();
                 int x = (int) (Math.random() * 800) + 1;
                 int y = (int) (Math.random() * 600) + 1;
-                enemy[i].addPart(new PositionPart(new Point(x, y)));
+                enemy[i].addPart(new PositionPart(x, y));
                 enemy[i].addPart(new MovingPart(10));
                 enemy[i].addPart(new LifePart(100));
                 File file = new File("../dk.sdu.se4.enemy/src/main/resources/img/zombi.png");

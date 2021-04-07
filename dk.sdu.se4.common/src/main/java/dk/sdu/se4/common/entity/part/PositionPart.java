@@ -15,8 +15,8 @@ import java.awt.Point;
 public class PositionPart implements EntityPart{
     private Point point;
 
-    public PositionPart(Point point) {
-        this.point = point;
+    public PositionPart(int x, int y) {
+        this.point = new Point(x, y);
     }
 
     public Point getPoint() {
