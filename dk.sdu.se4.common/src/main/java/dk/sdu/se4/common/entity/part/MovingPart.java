@@ -11,6 +11,11 @@ public class MovingPart implements EntityPart {
     private boolean movingUp, movingDown, movingLeft, movingRight;
     private int stepSize;
 
+    /**
+     * Pythagoras constant thingy
+     */
+    private static double DIAGONAL_SCALING_CONSTANT = Math.sqrt(2) / 2;
+
     public MovingPart(int stepSize) {
         this.movingUp = false;
         this.movingDown = false;
@@ -65,17 +70,18 @@ public class MovingPart implements EntityPart {
         double deltaY = 0;
         
         if (changeHorizontal != 0 && changeVertical != 0) {
-            // We are moving both horizontally and vertically. We need to find
-            // the correct change in x and y to move the stepSize.
-            deltaX = (Math.sqrt(changeHorizontal * this.stepSize) / 2);
-            deltaY = (Math.sqrt(changeVertical * this.stepSize) / 2);
+            // If we move diagonally, then we need to decrease the change in x
+            // and y by roughly 0.70 (DIAGONAL_SCALING_CONSTANT) to make sure that we move stepSize.
+            deltaX = DIAGONAL_SCALING_CONSTANT * changeHorizontal * this.stepSize;
+            deltaY = DIAGONAL_SCALING_CONSTANT * changeVertical * this.stepSize;
         } else {
             deltaX += changeHorizontal * this.stepSize;
             deltaY += changeVertical * this.stepSize;
         }
         
         // We can't use the Point class if we want to move the correct distance
-        // but it is probably not that important anyway.
+        // diagonally but it is probably not that important anyway (if stepSize
+        // is 10, then the change in distance in both x and y is 7.0...)
         positionPart.getPoint().translate((int)Math.round(deltaX), (int)Math.round(deltaY));
     }
 }
