@@ -51,6 +51,7 @@
     <module>dk.sdu.se4.common</module>
     <module>dk.sdu.se4.map</module>
     <module>dk.sdu.se4.libgdx</module>
+    <module>dk.sdu.se4.Equipment</module>
     <module>dk.sdu.se4.enemy</module>
   </modules>
 

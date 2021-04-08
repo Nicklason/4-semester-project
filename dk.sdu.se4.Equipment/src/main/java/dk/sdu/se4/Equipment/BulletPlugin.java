@@ -44,10 +44,10 @@ public class BulletPlugin extends EquipmentCore implements PluginService {
         System.out.println(x + " : " + y);
         float angle = 3.14f / 2;
 
-        bullet.addPart(new PositionPart(new Point((int)x, (int)y), angle));
+        bullet.addPart(new PositionPart(new Point((int)x, (int)y)));
         bullet.addPart(new TimePart(3));
         bullet.addPart(new MovingPart());
-        bullet.addPart(new ImagePart(new File("C:/Users/Kasper/Documents/projekt/4-semester-project/dk.sdu.se4.Equipment/src/main/resources/img/bullet.png"), 10, 5));
+        bullet.addPart(new ImagePart(new File("C:/Users/Kasper/Documents/projekt/4-semester-project/dk.sdu.se4.Equipment/src/main/resources/img/bullet.png"), 100, 50));
         return bullet;
     }
 }
