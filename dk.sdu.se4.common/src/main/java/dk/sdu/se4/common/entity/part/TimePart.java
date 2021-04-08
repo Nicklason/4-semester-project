@@ -20,9 +20,5 @@ public class TimePart implements EntityPart {
 
     @Override
     public void process(Entity e) {
-        if (time > 0) {
-       //     this.time -= gameData.getDelta();
-            System.out.println("ye");
-        }
     }
 }
