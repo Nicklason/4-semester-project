@@ -5,11 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import dk.sdu.se4.commongameinput.GameInput;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
@@ -18,7 +16,6 @@ import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.common.service.ProcessorService;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +29,6 @@ public final class Game implements ApplicationListener {
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
     private SpriteBatch batch;
     private OrthographicCamera cam;
-    private final Texture map = new Texture(new FileHandle(new File("C:/Users/steff/OneDrive/Documents/GitHub/4-semester-project/dk.sdu.se4.core/src/main/resources/img/world.png")));
- 
     LwjglApplication application = null;
 
     public Game() {
@@ -57,10 +52,6 @@ public final class Game implements ApplicationListener {
         for(PluginService p : this.pluginlist){
             p.load();
         }
-            
-
-        
-
     }
 
     @Override
@@ -69,24 +60,21 @@ public final class Game implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
-        this.batch.draw(map, 0, 0);
-        
-        
+
         for (ProcessorService processorService : this.processorServiceslist) {
-             processorService.process();
+            processorService.process();
         }
         
         for (Entity entity : this.mapService.getEntities()) {
-             ImagePart imagePart = entity.getPart(ImagePart.class);
-             PositionPart p = entity.getPart(PositionPart.class);
+            ImagePart imagePart = entity.getPart(ImagePart.class);
+            PositionPart p = entity.getPart(PositionPart.class);
 
-             if (imagePart!=null){
-                 this.batch.draw(imagePart.getTexture(),p.getPoint().x , p.getPoint().y);
-             }
-             
+            if (imagePart!=null){
+                this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
+            }
         }
-        batch.end();
 
+        batch.end();
     }
 
     @Override
@@ -108,26 +96,19 @@ public final class Game implements ApplicationListener {
 
     public void addMapService(MapService mapService) {
         this.mapService = mapService;
-
-        System.out.println("ADDED MapService TO Game to " + this.mapService.toString());
     }
 
     public void removeMapService(MapService mapService) {
         this.mapService = null;
-        System.out.println("REMOVED MapService FROM Game to " + this.mapService.toString());
+        
     }
 
     public void addPlugin(PluginService pluginService) { 
         this.pluginlist.add(pluginService);
-        
-        
-        
     }
 
     public void removePlugin(PluginService pluginService) {
         this.pluginlist.remove(pluginService);
-        
-
     }
     
     public void addGameInput(GameInput gameInput) {
@@ -148,7 +129,6 @@ public final class Game implements ApplicationListener {
 
     public void removeProcessorService(ProcessorService ProcessorService) {
         this.processorServiceslist.remove(ProcessorService);
-
     }
 
     public void addPostProcessorService(PostProcessorService postProcessorService) {
