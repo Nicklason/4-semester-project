@@ -2,9 +2,11 @@ package dk.sdu.se4.core;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
+import dk.sdu.se4.commongameinput.GameInput;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
@@ -20,13 +22,13 @@ import java.util.List;
 public final class Game implements ApplicationListener {
 
     private MapService mapService = null;
+    private GameInput gameInput = null;
 
     private List<PluginService> pluginlist = new ArrayList<>();
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
     private SpriteBatch batch;
     private OrthographicCamera cam;
-
     LwjglApplication application = null;
 
     public Game() {
@@ -107,6 +109,18 @@ public final class Game implements ApplicationListener {
 
     public void removePlugin(PluginService pluginService) {
         this.pluginlist.remove(pluginService);
+    }
+    
+    public void addGameInput(GameInput gameInput) {
+        this.gameInput = gameInput;
+        // Cast game input as an InputProcessor (should probably fix this)
+        Gdx.input.setInputProcessor((InputProcessor)gameInput);
+        //System.out.println("ADDED GameInput TO Game");
+    }
+    
+    public void removeGameInput(GameInput gameInput) {
+        this.gameInput = null;
+        //System.out.println("REMOVED GameInput FROM Game");
     }
 
     public void addProcessorService(ProcessorService ProcessorService) {

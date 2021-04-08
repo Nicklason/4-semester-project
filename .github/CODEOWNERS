@@ -2,3 +2,5 @@
 /dk.sdu.se4.map/** @Nicklason
 /dk.sdu.se4.common/** @stped18 @Kjalris
 /dk.sdu.se4.enemy/** @stped18 @Nicklason @Kjalris
+/dk.sdu.se4.commongameinput/** @frederikstroem @Nicklason
+/dk.sdu.se4.keyboardinput/** @frederikstroem @Nicklason

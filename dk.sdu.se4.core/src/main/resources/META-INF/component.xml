@@ -4,7 +4,11 @@
     
     <reference bind="addMapService" cardinality="0..1"
                interface="dk.sdu.se4.common.service.MapService"
-               name="MapService" policy="dynamic" unbind="removeMapService" />
+               name="MapService" policy="dynamic" unbind="removeMapService"/>
+    
+    <reference bind="addGameInput" cardinality="0..1"
+               interface="dk.sdu.se4.commongameinput.GameInput"
+               name="GameInput" policy="dynamic" unbind="removeGameInput"/>
     
     <reference bind="addPlugin" cardinality="0..1"
                interface="dk.sdu.se4.common.service.PluginService"
@@ -17,7 +21,5 @@
     <reference bind="addPostProcessorService" cardinality="0..1"
                interface="dk.sdu.se4.common.service.PostProcessorService"
                name="PostProcessorService" policy="dynamic" unbind="removePostProcessorService" />
-   
-    
-    
+
 </scr:component>
