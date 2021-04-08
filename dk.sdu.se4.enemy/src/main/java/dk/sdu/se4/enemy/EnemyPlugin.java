@@ -57,4 +57,8 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
 
     }
 
+    public void deactivate() {
+        this.unload();
+    }
+
 }
