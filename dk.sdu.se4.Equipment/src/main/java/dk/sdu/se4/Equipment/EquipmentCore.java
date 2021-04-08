@@ -7,12 +7,12 @@ public class EquipmentCore {
     
     public void addMapService(MapService mapService) {
         this.mapService = mapService;
-        System.out.println("ADDED MapService TO Enemy "+this.mapService.getClass().toString());
+        System.out.println("ADDED MapService TO Bullet "+this.mapService.getClass().toString());
     }
 
     public void removeMapService(MapService mapService) {
+        System.out.println("REMOVED MapService FROM Bullet "+this.mapService.getClass().toString());
         this.mapService = null;
-        System.out.println("REMOVED MapService FROM Enemy "+this.mapService.getClass().toString());
     }
     
 }
