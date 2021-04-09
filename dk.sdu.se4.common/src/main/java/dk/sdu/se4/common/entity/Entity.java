@@ -4,8 +4,12 @@ import dk.sdu.se4.common.entity.part.EntityPart;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Entity {
+    
+    private final static Logger log = LoggerFactory.getLogger(Entity.class);
     private final String id;
     
     private final Map<Class, EntityPart> partStorage;
@@ -15,8 +19,10 @@ public class Entity {
     }
 
     public Entity() {
+        log.info(this.getClass().toString()+" Createt");
         this.id = UUID.randomUUID().toString();
         this.partStorage = new ConcurrentHashMap<>();
+        
     }
     
     public void addPart(EntityPart entitypart){
