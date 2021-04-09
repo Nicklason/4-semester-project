@@ -61,11 +61,21 @@ public final class Game implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
-        try {
-            for (ProcessorService processorService : this.processorServiceslist) {
-                processorService.process();
-            }
+        if (this.mapService!=null){
+            updateProcessors();
+            drawEnitys();
+        }
+        batch.end();
+    }
 
+    private void updateProcessors() {
+        
+        for (ProcessorService processorService : this.processorServiceslist) {
+            processorService.process();
+        }
+    }
+
+    private void drawEnitys() {
             for (Entity entity : this.mapService.getEntities()) {
                 ImagePart imagePart = entity.getPart(ImagePart.class);
                 PositionPart p = entity.getPart(PositionPart.class);
@@ -73,13 +83,7 @@ public final class Game implements ApplicationListener {
                     this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
                 }
             }
-        } catch (Exception e) {
-                logger.error("Render funktion {}",e.getMessage());
-                throw new RuntimeException(e);
-            
-       }
         
-        batch.end();
     }
 
     @Override
@@ -100,8 +104,8 @@ public final class Game implements ApplicationListener {
     }
 
     public void addMapService(MapService mapService) {
-          logger.debug("Add {}", mapService.getClass().getName());
-          this.mapService = mapService;
+        logger.debug("Add {}", mapService.getClass().getName());
+        this.mapService = mapService;
     }
 
     public void removeMapService(MapService mapService) {
