@@ -16,7 +16,7 @@ public class MapServiceImpl implements MapService {
     private Map<String, Entity> entities;
     
     public MapServiceImpl() {
-        log.info("Createt  {}", this.getClass().getName());
+        log.info("Created {}", this.getClass().getName());
         this.entities = new HashMap();
         //System.out.println("CREATED MapServiceImpl");
     }
@@ -30,7 +30,7 @@ public class MapServiceImpl implements MapService {
     }
 
     public void addEntity(Entity entity) {
-        log.debug("added {}", entity.getClass().getTypeName());
+        log.debug("Added {}", entity.getClass().getTypeName());
         this.entities.put(entity.getId(), entity);
     }
 
