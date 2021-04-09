@@ -23,11 +23,12 @@ public final class Game implements ApplicationListener {
 
     private MapService mapService = null;
     private GameInput gameInput = null;
+    
 
     private List<PluginService> pluginlist = new ArrayList<>();
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
-    private SpriteBatch batch;
+    private SpriteBatch batch ;
     private OrthographicCamera cam;
     LwjglApplication application = null;
 
@@ -39,20 +40,18 @@ public final class Game implements ApplicationListener {
         cfg.height = 600;
         cfg.useGL30 = false;
         cfg.resizable = false;
-
+        
         application = new LwjglApplication(this, cfg);
         cam = new OrthographicCamera(1280 ,720);
         cam.translate(Gdx.graphics.getWidth()/2, Gdx.graphics.getWidth()/2, 0);
-        cam.update();
-        //System.out.println("CREATED Game");
+        
+
+        
     }
 
     @Override
     public void create() {
-        this.batch = new SpriteBatch();
-        for(PluginService p : this.pluginlist){
-            p.load();
-        }
+      this.batch = new SpriteBatch();
     }
 
     @Override
@@ -60,7 +59,9 @@ public final class Game implements ApplicationListener {
         // Clear screen to black
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        
         this.batch.begin();
+        
 
         for (ProcessorService processorService : this.processorServiceslist) {
             processorService.process();
@@ -69,13 +70,13 @@ public final class Game implements ApplicationListener {
         for (Entity entity : this.mapService.getEntities()) {
             ImagePart imagePart = entity.getPart(ImagePart.class);
             PositionPart p = entity.getPart(PositionPart.class);
-
             if (imagePart!=null){
                 this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
             }
         }
 
         batch.end();
+        
     }
 
     @Override
@@ -105,11 +106,17 @@ public final class Game implements ApplicationListener {
     }
 
     public void addPlugin(PluginService pluginService) { 
+        pluginService.load();
         this.pluginlist.add(pluginService);
+        
+       
+        
     }
 
     public void removePlugin(PluginService pluginService) {
+        pluginService.unload();
         this.pluginlist.remove(pluginService);
+        
     }
     
     public void addGameInput(GameInput gameInput) {

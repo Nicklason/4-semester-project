@@ -13,21 +13,20 @@ import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.PluginService;
 import java.io.File;
 import org.osgi.framework.BundleContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author steff
  */
 public class EnemyPlugin extends EnemyCore implements PluginService {
-
-    private static final Logger log = LoggerFactory.getLogger(EnemyPlugin.class);
     private Entity[] enemy = new Enemy[10];
     private BundleContext bundle;
+  
+    
 
     @Override
     public void load() {
+        log.debug("load {}", this.getClass().getName());
         if (this.mapService != null) {
             for (int i = 0; i < enemy.length; i++) {
                 enemy[i] = new Enemy();
@@ -38,28 +37,29 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy[i].addPart(new LifePart(100));
                 File file = new File("../dk.sdu.se4.enemy/src/main/resources/img/zombi.png");
                 enemy[i].addPart(new ImagePart(file, 150, 150));
+                
                 this.mapService.addEntity(enemy[i]);
             }
         } else {
-            log.error(" mapservices null", this.mapService);
+            log.error(" mapservices null");
         }
 
     }
 
     @Override
     public void unload() {
+        log.debug("unload {}", this.getClass().getName());
         if (this.mapService != null) {
             for (Entity e : this.mapService.getEntities(Enemy.class)) {
-                for (int i = 0; i < enemy.length; i++) {
-                    if (e.equals(enemy[i])) {
-                        this.mapService.removeEntity(e);
-                    }
-                }
+                log.debug("unload {}", e);
+                this.mapService.removeEntity(e);
             }
         }else {
-            log.error(" mapservices null", this.mapService);
+            log.error(" mapservices null");
         }
 
     }
+
+   
 
 }

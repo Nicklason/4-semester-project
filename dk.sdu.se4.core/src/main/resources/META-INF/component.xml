@@ -6,19 +6,20 @@
                interface="dk.sdu.se4.common.service.MapService"
                name="MapService" policy="dynamic" unbind="removeMapService"/>
     
-    <reference bind="addGameInput" cardinality="0..1"
+    <reference bind="addGameInput" cardinality="0..n"
                interface="dk.sdu.se4.commongameinput.GameInput"
                name="GameInput" policy="dynamic" unbind="removeGameInput"/>
     
-    <reference bind="addPlugin" cardinality="0..1"
+    <reference bind="addPlugin" cardinality="0..n"
                interface="dk.sdu.se4.common.service.PluginService"
                name="PluginService" policy="dynamic" unbind="removePlugin" />
+   
     
-    <reference bind="addProcessorService" cardinality="0..1"
+    <reference bind="addProcessorService" cardinality="0..n"
                interface="dk.sdu.se4.common.service.ProcessorService"
                name="ProcessorService" policy="dynamic" unbind="removeProcessorService" />
     
-    <reference bind="addPostProcessorService" cardinality="0..1"
+    <reference bind="addPostProcessorService" cardinality="0..n"
                interface="dk.sdu.se4.common.service.PostProcessorService"
                name="PostProcessorService" policy="dynamic" unbind="removePostProcessorService" />
 

@@ -8,6 +8,7 @@
     </appender>
 
     <logger name="dk.sdu.se4.common" level="DEBUG"/>
+    <logger name="om.badlogic.gdx" level="DEBUG"/>
 <root level="INFO">
     <appender-ref ref="File"/>
 </root>

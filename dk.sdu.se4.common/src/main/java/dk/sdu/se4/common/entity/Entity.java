@@ -12,14 +12,16 @@ public class Entity {
     private final static Logger log = LoggerFactory.getLogger(Entity.class);
     private final String id;
     
+    
     private final Map<Class, EntityPart> partStorage;
 
     public String getId() {
         return this.id;
     }
 
+    
     public Entity() {
-        log.info("Createt {}",this.getClass().toString());
+        log.debug("Createt new {}",this.getClass().toString());
         this.id = UUID.randomUUID().toString();
         this.partStorage = new ConcurrentHashMap<>();
         
