@@ -10,13 +10,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MapServiceImpl implements MapService {
-    private final static Logger logger = LoggerFactory.getLogger(MapService.class);
+    private final static Logger log = LoggerFactory.getLogger(MapService.class);
     private int height = 600;
     private int width = 600;
     private Map<String, Entity> entities;
     
     public MapServiceImpl() {
-        logger.info(this.getClass().toString()+" Createt");
+        log.info(this.getClass().toString()+" Createt");
         this.entities = new HashMap();
         //System.out.println("CREATED MapServiceImpl");
     }
@@ -30,6 +30,7 @@ public class MapServiceImpl implements MapService {
     }
 
     public void addEntity(Entity entity) {
+        log.info(entity.getClass().getTypeName()+" added", this.getClass().getName());
         this.entities.put(entity.getId(), entity);
     }
 
