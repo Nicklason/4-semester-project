@@ -13,13 +13,55 @@ import dk.sdu.se4.common.entity.Entity;
  */
 public class WeaponPart implements EntityPart {
     private boolean type;
+    private int totalBullets;
+    private int magazineSize;
+    private int currentMagazine;
+    private int fireRate;
 
-    public WeaponPart(boolean type) {
+    public WeaponPart(boolean type, int totalBullets, int magazineSize, int fireRate) {
         this.type = type;
+        this.totalBullets = totalBullets;
+        this.magazineSize = magazineSize;
+        this.currentMagazine = magazineSize;
+        this.fireRate = fireRate;
     }
 
     public boolean getType() {
         return type;
+    }
+    
+    public void setType(boolean type) {
+        this.type = type;
+    }
+    
+    public void removeBullet() {
+        totalBullets -= 1;
+        currentMagazine -= 1;
+    }
+    
+    public void addBullets(int bullets) {
+        this.totalBullets = bullets;
+    }
+
+    public int getCurrentMagazine() {
+        return currentMagazine;
+    }
+
+    public int getMagazineSize() {
+        return magazineSize;
+    }
+
+    public int getTotalBullets() {
+        return totalBullets;
+    }
+
+    public void reload() {
+        currentMagazine = magazineSize;
+    }
+    
+    //getAmmo() return 
+    public String getAmmo() {
+        return currentMagazine + "/" + (totalBullets - currentMagazine);
     }
     
 

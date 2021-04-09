@@ -11,14 +11,15 @@ public class KeyboardInputImpl extends InputAdapter implements GameInput {
     private final Map<GameInputKeys, Boolean> keys = new HashMap();
     
     public boolean isPressed(GameInputKeys key) {
-        if (keys.get(key)) {
-            return true;
+        if(keys.containsKey(key)) {
+            System.out.println(keys.get(key).booleanValue());
+            return keys.get(key).booleanValue();
         } else {
+            System.out.println("false");
             return false;
         }
     }
 
-    @Override
     public boolean keyDown(int keycode) {
         //System.out.println("DOWN " + Keys.toString(keycode));
         switch (keycode) {
