@@ -39,20 +39,20 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 this.mapService.addEntity(enemy[i]);
             }
         } else {
-            log.error(" mapservices null");
+            log.error("mapService is null in {}", this.getClass());
         }
 
     }
 
     @Override
     public void unload() {
-        log.debug("unload {}", this.getClass().getName());
+        log.debug("Unload {}", this.getClass().getName());
         if (this.mapService != null) {
             for (Entity e : this.mapService.getEntities(Enemy.class)) {
                 this.mapService.removeEntity(e);
             }
-        }else {
-            log.error(" mapservices null");
+        } else {
+            log.error("mapService is null in {}", this.getClass());
         }
 
     }
