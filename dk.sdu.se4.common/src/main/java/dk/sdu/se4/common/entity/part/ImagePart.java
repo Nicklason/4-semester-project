@@ -20,7 +20,7 @@ public class ImagePart implements EntityPart {
     private FileHandle fileHandle;
     private int width;
     private int hight;
-    private Texture textur = null;
+    private Texture texture = null;
 
     public ImagePart(File file, int width, int hight) {
         this.fileHandle = new FileHandle(file);
@@ -30,13 +30,13 @@ public class ImagePart implements EntityPart {
     }
 
     public Texture getTexture() {
-        if (textur==null){
+        if (texture==null){
             Pixmap old = new Pixmap(fileHandle);
             Pixmap newimg = new Pixmap(this.width, this.hight, old.getFormat());
             newimg.drawPixmap(old, 0, 0, old.getWidth(), old.getHeight(), 0, 0, newimg.getWidth(), newimg.getHeight());
-            this.textur= new Texture(newimg);
+            this.texture= new Texture(newimg);
         }
-        return this.textur;
+        return this.texture;
         
     }
 
