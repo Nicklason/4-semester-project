@@ -18,7 +18,6 @@ public class MapServiceImpl implements MapService {
     public MapServiceImpl() {
         log.info("Created {}", this.getClass().getName());
         this.entities = new HashMap();
-        //System.out.println("CREATED MapServiceImpl");
     }
 
     public int getHeight() {
