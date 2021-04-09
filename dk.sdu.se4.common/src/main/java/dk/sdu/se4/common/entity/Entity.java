@@ -19,7 +19,7 @@ public class Entity {
     }
 
     public Entity() {
-        log.info(this.getClass().toString()+" Createt");
+        log.info("Createt {}",this.getClass().toString());
         this.id = UUID.randomUUID().toString();
         this.partStorage = new ConcurrentHashMap<>();
         

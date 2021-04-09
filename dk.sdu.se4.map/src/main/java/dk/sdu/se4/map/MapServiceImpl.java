@@ -30,7 +30,7 @@ public class MapServiceImpl implements MapService {
     }
 
     public void addEntity(Entity entity) {
-        log.info(entity.getClass().getTypeName()+" added", this.getClass().getName());
+        log.info("added {}", entity.getClass().getTypeName());
         this.entities.put(entity.getId(), entity);
     }
 

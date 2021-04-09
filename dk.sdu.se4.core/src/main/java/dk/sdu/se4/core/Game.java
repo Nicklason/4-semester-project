@@ -6,7 +6,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
-import dk.sdu.se4.commongameinput.GameInput;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
@@ -16,6 +15,7 @@ import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.common.service.ProcessorService;
+import dk.sdu.se4.commongameinput.GameInput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +32,7 @@ public final class Game implements ApplicationListener {
     LwjglApplication application = null;
 
     public Game() {
+        
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "4. semester project";
         cfg.width = 800;
