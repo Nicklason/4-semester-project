@@ -16,7 +16,7 @@ public class MapServiceImpl implements MapService {
     private Map<String, Entity> entities;
     
     public MapServiceImpl() {
-        log.debug("Createt  {}", this.getClass().toString());
+        log.info("Createt  {}", this.getClass().getName());
         this.entities = new HashMap();
         //System.out.println("CREATED MapServiceImpl");
     }

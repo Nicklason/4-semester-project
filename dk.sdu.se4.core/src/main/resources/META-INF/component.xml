@@ -2,7 +2,7 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.core">
     <implementation class="dk.sdu.se4.core.Game"/>
     
-    <reference bind="addMapService" cardinality="0..1"
+    <reference bind="addMapService" cardinality="0..n"
                interface="dk.sdu.se4.common.service.MapService"
                name="MapService" policy="dynamic" unbind="removeMapService"/>
     

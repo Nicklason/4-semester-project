@@ -26,7 +26,6 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
 
     @Override
     public void load() {
-        log.debug("load {}", this.getClass().getName());
         if (this.mapService != null) {
             for (int i = 0; i < enemy.length; i++) {
                 enemy[i] = new Enemy();
@@ -37,7 +36,6 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy[i].addPart(new LifePart(100));
                 File file = new File("../dk.sdu.se4.enemy/src/main/resources/img/zombi.png");
                 enemy[i].addPart(new ImagePart(file, 150, 150));
-                
                 this.mapService.addEntity(enemy[i]);
             }
         } else {
@@ -51,7 +49,6 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
         log.debug("unload {}", this.getClass().getName());
         if (this.mapService != null) {
             for (Entity e : this.mapService.getEntities(Enemy.class)) {
-                log.debug("unload {}", e);
                 this.mapService.removeEntity(e);
             }
         }else {

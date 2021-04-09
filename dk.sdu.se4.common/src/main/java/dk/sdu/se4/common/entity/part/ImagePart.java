@@ -35,7 +35,6 @@ public class ImagePart implements EntityPart {
             Pixmap newimg = new Pixmap(this.width, this.hight, old.getFormat());
             newimg.drawPixmap(old, 0, 0, old.getWidth(), old.getHeight(), 0, 0, newimg.getWidth(), newimg.getHeight());
             this.textur= new Texture(newimg);
-  
         }
         return this.textur;
         
