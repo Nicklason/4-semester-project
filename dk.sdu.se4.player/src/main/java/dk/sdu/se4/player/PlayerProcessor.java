@@ -8,6 +8,8 @@ package dk.sdu.se4.player;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.service.ProcessorService;
+import dk.sdu.se4.commongameinput.GameInput;
+import dk.sdu.se4.commongameinput.GameInputKeys;
 
 /**
  *
@@ -15,18 +17,41 @@ import dk.sdu.se4.common.service.ProcessorService;
  * @author Lucas
  */
 public class PlayerProcessor extends PlayerCore implements ProcessorService {
-
+    
+    private GameInput gameInput = null;
+    
+    public void addGameInput(GameInput gameInput) {
+        this.gameInput = gameInput;
+    }
+    
+    public void removeGameInput(GameInput gameInput) {
+        this.gameInput = null;
+    }
+    
     @Override
     public void process() {
-        if(this.mapService == null) {
+        if(this.mapService != null) {
             for(Entity e : this.mapService.getEntities(Player.class)) {
                 MovingPart mp = e.getPart(MovingPart.class);
-                mp.setMovingUp(true);
+                mp.setMovingUp(false);
                 mp.setMovingDown(false);
                 mp.setMovingLeft(false);
                 mp.setMovingRight(false);
+                
+                if(this.gameInput.isPressed(GameInputKeys.UP)) {
+                    mp.setMovingUp(true);
+                } else if(this.gameInput.isPressed(GameInputKeys.DOWN)) {
+                    mp.setMovingDown(true);
+                }
+                if(this.gameInput.isPressed(GameInputKeys.LEFT)) {
+                    mp.setMovingLeft(true);
+                } else if(this.gameInput.isPressed(GameInputKeys.RIGHT)) {
+                    mp.setMovingRight(true);
+                }
                 mp.process(e);
             }
+        } else {
+            System.out.println("map is null");
         }
     }
     

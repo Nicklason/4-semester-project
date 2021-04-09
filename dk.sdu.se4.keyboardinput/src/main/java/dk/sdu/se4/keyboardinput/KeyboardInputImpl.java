@@ -11,8 +11,8 @@ public class KeyboardInputImpl extends InputAdapter implements GameInput {
     private final Map<GameInputKeys, Boolean> keys = new HashMap();
     
     public boolean isPressed(GameInputKeys key) {
-        if (keys.get(key)) {
-            return true;
+        if(keys.containsKey(key)) {
+            return keys.get(key).booleanValue();
         } else {
             return false;
         }

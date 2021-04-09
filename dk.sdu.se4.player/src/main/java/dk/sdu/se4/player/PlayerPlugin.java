@@ -20,7 +20,7 @@ import java.io.File;
  */
 public class PlayerPlugin extends PlayerCore implements PluginService {
 
-    private Entity player;
+    private Player player;
     
     @Override
     public void load() {
@@ -41,15 +41,15 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         }
     }
     
-    public Entity createPlayer() {
+    public Player createPlayer() {
         player = new Player();
         int x = 200;
         int y = 200;
         
         player.addPart(new PositionPart(x, y));
-        player.addPart(new MovingPart(5));
+        player.addPart(new MovingPart(10));
         player.addPart(new LifePart(100));
-        player.addPart(new ImagePart(new File("C:/Users/Kasper/Documents/projekt/4-semester-project/dk.sdu.se4.player/src/main/resources/img/player.png"), 50, 50));
+        player.addPart(new ImagePart(new File("../dk.sdu.se4.player/src/main/resources/img/player.png"), 50, 50));
         return player;
     }
     
