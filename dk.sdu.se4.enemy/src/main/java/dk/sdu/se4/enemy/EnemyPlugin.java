@@ -57,6 +57,4 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
 
     }
 
-   
-
 }
