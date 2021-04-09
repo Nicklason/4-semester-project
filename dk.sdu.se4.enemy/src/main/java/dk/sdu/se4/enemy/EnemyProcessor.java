@@ -38,6 +38,8 @@ public class EnemyProcessor extends EnemyCore implements ProcessorService {
                 }
                 mp.process(e);
             }
+        }else{
+            log.error("mapservices is null");
         }
     }
 }
