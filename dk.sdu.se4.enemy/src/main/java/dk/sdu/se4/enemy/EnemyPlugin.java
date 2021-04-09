@@ -11,9 +11,10 @@ import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.PluginService;
-import java.awt.Point;
 import java.io.File;
 import org.osgi.framework.BundleContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -21,6 +22,7 @@ import org.osgi.framework.BundleContext;
  */
 public class EnemyPlugin extends EnemyCore implements PluginService {
 
+    private static final Logger log = LoggerFactory.getLogger(EnemyPlugin.class);
     private Entity[] enemy = new Enemy[10];
     private BundleContext bundle;
 
@@ -38,7 +40,8 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy[i].addPart(new ImagePart(file, 150, 150));
                 this.mapService.addEntity(enemy[i]);
             }
-
+        } else {
+            log.error(" mapservices null", this.mapService);
         }
 
     }
@@ -53,6 +56,8 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                     }
                 }
             }
+        }else {
+            log.error(" mapservices null", this.mapService);
         }
 
     }

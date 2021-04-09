@@ -40,6 +40,7 @@
     -->
     <org.osgi.service.http.port>8080</org.osgi.service.http.port>
     <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
+    
   </properties>
 
   <packaging>pom</packaging>
