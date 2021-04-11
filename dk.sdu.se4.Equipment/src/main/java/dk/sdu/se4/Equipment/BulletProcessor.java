@@ -16,10 +16,10 @@ public class BulletProcessor extends EquipmentCore implements ProcessorService {
                 MovingPart movingPart = e.getPart(MovingPart.class);
                 TimePart timePart = e.getPart(TimePart.class);
             
-                movingPart.setUP(true);
-                movingPart.setDOWN(false);
-                movingPart.setRIGHT(false);
-                movingPart.setLEFT(false);
+                movingPart.setMovingUp(true);
+                movingPart.setMovingDown(false);
+                movingPart.setMovingRight(false);
+                movingPart.setMovingLeft(false);
 
                 positionPart.process(e);
                 movingPart.process(e);

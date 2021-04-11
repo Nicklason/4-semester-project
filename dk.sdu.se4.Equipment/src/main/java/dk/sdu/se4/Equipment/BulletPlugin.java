@@ -39,14 +39,14 @@ public class BulletPlugin extends EquipmentCore implements PluginService {
 
     private Entity create() {
         bullet = new Bullet();
-        float x = 300;//this.mapService.getWidth() / 2;
-        float y = 300;//this.mapService.getHeight() / 2;
+        int x = 300;//this.mapService.getWidth() / 2;
+        int y = 300;//this.mapService.getHeight() / 2;
         System.out.println(x + " : " + y);
         float angle = 3.14f / 2;
 
-        bullet.addPart(new PositionPart(new Point((int)x, (int)y)));
+        bullet.addPart(new PositionPart(x, y));
         bullet.addPart(new TimePart(3));
-        bullet.addPart(new MovingPart());
+        bullet.addPart(new MovingPart(2));
         bullet.addPart(new ImagePart(new File("../dk.sdu.se4.Equipment/src/main/resources/img/bullet.png"), 100, 50));
         return bullet;
     }
