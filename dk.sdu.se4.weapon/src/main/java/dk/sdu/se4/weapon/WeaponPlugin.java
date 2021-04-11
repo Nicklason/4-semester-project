@@ -30,8 +30,8 @@ public class WeaponPlugin extends WeaponCore implements PluginService  {
             weapon = new Weapon();
             int x = (int) 200;
             int y = (int) 200;
-            weapon.addPart(new PositionPart(new Point(x, y)));
-            weapon.addPart(new MovingPart());
+            weapon.addPart(new PositionPart(x, y));
+            weapon.addPart(new MovingPart(2));
             // true means shooting gun gun
             weapon.addPart(new WeaponPart(true, 100, 20, 5));
             // weapon.addPart(new ImagePart(new File("C:/Users/steff/OneDrive/Documents/GitHub/4-semester-project/dk.sdu.se4.enemy/src/main/resources/img/zombi.png"), 150, 150));

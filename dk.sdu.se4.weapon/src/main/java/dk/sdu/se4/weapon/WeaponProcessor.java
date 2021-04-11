@@ -40,14 +40,11 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                     if (wp.getType()) {
                         if(wp.getTotalBullets() == 0) {
                             //Weapon out of ammo
-                            System.out.print("No more ammo");
                             continue;
                         }
                         if(wp.getCurrentMagazine() == 0) {
                             wp.reload();
-                            System.out.println("reloading");
                         }
-                        System.out.println("shooting");
                         wp.removeBullet();
 
                         // Add bullet here
