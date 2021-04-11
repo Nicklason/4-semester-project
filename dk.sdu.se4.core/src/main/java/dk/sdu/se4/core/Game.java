@@ -5,11 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
-import dk.sdu.se4.commongameinput.GameInput;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
@@ -18,12 +15,15 @@ import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.common.service.ProcessorService;
-import java.io.File;
+import dk.sdu.se4.commongameinput.GameInput;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Game implements ApplicationListener {
 
+    private final static Logger logger = LoggerFactory.getLogger(Game.class);
     private MapService mapService = null;
     private GameInput gameInput = null;
 
@@ -32,11 +32,11 @@ public final class Game implements ApplicationListener {
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
     private SpriteBatch batch;
     private OrthographicCamera cam;
-    // private final Texture map = new Texture(new FileHandle(new File("C:/Users/steff/OneDrive/Documents/GitHub/4-semester-project/dk.sdu.se4.core/src/main/resources/img/world.png")));
- 
+
     LwjglApplication application = null;
 
     public Game() {
+        logger.info("Creating {}", this);
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "4. semester project";
         cfg.width = 800;
@@ -45,22 +45,15 @@ public final class Game implements ApplicationListener {
         cfg.resizable = false;
 
         application = new LwjglApplication(this, cfg);
-        cam = new OrthographicCamera(1280 ,720);
-        cam.translate(Gdx.graphics.getWidth()/2, Gdx.graphics.getWidth()/2, 0);
-        cam.update();
-        //System.out.println("CREATED Game");
+        logger.debug("Creating {}", application);
+        cam = new OrthographicCamera(1280, 720);
+        cam.translate(Gdx.graphics.getWidth() / 2, Gdx.graphics.getWidth() / 2, 0);
+
     }
 
     @Override
     public void create() {
         this.batch = new SpriteBatch();
-        for(PluginService p : this.pluginlist){
-            p.load();
-        }
-            
-
-        
-
     }
 
     @Override
@@ -69,24 +62,31 @@ public final class Game implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
-        // this.batch.draw(map, 0, 0);
-        
-        
-        for (ProcessorService processorService : this.processorServiceslist) {
-             processorService.process();
-        }
-        
-        for (Entity entity : this.mapService.getEntities()) {
-             ImagePart imagePart = entity.getPart(ImagePart.class);
-             PositionPart p = entity.getPart(PositionPart.class);
 
-             if (imagePart!=null){
-                 this.batch.draw(imagePart.getTexture(),p.getPoint().x , p.getPoint().y);
-             }
-             
+        if (this.mapService!=null){
+            updateProcessors();
+            drawEnitys();
+
         }
         batch.end();
+    }
 
+    private void updateProcessors() {
+        
+        for (ProcessorService processorService : this.processorServiceslist) {
+            processorService.process();
+        }
+    }
+
+    private void drawEnitys() {
+            for (Entity entity : this.mapService.getEntities()) {
+                ImagePart imagePart = entity.getPart(ImagePart.class);
+                PositionPart p = entity.getPart(PositionPart.class);
+                if (imagePart != null) {
+                    this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
+                }
+            }
+        
     }
 
     @Override
@@ -107,55 +107,76 @@ public final class Game implements ApplicationListener {
     }
 
     public void addMapService(MapService mapService) {
+        logger.debug("Add {}", mapService.getClass().getName());
         this.mapService = mapService;
-
-        System.out.println("ADDED MapService TO Game to " + this.mapService.toString());
     }
 
     public void removeMapService(MapService mapService) {
+        logger.debug("Remove {}", mapService.getClass().getName());
         this.mapService = null;
-        System.out.println("REMOVED MapService FROM Game to " + this.mapService.toString());
     }
 
-    public void addPlugin(PluginService pluginService) { 
-        this.pluginlist.add(pluginService);
-        
-        
-        
+    public void addPlugin(PluginService pluginService) {
+        if (this.mapService != null) {
+            logger.debug("Add {}", pluginService.getClass().getName());
+            pluginService.load();
+            this.pluginlist.add(pluginService);
+        } else {
+            logger.error("Map Service is null");
+        }
+
     }
 
     public void removePlugin(PluginService pluginService) {
+        logger.debug("Remove {}", pluginService.getClass().getName());
+        pluginService.unload();
         this.pluginlist.remove(pluginService);
-        
 
     }
-    
+
     public void addGameInput(GameInput gameInput) {
-        this.gameInput = gameInput;
-        // Cast game input as an InputProcessor (should probably fix this)
-        Gdx.input.setInputProcessor((InputProcessor)gameInput);
-        //System.out.println("ADDED GameInput TO Game");
+        if (this.mapService != null) {
+            logger.debug("Add {}", gameInput.getClass().getName());
+            this.gameInput = gameInput;
+            Gdx.input.setInputProcessor((InputProcessor) gameInput);
+        } else {
+            logger.error("Map Service is null ");
+        }
+
     }
-    
+
     public void removeGameInput(GameInput gameInput) {
+        logger.debug("Remove {}", gameInput.getClass().getName());
         this.gameInput = null;
-        //System.out.println("REMOVED GameInput FROM Game");
     }
 
     public void addProcessorService(ProcessorService ProcessorService) {
-        this.processorServiceslist.add(ProcessorService);
+        if (this.mapService != null) {
+            logger.debug("Add {}", ProcessorService.getClass().getName());
+            this.processorServiceslist.add(ProcessorService);
+        } else {
+            logger.error("Map Service is null {}");
+        }
+
     }
 
     public void removeProcessorService(ProcessorService ProcessorService) {
+        logger.debug("Remove {}", ProcessorService.getClass().getName());
         this.processorServiceslist.remove(ProcessorService);
-
     }
 
     public void addPostProcessorService(PostProcessorService postProcessorService) {
-        this.postProcessorServiceslist.add(postProcessorService);
+        if (this.mapService != null) {
+            logger.debug("Add {}", postProcessorService.getClass());
+            this.postProcessorServiceslist.add(postProcessorService);
+        } else {
+            logger.error("Map Service is null {}");
+        }
+
     }
 
     public void removePostProcessorService(PostProcessorService postProcessorService) {
+        logger.debug("Remove {}", postProcessorService.getClass().getName());
         this.postProcessorServiceslist.remove(postProcessorService);
     }
 

@@ -4,17 +4,20 @@ import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.service.MapService;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MapServiceImpl implements MapService {
+    private final static Logger log = LoggerFactory.getLogger(MapService.class);
     private int height = 600;
     private int width = 600;
     private Map<String, Entity> entities;
     
     public MapServiceImpl() {
+        log.info("Created {}", this.getClass().getName());
         this.entities = new HashMap();
-        //System.out.println("CREATED MapServiceImpl");
     }
 
     public int getHeight() {
@@ -26,6 +29,7 @@ public class MapServiceImpl implements MapService {
     }
 
     public void addEntity(Entity entity) {
+        log.debug("Added {}", entity.getClass().getTypeName());
         this.entities.put(entity.getId(), entity);
     }
 

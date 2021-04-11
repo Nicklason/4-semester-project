@@ -40,9 +40,11 @@
     -->
     <org.osgi.service.http.port>8080</org.osgi.service.http.port>
     <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
+    
   </properties>
 
   <packaging>pom</packaging>
+  
 
   <modules>
     <module>poms</module>
@@ -57,6 +59,7 @@
     <module>dk.sdu.se4.weapon</module>
   </modules>
 
+  
   <build>
     <plugins>
       <plugin>

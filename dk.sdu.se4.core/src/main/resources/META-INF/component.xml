@@ -13,6 +13,7 @@
     <reference bind="addPlugin" cardinality="0..n"
                interface="dk.sdu.se4.common.service.PluginService"
                name="PluginService" policy="dynamic" unbind="removePlugin" />
+   
     
     <reference bind="addProcessorService" cardinality="0..n"
                interface="dk.sdu.se4.common.service.ProcessorService"

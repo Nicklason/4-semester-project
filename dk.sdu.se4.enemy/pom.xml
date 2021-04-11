@@ -21,8 +21,22 @@
   <name>${bundle.symbolicName}</name>
 
   <packaging>bundle</packaging>
-
-  <dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Export-Package>dk.sdu.se4.enemy,dk.sdu.se4.enemy.*;version="1.0-SHAPSHOT"</Export-Package>
+                        <Private-Package>dk.sdu.se4.enemy.*</Private-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
     <!--
      | uncomment to add all imported (non-local) bundles to your compilation classpath
     <dependency>
@@ -47,6 +61,11 @@
       <artifactId>dk.sdu.se4.common</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
-  </dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dk.sdu.se4.libgdx</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
