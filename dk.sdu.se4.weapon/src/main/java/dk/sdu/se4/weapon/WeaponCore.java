@@ -16,12 +16,10 @@ public class WeaponCore {
     
     public void addMapService(MapService mapService) {
         this.mapService = mapService;
-        System.out.println("ADDED MapService TO weapon "+this.mapService.getClass().toString());
     }
 
     public void removeMapService(MapService mapService) {
         this.mapService = null;
-        System.out.println("REMOVED MapService FROM weapon "+this.mapService.getClass().toString());
     }
     
 }

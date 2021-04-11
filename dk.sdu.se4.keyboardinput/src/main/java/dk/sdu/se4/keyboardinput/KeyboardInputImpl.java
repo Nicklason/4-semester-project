@@ -12,10 +12,8 @@ public class KeyboardInputImpl extends InputAdapter implements GameInput {
     
     public boolean isPressed(GameInputKeys key) {
         if(keys.containsKey(key)) {
-            System.out.println(keys.get(key).booleanValue());
             return keys.get(key).booleanValue();
         } else {
-            System.out.println("false");
             return false;
         }
     }
