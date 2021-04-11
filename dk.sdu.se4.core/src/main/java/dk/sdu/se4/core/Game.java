@@ -9,8 +9,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.EntityType;
+import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.ImagePart;
+import dk.sdu.se4.common.entity.part.MenuPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.VisibilityPart;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.common.service.PostProcessorService;
@@ -77,11 +81,40 @@ public final class Game implements ApplicationListener {
 
     private void drawEnitys() {
             for (Entity entity : this.mapService.getEntities()) {
+                EntityTypePart type = entity.getPart(EntityTypePart.class);
                 ImagePart imagePart = entity.getPart(ImagePart.class);
                 PositionPart p = entity.getPart(PositionPart.class);
-                if (imagePart != null) {
-                    this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
+                VisibilityPart vb = entity.getPart(VisibilityPart.class);
+                if (type.getType()==EntityType.MENUENTITY){
+                    if(vb.isVisibility()){
+                        MenuPart mp = entity.getPart(MenuPart.class);
+                        if(mp.getTextur("Background")!=null){
+                            this.batch.draw(mp.getTextur("Background"), 200, 50);
+                        }
+                        if(mp.getTextur("Headline")!=null){
+                            this.batch.draw(mp.getTextur("Headline"), 220, 450);
+                        }
+                        if(mp.getTextur("Playbtn")!=null){
+                            this.batch.draw(mp.getTextur("Playbtn"), 300, 300);
+                        }
+                        if(mp.getTextur("Exitbtn")!=null){
+                            this.batch.draw(mp.getTextur("Exitbtn"), 300, 200);
+                        }
+                        
+                    }
                 }
+
+                if(type.getType()==EntityType.MOVINGENTITY){
+                    if(vb.isVisibility()){
+                        if (imagePart != null) {
+                            this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
+                    }
+                }
+                }
+                
+                
+                
+                
             }
         
     }

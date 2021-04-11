@@ -6,10 +6,13 @@
 package dk.sdu.se4.enemy;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.EntityType;
+import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.VisibilityPart;
 import dk.sdu.se4.common.service.PluginService;
 import java.io.File;
 import org.osgi.framework.BundleContext;
@@ -31,6 +34,8 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy[i] = new Enemy();
                 int x = (int) (Math.random() * 800) + 1;
                 int y = (int) (Math.random() * 600) + 1;
+                enemy[i].addPart(new EntityTypePart(EntityType.MOVINGENTITY));
+                enemy[i].addPart(new VisibilityPart(false));
                 enemy[i].addPart(new PositionPart(x, y));
                 enemy[i].addPart(new MovingPart(10));
                 enemy[i].addPart(new LifePart(100));

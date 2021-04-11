@@ -1,0 +1,3 @@
+Bundle-SymbolicName: menu
+Bundle-ActivationPolicy: lazy
+Service-Component: META-INF/MenuPlugin.xml, META-INF/MenuProcessor.xml
