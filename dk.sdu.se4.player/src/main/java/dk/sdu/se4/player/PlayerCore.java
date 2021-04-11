@@ -16,11 +16,9 @@ public class PlayerCore {
     
     public void addMapService(MapService mapService) {
         this.mapService = mapService;
-        System.out.println("ADDED MapService TO Player "+this.mapService.getClass().toString());
     }
 
     public void removeMapService(MapService mapService) {
         this.mapService = null;
-        System.out.println("REMOVED MapService FROM Player "+this.mapService.getClass().toString());
     }
 }
