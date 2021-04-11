@@ -21,34 +21,25 @@ public class EnemyProcessor extends EnemyCore implements ProcessorService {
             for (Entity e : this.mapService.getEntities(Enemy.class)) {
                 MovingPart mp = e.getPart(MovingPart.class);
                 int choise = (int) (Math.random() * 100) + 1;
+                
+                mp.setMovingUp(false);
+                mp.setMovingDown(false);
+                mp.setMovingLeft(false);
+                mp.setMovingRight(false);
+                
                 if (choise < 20) {
-                    mp.setUP(true);
-                    mp.setDOWN(false);
-                    mp.setLEFT(false);
-                    mp.setRIGHT(false);
-                }
-                if (choise > 30 && choise < 50) {
-                    mp.setUP(false);
-                    mp.setDOWN(true);
-                    mp.setLEFT(false);
-                    mp.setRIGHT(false);
-                }
-                if (choise > 60 && choise < 75) {
-                    mp.setUP(false);
-                    mp.setDOWN(false);
-                    mp.setLEFT(true);
-                    mp.setRIGHT(false);
-                }
-                if (choise > 90) {
-                    mp.setUP(false);
-                    mp.setDOWN(false);
-                    mp.setLEFT(false);
-                    mp.setRIGHT(true);
+                    mp.setMovingUp(true);
+                } else if (choise > 30 && choise < 50) {
+                    mp.setMovingDown(true);
+                } else if (choise > 60 && choise < 75) {
+                    mp.setMovingLeft(true);
+                } else if (choise > 90) {
+                    mp.setMovingRight(true);
                 }
                 mp.process(e);
             }
-
+        }else{
+            log.error("mapservices is null");
         }
     }
-
 }

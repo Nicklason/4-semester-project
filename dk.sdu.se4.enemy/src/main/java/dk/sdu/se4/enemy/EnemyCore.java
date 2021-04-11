@@ -6,6 +6,8 @@
 package dk.sdu.se4.enemy;
 
 import dk.sdu.se4.common.service.MapService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -13,12 +15,15 @@ import dk.sdu.se4.common.service.MapService;
  */
 public class EnemyCore {
     protected MapService mapService=null;
+    protected Logger log = LoggerFactory.getLogger(this.getClass());
     
     public void addMapService(MapService mapService) {
+        log.debug("Add Mapservice on {}", this.getClass());
         this.mapService = mapService;
     }
 
     public void removeMapService(MapService mapService) {
+        log.debug("Remove Mapservice from {}", this.getClass());
         this.mapService = null;
     }
 
