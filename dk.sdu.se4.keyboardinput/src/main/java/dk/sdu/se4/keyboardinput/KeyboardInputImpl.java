@@ -20,7 +20,6 @@ public class KeyboardInputImpl extends InputAdapter implements GameInput {
 
     @Override
     public boolean keyDown(int keycode) {
-        //System.out.println("DOWN " + Keys.toString(keycode));
         switch (keycode) {
             case Keys.W:
                 this.keys.put(GameInputKeys.UP, true);
@@ -47,7 +46,6 @@ public class KeyboardInputImpl extends InputAdapter implements GameInput {
     
     @Override
     public boolean keyUp(int keycode) {
-        //System.out.println("UP " + Keys.toString(keycode));
         switch (keycode) {
             case Keys.W:
                 this.keys.put(GameInputKeys.UP, false);
