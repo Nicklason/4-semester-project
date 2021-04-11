@@ -33,21 +33,12 @@ public class PlayerProcessor extends PlayerCore implements ProcessorService {
         if(this.mapService != null) {
             for(Entity e : this.mapService.getEntities(Player.class)) {
                 MovingPart mp = e.getPart(MovingPart.class);
-                mp.setMovingUp(false);
-                mp.setMovingDown(false);
-                mp.setMovingLeft(false);
-                mp.setMovingRight(false);
                 
-                if(this.gameInput.isPressed(GameInputKeys.UP)) {
-                    mp.setMovingUp(true);
-                } else if(this.gameInput.isPressed(GameInputKeys.DOWN)) {
-                    mp.setMovingDown(true);
-                }
-                if(this.gameInput.isPressed(GameInputKeys.LEFT)) {
-                    mp.setMovingLeft(true);
-                } else if(this.gameInput.isPressed(GameInputKeys.RIGHT)) {
-                    mp.setMovingRight(true);
-                }
+                mp.setMovingUp(this.gameInput.isPressed(GameInputKeys.UP));
+                mp.setMovingDown(this.gameInput.isPressed(GameInputKeys.DOWN));
+                mp.setMovingLeft(this.gameInput.isPressed(GameInputKeys.LEFT));
+                mp.setMovingRight(this.gameInput.isPressed(GameInputKeys.RIGHT));
+                
                 mp.process(e);
             }
         } else {
