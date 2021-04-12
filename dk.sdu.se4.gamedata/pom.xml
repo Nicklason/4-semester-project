@@ -34,13 +34,18 @@
     -->
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>osgi_R4_core</artifactId>
+      <artifactId>org.osgi.core</artifactId>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>osgi_R4_compendium</artifactId>
+      <artifactId>org.osgi.compendium</artifactId>
       <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>dk.sdu.se4.common</artifactId>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 
