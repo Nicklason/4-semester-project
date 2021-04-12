@@ -18,8 +18,6 @@ public class BulletPlugin extends BulletCore implements PluginService {
              bullet = create();
              this.mapService.addEntity(bullet);
              System.out.println(bullet.toString());
-        } else {
-            System.out.println("mapservice null load");
         }
     }
 
@@ -32,8 +30,6 @@ public class BulletPlugin extends BulletCore implements PluginService {
                     this.mapService.removeEntity(e);
                 }
             }
-        } else {
-            System.out.println("mapservice null unload");
         }
     }
 
