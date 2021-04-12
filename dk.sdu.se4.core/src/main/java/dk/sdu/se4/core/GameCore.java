@@ -1,18 +1,16 @@
 package dk.sdu.se4.core;
 
-import com.badlogic.gdx.ApplicationListener;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
-import dk.sdu.se4.common.entity.EntityType;
 import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.ImagePart;
-import dk.sdu.se4.common.entity.part.MenuPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.entity.part.VisibilityPart;
 import dk.sdu.se4.common.service.MapService;
@@ -25,20 +23,18 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class Game implements ApplicationListener {
+public final class GameCore extends Game  {
 
-    private final static Logger logger = LoggerFactory.getLogger(Game.class);
-    private MapService mapService = null;
+    private final static Logger logger = LoggerFactory.getLogger(GameCore.class);
+    LwjglApplication application = null;
+    public MapService mapService=null;
     private GameInput gameInput = null;
-
     private List<PluginService> pluginlist = new ArrayList<>();
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
     private SpriteBatch batch;
-    private OrthographicCamera cam;
-    LwjglApplication application = null;
-
-    public Game() {
+    
+    public GameCore() {
         logger.info("Creating {}", this);
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "4. semester project";
@@ -46,96 +42,67 @@ public final class Game implements ApplicationListener {
         cfg.height = 600;
         cfg.useGL30 = false;
         cfg.resizable = false;
-
         application = new LwjglApplication(this, cfg);
         logger.debug("Creating {}", application);
-        cam = new OrthographicCamera(1280, 720);
-        cam.translate(Gdx.graphics.getWidth() / 2, Gdx.graphics.getWidth() / 2, 0);
+       
 
     }
-
+ 
     @Override
     public void create() {
-        this.batch = new SpriteBatch();
+       this.batch = new SpriteBatch();
+        setScreen(new StartMenu(this));
+       
     }
 
     @Override
     public void render() {
-        // Clear screen to black
+        super.render();
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+            setScreen(new StartMenu(this));
+           
+        }
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
-        if (this.mapService!=null){
+        if ( this.mapService != null) {
             updateProcessors();
             drawEnitys();
+        }else{
+            logger.error("mapservices is {}", this.mapService);
         }
+        
         batch.end();
     }
 
     private void updateProcessors() {
-        
-        for (ProcessorService processorService : this.processorServiceslist) {
+
+        for (ProcessorService processorService : this.getProcessorServiceslist()) {
             processorService.process();
         }
     }
 
     private void drawEnitys() {
-            for (Entity entity : this.mapService.getEntities()) {
-                EntityTypePart type = entity.getPart(EntityTypePart.class);
-                ImagePart imagePart = entity.getPart(ImagePart.class);
-                PositionPart p = entity.getPart(PositionPart.class);
-                VisibilityPart vb = entity.getPart(VisibilityPart.class);
-                if (type.getType()==EntityType.MENUENTITY){
-                    if(vb.isVisibility()){
-                        MenuPart mp = entity.getPart(MenuPart.class);
-                        if(mp.getTextur("Background")!=null){
-                            this.batch.draw(mp.getTextur("Background"), 200, 50);
-                        }
-                        if(mp.getTextur("Headline")!=null){
-                            this.batch.draw(mp.getTextur("Headline"), 220, 450);
-                        }
-                        if(mp.getTextur("Playbtn")!=null){
-                            this.batch.draw(mp.getTextur("Playbtn"), 300, 300);
-                        }
-                        if(mp.getTextur("Exitbtn")!=null){
-                            this.batch.draw(mp.getTextur("Exitbtn"), 300, 200);
-                        }
-                        
-                    }
-                }
-
-                if(type.getType()==EntityType.MOVINGENTITY){
-                    if(vb.isVisibility()){
-                        if (imagePart != null) {
-                            this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
-                    }
-                }
-                }
-                
-                
-                
-                
+        for (Entity entity :  this.mapService.getEntities()) {
+            EntityTypePart type = entity.getPart(EntityTypePart.class);
+            ImagePart imagePart = entity.getPart(ImagePart.class);
+            PositionPart p = entity.getPart(PositionPart.class);
+            VisibilityPart vb = entity.getPart(VisibilityPart.class);
+            System.out.println(entity.getClass().getName());
+            if (imagePart != null) {
+                this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
             }
-        
-    }
 
-    @Override
-    public void resize(int width, int height) {
-    }
-
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void dispose() {
+        }
 
     }
 
+    public List<ProcessorService> getProcessorServiceslist() {
+        return processorServiceslist;
+    }
+
+    
+     
     public void addMapService(MapService mapService) {
         logger.debug("Add {}", mapService.getClass().getName());
         this.mapService = mapService;
@@ -209,5 +176,11 @@ public final class Game implements ApplicationListener {
         logger.debug("Remove {}", postProcessorService.getClass().getName());
         this.postProcessorServiceslist.remove(postProcessorService);
     }
+
+    
+  
+    
+    
+
 
 }

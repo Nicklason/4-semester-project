@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.core.core.gamescreen">
+    <implementation class="dk.sdu.se4.core.screen.GameScreen"/>
+    
+<!--    <reference bind="addMapService" cardinality="0..n"
+               interface="dk.sdu.se4.common.service.MapService"
+               name="MapService" policy="static" unbind="removeMapService" />-->
+<!--    
+    <reference bind="addGameInput" cardinality="0..n"
+               interface="dk.sdu.se4.commongameinput.GameInput"
+               name="GameInput" policy="static" unbind="removeGameInput"/>
+    
+    <reference bind="addPlugin" cardinality="0..n"
+               interface="dk.sdu.se4.common.service.PluginService"
+               name="PluginService" policy="static" unbind="removePlugin"/>
+   
+    
+    <reference bind="addProcessorService" cardinality="0..n"
+               interface="dk.sdu.se4.common.service.ProcessorService"
+               name="ProcessorService" policy="static" unbind="removeProcessorService" />
+    
+    <reference bind="addPostProcessorService" cardinality="0..n"
+               interface="dk.sdu.se4.common.service.PostProcessorService"
+               name="PostProcessorService" policy="static" unbind="removePostProcessorService" />-->
+
+</scr:component>
+
