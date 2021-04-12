@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.enemy">
-    <implementation class="dk.sdu.se4.enemy.EnemyProcessor"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.bullet.plugin">
+    <implementation class="dk.sdu.se4.bullet.Plugin"/>
     <service>
-        <provide interface="dk.sdu.se4.common.service.ProcessorService"/>
+        <provide interface="dk.sdu.se4.common.service.PluginService"/>
     </service>
     <reference bind="addMapService" cardinality="1..1"
                interface="dk.sdu.se4.common.service.MapService"
