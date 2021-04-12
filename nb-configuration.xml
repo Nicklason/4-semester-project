@@ -17,3 +17,7 @@ Any value defined here will override the pom.xml file value but is only applicab
         <org-netbeans-spi-editor-hints-projects.perProjectHintSettingsEnabled>true</org-netbeans-spi-editor-hints-projects.perProjectHintSettingsEnabled>
     </properties>
 </project-shared-configuration>
+-->
+        <netbeans.hint.jdkPlatform>JDK_1.8</netbeans.hint.jdkPlatform>
+    </properties>
+</project-shared-configuration>
