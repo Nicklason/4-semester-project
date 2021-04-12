@@ -41,8 +41,6 @@ public class PlayerProcessor extends PlayerCore implements ProcessorService {
                 
                 mp.process(e);
             }
-        } else {
-            System.out.println("map is null");
         }
     }
     
