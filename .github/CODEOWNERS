@@ -4,3 +4,5 @@
 /dk.sdu.se4.enemy/** @stped18 @Nicklason @Kjalris
 /dk.sdu.se4.commongameinput/** @frederikstroem @Nicklason
 /dk.sdu.se4.keyboardinput/** @frederikstroem @Nicklason
+/dk.sdu.se4.collision/** @Nicklason @Kjalris
+/dk.sdu.se4.collisioncommon/** @Nicklason @Kjalris
