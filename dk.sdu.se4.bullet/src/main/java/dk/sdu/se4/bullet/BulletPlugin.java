@@ -17,7 +17,6 @@ public class BulletPlugin extends BulletCore implements PluginService {
          if(this.mapService != null) {
              bullet = create();
              this.mapService.addEntity(bullet);
-             System.out.println(bullet.toString());
         }
     }
 
@@ -35,10 +34,8 @@ public class BulletPlugin extends BulletCore implements PluginService {
 
     private Entity create() {
         bullet = new Bullet();
-        int x = 300;//this.mapService.getWidth() / 2;
-        int y = 300;//this.mapService.getHeight() / 2;
-        System.out.println(x + " : " + y);
-        float angle = 3.14f / 2;
+        int x = 300;
+        int y = 300;
 
         bullet.addPart(new PositionPart(x, y));
         bullet.addPart(new TimePart(3));
