@@ -5,6 +5,8 @@ import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.commoncollision.CollisionService;
 
 public class CollisionServiceImpl implements CollisionService {
+    // Hardcode size right now
+    // TODO: use the game.size function to create grid (or whatever the function will be named)
     private final Grid grid = new Grid(100, 100, 800, 600);
     
     @Override
