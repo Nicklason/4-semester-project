@@ -1,0 +1,2 @@
+Bundle-SymbolicName: player
+Service-Component: META-INF/Plugin.xml, META-INF/Processor.xml
