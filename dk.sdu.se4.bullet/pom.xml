@@ -9,16 +9,16 @@
   </parent>
 
   <properties>
-    <bundle.symbolicName>dk.sdu.se4.Equipment</bundle.symbolicName>
-    <bundle.namespace>dk.sdu.se4.Equipment</bundle.namespace>
+    <bundle.symbolicName>dk.sdu.se4.bullet</bundle.symbolicName>
+    <bundle.namespace>dk.sdu.se4.bullet</bundle.namespace>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>dk.sdu.se4.semester-project</groupId>
-  <artifactId>dk.sdu.se4.Equipment</artifactId>
+  <artifactId>dk.sdu.se4.bullet</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>${bundle.symbolicName}</name>
+  <name>dk.sdu.se4.bullet</name>
 
   <packaging>bundle</packaging>
 

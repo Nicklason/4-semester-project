@@ -1,4 +1,4 @@
-package dk.sdu.se4.Equipment;
+package dk.sdu.se4.bullet;
 
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
@@ -9,7 +9,7 @@ import dk.sdu.se4.common.service.PluginService;
 import java.io.File;
 import java.awt.Point;
 
-public class BulletPlugin extends EquipmentCore implements PluginService {
+public class BulletPlugin extends BulletCore implements PluginService {
     private Entity bullet;
 
     @Override

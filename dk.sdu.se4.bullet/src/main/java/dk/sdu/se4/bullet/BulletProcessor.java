@@ -1,4 +1,4 @@
-package dk.sdu.se4.Equipment;
+package dk.sdu.se4.bullet;
 
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.MovingPart;
@@ -6,7 +6,7 @@ import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.entity.part.TimePart;
 import dk.sdu.se4.common.service.ProcessorService;
 
-public class BulletProcessor extends EquipmentCore implements ProcessorService {
+public class BulletProcessor extends BulletCore implements ProcessorService {
 
     @Override
     public void process() {

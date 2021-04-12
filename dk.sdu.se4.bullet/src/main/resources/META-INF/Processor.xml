@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.Equipment.plugin">
-    <implementation class="dk.sdu.se4.Equipment.BulletPlugin"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.bullet">
+    <implementation class="dk.sdu.se4.bullet.BulletProcessor"/>
     <service>
-        <provide interface="dk.sdu.se4.common.service.PluginService"/>
+        <provide interface="dk.sdu.se4.common.service.ProcessorService"/>
     </service>
     <reference bind="addMapService" cardinality="1..1"
                interface="dk.sdu.se4.common.service.MapService"
