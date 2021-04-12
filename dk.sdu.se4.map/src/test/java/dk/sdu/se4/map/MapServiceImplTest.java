@@ -63,7 +63,7 @@ public class MapServiceImplTest {
         assertTrue(instance.getEntities().isEmpty());
         assertEquals(0, instance.getEntities().size());
         
-        Entity entity = new Entity();
+        Entity entity = new Entity(true);
         instance.addEntity(entity);
         
         assertTrue(!instance.getEntities().isEmpty());
@@ -90,7 +90,7 @@ public class MapServiceImplTest {
     public void testRemoveEntity() {
         MapServiceImpl instance = new MapServiceImpl();
         
-        Entity entity = new Entity();
+        Entity entity = new Entity(true);
         
         instance.addEntity(entity);
         

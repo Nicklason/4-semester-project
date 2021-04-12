@@ -11,6 +11,7 @@ public class Entity {
     
     private final static Logger log = LoggerFactory.getLogger(Entity.class);
     private final String id;
+    private final boolean friendly; 
     
     
     private final Map<Class, EntityPart> partStorage;
@@ -20,11 +21,16 @@ public class Entity {
     }
 
     
-    public Entity() {
+    public Entity(boolean friendly) {
         log.info("Created {}",this.getClass().getName());
         this.id = UUID.randomUUID().toString();
         this.partStorage = new ConcurrentHashMap<>();
         
+        this.friendly = friendly;
+    }
+    
+    public boolean isFriendly() {
+        return this.friendly;
     }
     
     public void addPart(EntityPart entitypart){

@@ -54,6 +54,7 @@
     <module>dk.sdu.se4.keyboardinput</module>
     <module>dk.sdu.se4.commongameinput</module>
     <module>dk.sdu.se4.enemy</module>
+    <module>dk.sdu.se4.collision</module>
     <module>dk.sdu.se4.commoncollision</module>
   </modules>
 
