@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.core">
-    <implementation class="dk.sdu.se4.core.Game"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.core.core">
+    <implementation class="dk.sdu.se4.core.GameCore"/>
     
     <reference bind="addMapService" cardinality="0..n"
                interface="dk.sdu.se4.common.service.MapService"
-               name="MapService" policy="dynamic" unbind="removeMapService"/>
+               name="MapService" policy="dynamic" unbind="removeMapService" />
     
 
     <reference bind="addGameInput" cardinality="0..n"
@@ -14,7 +14,7 @@
 
     <reference bind="addPlugin" cardinality="0..n"
                interface="dk.sdu.se4.common.service.PluginService"
-               name="PluginService" policy="dynamic" unbind="removePlugin" />
+               name="PluginService" policy="dynamic" unbind="removePlugin"/>
    
     
     <reference bind="addProcessorService" cardinality="0..n"
