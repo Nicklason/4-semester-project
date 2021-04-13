@@ -1,5 +1,5 @@
 package dk.sdu.se4.common.service;
 
-public interface AIControlSystem {
+public interface AIControlService {
     void pathFinding();
 }

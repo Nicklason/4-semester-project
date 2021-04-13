@@ -8,6 +8,7 @@ package dk.sdu.se4.enemy;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.service.ProcessorService;
+import dk.sdu.se4.commonenemy.Enemy;
 
 /**
  *

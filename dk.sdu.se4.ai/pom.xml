@@ -9,34 +9,20 @@
   </parent>
 
   <properties>
-    <bundle.symbolicName>dk.sdu.se4.enemy</bundle.symbolicName>
-    <bundle.namespace>dk.sdu.se4.enemy</bundle.namespace>
+    <bundle.symbolicName>dk.sdu.se4.ai</bundle.symbolicName>
+    <bundle.namespace>dk.sdu.se4.ai</bundle.namespace>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>dk.sdu.se4.semester-project</groupId>
-  <artifactId>dk.sdu.se4.enemy</artifactId>
-  <version>1.0-SHAPSHOT</version>
+  <artifactId>dk.sdu.se4.ai</artifactId>
+  <version>1.0-SNAPSHOT</version>
 
   <name>${bundle.symbolicName}</name>
 
   <packaging>bundle</packaging>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Export-Package>dk.sdu.se4.enemy,dk.sdu.se4.enemy.*;version="1.0-SHAPSHOT"</Export-Package>
-                        <Private-Package>dk.sdu.se4.enemy.*</Private-Package>
-                    </instructions>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-    <dependencies>
+
+  <dependencies>
     <!--
      | uncomment to add all imported (non-local) bundles to your compilation classpath
     <dependency>
@@ -59,18 +45,13 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>dk.sdu.se4.common</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>${project.version}</version>
     </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>dk.sdu.se4.libgdx</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>dk.sdu.se4.commonenemy</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>dk.sdu.se4.commonenemy</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>
