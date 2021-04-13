@@ -24,7 +24,7 @@ public class MapServiceImpl implements MapService {
         return this.height;
     }
 
-    public int getWeight() {
+    public int getWidth() {
         return this.width;
     }
 

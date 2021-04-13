@@ -66,6 +66,11 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
+<!--        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dk.sdu.se4.node</artifactId>
+            <version>${project.version}</version>
+        </dependency>-->
     </dependencies>
 
 </project>

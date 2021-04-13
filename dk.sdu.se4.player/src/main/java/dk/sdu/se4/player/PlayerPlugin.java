@@ -11,6 +11,7 @@ import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.PluginService;
+import dk.sdu.se4.commonplayer.Player;
 import java.awt.Point;
 import java.io.File;
 /**
@@ -20,7 +21,7 @@ import java.io.File;
  */
 public class PlayerPlugin extends PlayerCore implements PluginService {
 
-    private Player player;
+    private Entity player;
     
     @Override
     public void load() {
@@ -41,7 +42,7 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         }
     }
     
-    public Player createPlayer() {
+    public Entity createPlayer() {
         player = new Player();
         int x = 200;
         int y = 200;

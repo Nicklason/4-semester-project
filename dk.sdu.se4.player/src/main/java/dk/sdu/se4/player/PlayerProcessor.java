@@ -10,6 +10,7 @@ import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.service.ProcessorService;
 import dk.sdu.se4.commongameinput.GameInput;
 import dk.sdu.se4.commongameinput.GameInputKeys;
+import dk.sdu.se4.commonplayer.Player;
 
 /**
  *

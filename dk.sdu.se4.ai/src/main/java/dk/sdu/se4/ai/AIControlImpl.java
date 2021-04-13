@@ -9,6 +9,9 @@ import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.service.AIControlService;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.commonenemy.Enemy;
+import dk.sdu.se4.commonplayer.Player;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -26,7 +29,9 @@ public class AIControlImpl implements AIControlService {
     @Override
     public void pathFinding() {
         for(Entity e : this.mapService.getEntities(Enemy.class)) {
-            
+            for(Entity p: this.mapService.getEntities(Player.class)) {
+                FindNextStep(e, p);
+            }
         }
     }
     
@@ -37,5 +42,8 @@ public class AIControlImpl implements AIControlService {
     public void removeMapService(MapService mapService) {
         this.mapService = null;
     }
-    
+
+    private void FindNextStep(Entity e, Entity p) {
+        
+    }
 }

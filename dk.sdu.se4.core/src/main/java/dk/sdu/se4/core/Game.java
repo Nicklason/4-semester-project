@@ -1,5 +1,6 @@
 package dk.sdu.se4.core;
 
+import ch.qos.logback.core.CoreConstants;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -15,7 +16,9 @@ import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.common.service.ProcessorService;
+import dk.sdu.se4.commonenemy.Enemy;
 import dk.sdu.se4.commongameinput.GameInput;
+import dk.sdu.se4.commonnode.Node;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;

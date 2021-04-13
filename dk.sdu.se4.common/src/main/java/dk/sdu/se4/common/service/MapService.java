@@ -5,7 +5,7 @@ import java.util.Collection;
 
 public interface MapService {
     int getHeight();
-    int getWeight();
+    int getWidth();
     
     /**
      * Add entity to the map

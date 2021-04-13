@@ -40,7 +40,7 @@ public class BulletPlugin extends BulletCore implements PluginService {
         bullet.addPart(new PositionPart(x, y));
         bullet.addPart(new TimePart(3));
         bullet.addPart(new MovingPart(2));
-        bullet.addPart(new ImagePart(new File("../dk.sdu.se4.Equipment/src/main/resources/img/bullet.png"), 100, 50));
+        bullet.addPart(new ImagePart(new File("../dk.sdu.se4.bullet/src/main/resources/img/bullet.png"), 100, 50));
         return bullet;
     }
 }

@@ -9,13 +9,13 @@
   </parent>
 
   <properties>
-    <bundle.symbolicName>dk.sdu.se4.ai</bundle.symbolicName>
-    <bundle.namespace>dk.sdu.se4.ai</bundle.namespace>
+    <bundle.symbolicName>dk.sdu.se4.commonnode</bundle.symbolicName>
+    <bundle.namespace>dk.sdu.se4.commonnode</bundle.namespace>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>dk.sdu.se4.semester-project</groupId>
-  <artifactId>dk.sdu.se4.ai</artifactId>
+  <artifactId>dk.sdu.se4.commonnode</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <name>${bundle.symbolicName}</name>
@@ -45,16 +45,6 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>dk.sdu.se4.common</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>dk.sdu.se4.commonenemy</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>dk.sdu.se4.commonplayer</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>

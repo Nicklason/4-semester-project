@@ -52,7 +52,7 @@ public class MapServiceImplTest {
     public void testGetWeight() {
         MapServiceImpl instance = new MapServiceImpl();
         int expResult = 600;
-        int result = instance.getWeight();
+        int result = instance.getWidth();
         assertEquals(expResult, result);
     }
 

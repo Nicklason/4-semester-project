@@ -21,8 +21,22 @@
   <name>${bundle.symbolicName}</name>
 
   <packaging>bundle</packaging>
-
-  <dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Export-Package>dk.sdu.se4.commonenemy,dk.sdu.se4.commonenemy.*;version="1.0-SNAPSHOT"</Export-Package>
+                        <Private-Package>dk.sdu.se4.commonenemy.*</Private-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
     <!--
      | uncomment to add all imported (non-local) bundles to your compilation classpath
     <dependency>

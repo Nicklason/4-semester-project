@@ -60,6 +60,8 @@
     <module>dk.sdu.se4.bullet</module>
     <module>dk.sdu.se4.gamedata</module>
     <module>dk.sdu.se4.player</module>
+    <module>dk.sdu.se4.node</module>
+    <module>dk.sdu.se4.commonnode</module>
   </modules>
 
   <build>
@@ -90,4 +92,5 @@
       </plugin>
     </plugins>
   </build>
+
 </project>
