@@ -5,3 +5,6 @@
 /dk.sdu.se4.commongameinput/** @frederikstroem @Nicklason
 /dk.sdu.se4.keyboardinput/** @frederikstroem @Nicklason
 /dk.sdu.se4.gamedata/** @frederikstroem @Lucassass
+/dk.sdu.se4.bullet/** @DenBedste @Kjalris
+/dk.sdu.se4.weapon/** @DenBedste @Kjalris
+/dk.sdu.se4.player/** @DenBedste @Lucassass
