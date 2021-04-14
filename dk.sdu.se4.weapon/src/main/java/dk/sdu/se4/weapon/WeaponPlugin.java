@@ -6,7 +6,6 @@
 package dk.sdu.se4.weapon;
 
 import dk.sdu.se4.common.entity.Entity;
-import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.entity.part.WeaponPart;
 import dk.sdu.se4.common.entity.part.DirectionPart;
@@ -27,7 +26,6 @@ public class WeaponPlugin extends WeaponCore implements PluginService  {
             int x = (int) 200;
             int y = (int) 200;
             weapon.addPart(new PositionPart(x, y));
-            weapon.addPart(new MovingPart(2));
             weapon.addPart(new DirectionPart(false, false, false, false));
             // true means shooting gun gun
             weapon.addPart(new WeaponPart(true, 100, 20, 5));
