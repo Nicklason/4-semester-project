@@ -63,6 +63,11 @@ public class WeaponPart implements EntityPart {
     public String getAmmo() {
         return currentMagazine + "/" + (totalBullets - currentMagazine);
     }
+
+    public int getFireRate() {
+        return fireRate;
+    }
+    
     
 
     @Override

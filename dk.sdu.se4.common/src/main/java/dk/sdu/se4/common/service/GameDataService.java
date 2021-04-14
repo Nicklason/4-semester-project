@@ -11,4 +11,8 @@ public interface GameDataService {
     public void addPoints(int points);
 
     public void removePoints(int points);
+    
+    public void setDeltaTime(float deltaTime);
+    
+    public float getDeltaTime();
 }

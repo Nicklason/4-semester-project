@@ -23,8 +23,7 @@ public class BulletProcessor extends BulletCore implements ProcessorService {
                 MovingPart movingPart = e.getPart(MovingPart.class);
 
                 movingPart.process(e);
-                timePart.process(e);
             }
         }
     }
-}
+}  

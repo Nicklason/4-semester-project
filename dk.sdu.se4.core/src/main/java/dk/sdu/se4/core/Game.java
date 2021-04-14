@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.TimePart;
 import dk.sdu.se4.common.service.GameDataService;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
@@ -29,6 +30,7 @@ public final class Game implements ApplicationListener {
     private GameInput gameInput = null;
     private GameDataService gameData = null;
 
+    
     private List<PluginService> pluginlist = new ArrayList<>();
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
@@ -64,8 +66,16 @@ public final class Game implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
+        this.gameData.setDeltaTime(Gdx.graphics.getDeltaTime());
 
         if (this.mapService!=null){
+            //Hack for removeTime in TimePart :::: FIX THIS PLZ SOMEONE plez
+            for(Entity e : this.mapService.getEntities()) {
+                TimePart tp = e.getPart(TimePart.class);
+                if(tp != null) {
+                    tp.removeTime(this.gameData.getDeltaTime());
+                }
+            }
             updateProcessors();
             drawEnitys();
 
@@ -180,6 +190,14 @@ public final class Game implements ApplicationListener {
     public void removePostProcessorService(PostProcessorService postProcessorService) {
         logger.debug("Remove {}", postProcessorService.getClass().getName());
         this.postProcessorServiceslist.remove(postProcessorService);
+    }
+    
+    public void addGameData(GameDataService gameData) {
+        this.gameData = gameData;
+    }
+    
+    public void removeGameData(GameDataService gameData) {
+        this.gameData = null;
     }
 
 }

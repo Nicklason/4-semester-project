@@ -59,9 +59,9 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                         Entity bullet = new Bullet();
                         bullet.addPart(new PositionPart(pp.getX(), pp.getY()));
                         bullet.addPart(new ImagePart(new File("../dk.sdu.se4.bullet/src/main/resources/img/bullet.png"), 10, 10));
-                        bullet.addPart(new TimePart(3));
                         bullet.addPart(new DirectionPart(dp.getMovingUp(), dp.getMovingDown(), dp.getMovingLeft(), dp.getMovingRight()));
                         bullet.addPart(new MovingPart(15));
+                        bullet.addPart(new TimePart(3));
                         this.mapService.addEntity(bullet);
                     }
                     else {
