@@ -24,6 +24,24 @@ public class MovingPart implements EntityPart {
         this.stepSize = stepSize;
     }
 
+    public boolean getMovingUp() {
+        return movingUp;
+    }
+
+    public boolean getMovingDown() {
+        return movingDown;
+    }
+
+    public boolean getMovingLeft() {
+        return movingLeft;
+    }
+
+    public boolean getMovingRight() {
+        return movingRight;
+    }
+    
+    
+
     public void setMovingUp(boolean movingUp) {
         this.movingUp = movingUp;
     }

@@ -5,6 +5,7 @@ import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.entity.part.TimePart;
 import dk.sdu.se4.common.service.ProcessorService;
+import dk.sdu.se4.commonbullet.Bullet;
 
 public class BulletProcessor extends BulletCore implements ProcessorService {
 

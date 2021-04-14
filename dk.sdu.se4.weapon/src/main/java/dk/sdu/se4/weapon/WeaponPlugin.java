@@ -6,13 +6,10 @@
 package dk.sdu.se4.weapon;
 
 import dk.sdu.se4.common.entity.Entity;
-import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.entity.part.WeaponPart;
 import dk.sdu.se4.common.service.PluginService;
-import java.awt.Point;
-import java.io.File;
 
 /**
  *

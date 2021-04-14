@@ -26,6 +26,7 @@ public final class Game implements ApplicationListener {
     private final static Logger logger = LoggerFactory.getLogger(Game.class);
     private MapService mapService = null;
     private GameInput gameInput = null;
+    private GameData gameData = null;
 
     private List<PluginService> pluginlist = new ArrayList<>();
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
