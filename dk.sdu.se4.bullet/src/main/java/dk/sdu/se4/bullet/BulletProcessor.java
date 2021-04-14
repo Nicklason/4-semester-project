@@ -1,6 +1,7 @@
 package dk.sdu.se4.bullet;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.DirectionPart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.TimePart;
 import dk.sdu.se4.common.service.ProcessorService;
@@ -19,13 +20,7 @@ public class BulletProcessor extends BulletCore implements ProcessorService {
                     continue;
                 }
 
-                PositionPart positionPart = e.getPart(PositionPart.class);
                 MovingPart movingPart = e.getPart(MovingPart.class);
-            
-                movingPart.setMovingUp(true);
-                movingPart.setMovingDown(false);
-                movingPart.setMovingRight(false);
-                movingPart.setMovingLeft(false);
 
                 movingPart.process(e);
                 timePart.process(e);
