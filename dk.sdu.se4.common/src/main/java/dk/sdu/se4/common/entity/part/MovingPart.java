@@ -1,6 +1,5 @@
 package dk.sdu.se4.common.entity.part;
 
-import java.lang.Math;
 import dk.sdu.se4.common.entity.Entity;
 
 /**
@@ -8,59 +7,21 @@ import dk.sdu.se4.common.entity.Entity;
  * @author Steffen and Kasper jalris
  */
 public class MovingPart implements EntityPart {
-    private boolean movingUp, movingDown, movingLeft, movingRight;
-    private int stepSize;
+    private final int stepSize;
 
     /**
      * Pythagoras constant thingy
      */
-    private static double DIAGONAL_SCALING_CONSTANT = Math.sqrt(2) / 2;
+    private static final double DIAGONAL_SCALING_CONSTANT = Math.sqrt(2) / 2;
 
     public MovingPart(int stepSize) {
-        this.movingUp = false;
-        this.movingDown = false;
-        this.movingLeft = false;
-        this.movingRight = false;
         this.stepSize = stepSize;
-    }
-
-    public boolean getMovingUp() {
-        return movingUp;
-    }
-
-    public boolean getMovingDown() {
-        return movingDown;
-    }
-
-    public boolean getMovingLeft() {
-        return movingLeft;
-    }
-
-    public boolean getMovingRight() {
-        return movingRight;
-    }
-    
-    
-
-    public void setMovingUp(boolean movingUp) {
-        this.movingUp = movingUp;
-    }
-
-    public void setMovingDown(boolean movingDown) {
-        this.movingDown = movingDown;
-    }
-
-    public void setMovingLeft(boolean movingLeft) {
-        this.movingLeft = movingLeft;
-    }
-
-    public void setMovingRight(boolean movingRight) {
-        this.movingRight = movingRight;
     }
 
     @Override
     public void process(Entity entity) {
         PositionPart positionPart = entity.getPart(PositionPart.class);
+        DirectionPart directionPart = entity.getPart(DirectionPart.class);
         
         // Postive value is right, negative is left
         int changeHorizontal = 0;
@@ -71,16 +32,16 @@ public class MovingPart implements EntityPart {
         // It is only a problem when moving diagonally (both a change in
         // horizontal and a change in vertical)
 
-        if (movingUp){
+        if (directionPart.getMovingUp()){
             changeVertical += 1;
         }
-        if (movingDown) {
+        if (directionPart.getMovingDown()) {
             changeVertical -= 1;
         }
-        if (movingRight){
+        if (directionPart.getMovingRight()){
             changeHorizontal += 1;
         }
-        if (movingLeft){
+        if (directionPart.getMovingLeft()){
             changeHorizontal -= 1;
         }
         

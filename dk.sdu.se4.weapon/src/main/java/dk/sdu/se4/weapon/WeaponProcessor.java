@@ -9,6 +9,7 @@ import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.DirectionPart;
 import dk.sdu.se4.common.entity.part.TimePart;
 import dk.sdu.se4.common.entity.part.WeaponPart;
 import dk.sdu.se4.common.service.ProcessorService;
@@ -41,6 +42,7 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                 MovingPart mp = e.getPart(MovingPart.class);
                 WeaponPart wp = e.getPart(WeaponPart.class);
                 PositionPart pp = e.getPart(PositionPart.class);
+                DirectionPart dp = e.getPart(DirectionPart.class);
                 mp.process(e);
                 if(this.gameInput.isPressed(GameInputKeys.SPACE)) {
                     //TODO use wp firerate for shooting interval
@@ -60,11 +62,7 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                         bullet.addPart(new PositionPart(pp.getX(), pp.getY()));
                         bullet.addPart(new ImagePart(new File("../dk.sdu.se4.bullet/src/main/resources/img/bullet.png"), 10, 10));
                         bullet.addPart(new TimePart(3));
-                        MovingPart bulletMovingPart = new MovingPart(10);
-                        bulletMovingPart.setMovingUp(mp.getMovingUp());
-                        bulletMovingPart.setMovingDown(mp.getMovingDown());
-                        bulletMovingPart.setMovingRight(mp.getMovingRight());
-                        bulletMovingPart.setMovingLeft(mp.getMovingLeft());
+                        bullet.addPart(new DirectionPart(dp.getMovingUp(), dp.getMovingDown(), dp.getMovingLeft(), dp.getMovingRight()));
                         bullet.addPart(new MovingPart(10));
                         this.mapService.addEntity(bullet);
                     }

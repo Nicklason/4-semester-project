@@ -6,6 +6,7 @@
 package dk.sdu.se4.enemy;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.DirectionPart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.service.ProcessorService;
 
@@ -20,21 +21,22 @@ public class EnemyProcessor extends EnemyCore implements ProcessorService {
         if (this.mapService != null) {
             for (Entity e : this.mapService.getEntities(Enemy.class)) {
                 MovingPart mp = e.getPart(MovingPart.class);
+                DirectionPart dp = e.getPart(DirectionPart.class);
                 int choise = (int) (Math.random() * 100) + 1;
                 
-                mp.setMovingUp(false);
-                mp.setMovingDown(false);
-                mp.setMovingLeft(false);
-                mp.setMovingRight(false);
+                dp.setMovingUp(false);
+                dp.setMovingDown(false);
+                dp.setMovingLeft(false);
+                dp.setMovingRight(false);
                 
                 if (choise < 20) {
-                    mp.setMovingUp(true);
+                    dp.setMovingUp(true);
                 } else if (choise > 30 && choise < 50) {
-                    mp.setMovingDown(true);
+                    dp.setMovingDown(true);
                 } else if (choise > 60 && choise < 75) {
-                    mp.setMovingLeft(true);
+                    dp.setMovingLeft(true);
                 } else if (choise > 90) {
-                    mp.setMovingRight(true);
+                    dp.setMovingRight(true);
                 }
                 mp.process(e);
             }
