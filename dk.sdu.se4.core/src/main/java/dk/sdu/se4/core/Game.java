@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.service.GameDataService;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.common.service.PostProcessorService;
@@ -26,7 +27,7 @@ public final class Game implements ApplicationListener {
     private final static Logger logger = LoggerFactory.getLogger(Game.class);
     private MapService mapService = null;
     private GameInput gameInput = null;
-    private GameData gameData = null;
+    private GameDataService gameData = null;
 
     private List<PluginService> pluginlist = new ArrayList<>();
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();

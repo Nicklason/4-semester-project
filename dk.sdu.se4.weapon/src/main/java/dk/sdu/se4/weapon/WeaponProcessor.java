@@ -9,12 +9,14 @@ import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.DirectionPart;
 import dk.sdu.se4.common.entity.part.TimePart;
 import dk.sdu.se4.common.entity.part.WeaponPart;
 import dk.sdu.se4.common.service.ProcessorService;
 import dk.sdu.se4.commonbullet.Bullet;
 import dk.sdu.se4.commongameinput.GameInput;
 import dk.sdu.se4.commongameinput.GameInputKeys;
+import dk.sdu.se4.commonweapon.Weapon;
 import java.io.File;
 
 /**
@@ -24,7 +26,6 @@ import java.io.File;
 public class WeaponProcessor extends WeaponCore implements ProcessorService {
     
     private GameInput gameInput = null;
-    private Entity bullet;
     
     public void addGameInput(GameInput gameInput) {
         this.gameInput = gameInput;
@@ -38,10 +39,9 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
     public void process() {
         if (this.mapService != null) {
             for (Entity e : this.mapService.getEntities(Weapon.class)) {
-                MovingPart mp = e.getPart(MovingPart.class);
                 WeaponPart wp = e.getPart(WeaponPart.class);
                 PositionPart pp = e.getPart(PositionPart.class);
-                mp.process(e);
+                DirectionPart dp = e.getPart(DirectionPart.class);
                 if(this.gameInput.isPressed(GameInputKeys.SPACE)) {
                     //TODO use wp firerate for shooting interval
                     if (wp.getType()) {
@@ -56,16 +56,12 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                         wp.removeBullet();
 
                         // Add bullet here
-                        bullet = new Bullet();
+                        Entity bullet = new Bullet();
                         bullet.addPart(new PositionPart(pp.getX(), pp.getY()));
                         bullet.addPart(new ImagePart(new File("../dk.sdu.se4.bullet/src/main/resources/img/bullet.png"), 10, 10));
                         bullet.addPart(new TimePart(3));
-                        MovingPart bulletMovingPart = new MovingPart(10);
-                        bulletMovingPart.setMovingUp(mp.getMovingUp());
-                        bulletMovingPart.setMovingDown(mp.getMovingDown());
-                        bulletMovingPart.setMovingRight(mp.getMovingRight());
-                        bulletMovingPart.setMovingLeft(mp.getMovingLeft());
-                        bullet.addPart(new MovingPart(10));
+                        bullet.addPart(new DirectionPart(dp.getMovingUp(), dp.getMovingDown(), dp.getMovingLeft(), dp.getMovingRight()));
+                        bullet.addPart(new MovingPart(15));
                         this.mapService.addEntity(bullet);
                     }
                     else {
