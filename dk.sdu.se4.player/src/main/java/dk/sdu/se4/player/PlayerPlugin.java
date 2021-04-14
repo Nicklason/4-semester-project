@@ -11,8 +11,9 @@ import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.WeaponPart;
 import dk.sdu.se4.common.service.PluginService;
-import java.awt.Point;
+import dk.sdu.se4.commonweapon.Weapon;
 import java.io.File;
 /**
  *
@@ -20,14 +21,15 @@ import java.io.File;
  * @author Lucas
  */
 public class PlayerPlugin extends PlayerCore implements PluginService {
-
-    private Player player;
     
     @Override
     public void load() {
         if (this.mapService != null) {
-            player = createPlayer();
+            Entity player = createPlayer();
+            Entity weapon = createWeaponForPlayer(player);
+            
             this.mapService.addEntity(player);
+            this.mapService.addEntity(weapon);
         }
     }
 
@@ -35,15 +37,13 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
     public void unload() {
         if(this.mapService != null) {
             for (Entity e : this.mapService.getEntities(Player.class)) {
-                if (e.equals(player)) {
-                    this.mapService.removeEntity(e);
-                }
+                this.mapService.removeEntity(e);
             }
         }
     }
     
-    public Player createPlayer() {
-        player = new Player();
+    public Entity createPlayer() {
+        Player player = new Player();
         int x = 200;
         int y = 200;
         
@@ -52,7 +52,25 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         player.addPart(new DirectionPart(false, false, false, false));
         player.addPart(new LifePart(100));
         player.addPart(new ImagePart(new File("../dk.sdu.se4.player/src/main/resources/img/player.png"), 50, 50));
+        
         return player;
+    }
+    
+    public Entity createWeaponForPlayer(Entity player) {
+        Entity weapon = new Weapon();
+        
+        PositionPart playerPositionPart = player.getPart(PositionPart.class);
+        DirectionPart playerDirectionPart = player.getPart(DirectionPart.class);
+        
+        // The weapon should have the same position and direction as the player
+        // it is attached to
+        weapon.addPart(playerPositionPart);
+        weapon.addPart(playerDirectionPart);
+        // true means shooting gun gun
+        weapon.addPart(new WeaponPart(true, 100, 20, 5));
+        this.mapService.addEntity(weapon);
+        
+        return weapon;
     }
     
 }

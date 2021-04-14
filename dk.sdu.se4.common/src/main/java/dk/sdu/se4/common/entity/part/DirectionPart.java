@@ -6,10 +6,10 @@ public class DirectionPart implements EntityPart {
     private boolean movingUp, movingDown, movingLeft, movingRight;
 
     public DirectionPart(boolean movingUp, boolean movingDown, boolean movingLeft, boolean movingRight) {
-        this.movingUp = false;
-        this.movingDown = false;
-        this.movingLeft = false;
-        this.movingRight = false;
+        this.movingUp = movingUp;
+        this.movingDown = movingDown;
+        this.movingLeft = movingLeft;
+        this.movingRight = movingRight;
     }
 
     public boolean getMovingUp() {
