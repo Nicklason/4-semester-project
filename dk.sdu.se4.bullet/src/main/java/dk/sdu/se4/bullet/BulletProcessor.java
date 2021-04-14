@@ -12,9 +12,15 @@ public class BulletProcessor extends BulletCore implements ProcessorService {
     public void process() {
         if(this.mapService != null) {
             for(Entity e : this.mapService.getEntities(Bullet.class)) {
+                TimePart timePart = e.getPart(TimePart.class);
+
+                if (timePart.getTime() <= 0) {
+                    this.mapService.removeEntity(e);
+                    continue;
+                }
+
                 PositionPart positionPart = e.getPart(PositionPart.class);
                 MovingPart movingPart = e.getPart(MovingPart.class);
-                TimePart timePart = e.getPart(TimePart.class);
             
                 movingPart.setMovingUp(true);
                 movingPart.setMovingDown(false);
