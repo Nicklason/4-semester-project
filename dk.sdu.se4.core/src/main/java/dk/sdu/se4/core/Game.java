@@ -32,6 +32,7 @@ public final class Game implements ApplicationListener {
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
     private SpriteBatch batch;
     private OrthographicCamera cam;
+
     LwjglApplication application = null;
 
     public Game() {
@@ -61,9 +62,11 @@ public final class Game implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
+
         if (this.mapService!=null){
             updateProcessors();
             drawEnitys();
+
         }
         batch.end();
     }
