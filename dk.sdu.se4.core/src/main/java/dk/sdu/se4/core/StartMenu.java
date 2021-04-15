@@ -53,14 +53,7 @@ public class StartMenu implements Screen{
 
     
     public void show() {
-        this.startsound.play();
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        logger.debug("Sound play {}", this.startsound);
-
+        this.addsoundWithDelay(this.startsound,2);
     }
 
     @Override
@@ -71,45 +64,48 @@ public class StartMenu implements Screen{
         this.game.batch.draw(this.background,(float)(this.game.width/2)-(this.background.getWidth()/2),(float) (this.game.height/2)-(this.background.getHeight()/2));
         this.game.batch.draw(this.headline,(float)(this.game.width/2)-(this.headline.getWidth()/2), (float) (this.game.height/1.333));
 
+        insertExitButton();
+        insertPlayButton();
+        this.game.batch.end();
+        
+    }
+    private void addsoundWithDelay(Sound sound, int delayTime){
+        sound.setVolume(sound.play(),0.1f);
+        //sound.play();
 
+        logger.info("Sound play {}", sound);
+        try {
+            TimeUnit.SECONDS.sleep(delayTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void insertExitButton(){
         if(Gdx.input.getX()< (this.game.width/2.66)+this.exitbtn.getWidth()&& Gdx.input.getX()>(this.game.width/2.66) &&
                 Gdx.input.getY()<(this.game.height/1.7)+this.exitbtn.getHeight() && Gdx.input.getY()>(this.game.height/1.7)){
             this.game.batch.draw(this.exitbtn,(float)(this.game.width/2)-(this.exitbtn.getWidth()/2),(float) (this.game.height/3));
             if(Gdx.input.isTouched()){
-                this.exitsound.play();
-                try {
-                    TimeUnit.SECONDS.sleep(2);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                logger.debug("Sound play {}", this.exitsound);
+                addsoundWithDelay(this.exitsound,2);
                 Gdx.app.exit();
             }
         }else{
             this.game.batch.draw(this.exitActivebtn,(float)(this.game.width/2)-(this.exitActivebtn.getWidth()/2),(float) (this.game.height/3));
         }
+    }
+    private void insertPlayButton(){
         if(Gdx.input.getX()< (this.game.width/2.66)+this.playbtn.getWidth()&& Gdx.input.getX()>(this.game.width/2.66) &&
                 Gdx.input.getY()<(this.game.height/2.7)+this.playbtn.getHeight() && Gdx.input.getY()>(this.game.height/2.7)){
             this.game.batch.draw(this.playbtn,(float)(this.game.width/2)-(this.playbtn.getWidth()/2),(float) (this.game.height/2));
             if(Gdx.input.isTouched()){
-                this.playsound.play();
-                try {
-                    TimeUnit.SECONDS.sleep(2);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                logger.debug("Sound play {}", this.playsound);
+                addsoundWithDelay(this.playsound,2);
                 this.dispose();
                 game.setScreen(new GameScreen(this.game));
             }
         }else{
             this.game.batch.draw(this.playActivebtn,(float)(this.game.width/2)-(this.playActivebtn.getWidth()/2),(float) (this.game.height/2));
         }
-        this.game.batch.end();
-        
     }
-
     @Override
     public void resize(int i, int i1) {
     

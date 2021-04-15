@@ -3,4 +3,3 @@
 #-----------------------------------------------------------------
 
 Service-Component: META-INF/component.xml
-Export-Package: dk.sdu.se4.map
