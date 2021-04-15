@@ -11,6 +11,7 @@ import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.TimePart;
 import dk.sdu.se4.common.entity.part.WeaponPart;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.commonweapon.Weapon;

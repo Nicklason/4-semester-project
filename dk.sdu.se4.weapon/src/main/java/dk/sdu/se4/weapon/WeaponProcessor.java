@@ -51,7 +51,19 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                             continue;
                         }
                         if(wp.getCurrentMagazine() == 0) {
-                            wp.reload();
+                            System.out.println("mag = 0");
+                            TimePart reloadTimePart = e.getPart(TimePart.class);
+                            if(reloadTimePart == null) {
+                                System.out.println("timepart = null");
+                                e.addPart(new TimePart(2));
+                                continue;
+                            } else if(reloadTimePart.getTime() <= 0) {
+                                System.out.println("time elapsed");
+                                wp.reload();
+                                e.removePart(TimePart.class);
+                            }
+                            System.out.println(reloadTimePart.getTime());
+                            continue;
                         }
                         wp.removeBullet();
 
