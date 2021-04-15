@@ -10,13 +10,15 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author steff
  */
 public class StartMenu implements Screen{
-    
+    private final static Logger logger = LoggerFactory.getLogger(GameScreen.class);
     private GameCore game;
     private Texture playbtn;
     private Texture exitbtn;
@@ -75,12 +77,11 @@ public class StartMenu implements Screen{
 
     @Override
     public void pause() {
-        
+        logger.info("Pause {}", this);
     }
 
     @Override
     public void resume() {
-       
     }
 
     @Override
@@ -90,7 +91,7 @@ public class StartMenu implements Screen{
 
     @Override
     public void dispose() {
-        
+        logger.info("Dispose  {}", this);
     }
     
 }

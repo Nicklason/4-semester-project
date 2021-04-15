@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.ImagePart;
@@ -17,9 +18,11 @@ public class GameScreen implements Screen {
   private final static Logger logger = LoggerFactory.getLogger(GameScreen.class);
 
   private GameCore game;
+  private Texture ui;
 
   public GameScreen(GameCore gameCore) {
     this.game=gameCore;
+    this.ui = new Texture("../dk.sdu.se4.core/src/main/resources/img/UI.png");
   }
 
   @Override
@@ -32,6 +35,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.game.batch.begin();
+
         if ( this.game.mapService != null) {
             updateProcessors();
             drawEnitys();
@@ -40,9 +44,10 @@ public class GameScreen implements Screen {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
           this.pause();
+
           this.game.setScreen(new StartMenu(this.game));
         }
-
+        this.game.batch.draw(ui,0,0);
         this.game.batch.end();
   }
   private void updateProcessors() {
@@ -75,12 +80,12 @@ public class GameScreen implements Screen {
 
   @Override
   public void pause() {
-
+    logger.info("Pause Game at {}", this);
   }
 
   @Override
   public void resume() {
-
+    logger.info("Resume Game at {}", this);
   }
 
   @Override
