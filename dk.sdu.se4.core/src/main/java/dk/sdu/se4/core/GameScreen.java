@@ -58,7 +58,7 @@ public class GameScreen implements Screen {
       ImagePart imagePart = entity.getPart(ImagePart.class);
       PositionPart p = entity.getPart(PositionPart.class);
       VisibilityPart vb = entity.getPart(VisibilityPart.class);
-      System.out.println(entity.getClass().getName());
+
       if (imagePart != null) {
         this.game.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
       }
