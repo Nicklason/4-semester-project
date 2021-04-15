@@ -1,40 +1,30 @@
 package dk.sdu.se4.core;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import dk.sdu.se4.common.entity.Entity;
-import dk.sdu.se4.common.entity.part.EntityTypePart;
-import dk.sdu.se4.common.entity.part.ImagePart;
-import dk.sdu.se4.common.entity.part.PositionPart;
-import dk.sdu.se4.common.entity.part.VisibilityPart;
-import dk.sdu.se4.common.service.MapService;
-import dk.sdu.se4.common.service.PluginService;
-import dk.sdu.se4.common.service.PostProcessorService;
-import dk.sdu.se4.common.service.ProcessorService;
+import dk.sdu.se4.common.service.*;
 import dk.sdu.se4.commongameinput.GameInput;
 import java.util.ArrayList;
 import java.util.List;
+
+import dk.sdu.se4.screen.StartMenu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class GameCore extends Game  {
+public final class GameCore extends Game implements GameService {
 
     private final static Logger logger = LoggerFactory.getLogger(GameCore.class);
     LwjglApplication application = null;
-    protected MapService mapService=null;
+    private MapService mapService=null;
     private GameInput gameInput = null;
-    protected List<PluginService> pluginlist = new ArrayList<>();
-    protected List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
-    protected List<ProcessorService> processorServiceslist = new ArrayList<>();
-    protected SpriteBatch batch;
-    protected int width = 800;
-    protected int height = 600;
+    private List<PluginService> pluginlist = new ArrayList<>();
+    private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
+    private List<ProcessorService> processorServiceslist = new ArrayList<>();
+    private SpriteBatch batch;
+    private int width = 800;
+    private int height = 600;
     
     public GameCore() {
         logger.info("Creating {}", this);
@@ -56,10 +46,6 @@ public final class GameCore extends Game  {
         setScreen(new StartMenu(this));
        
     }
-
-
-
-
 
     public List<ProcessorService> getProcessorServiceslist() {
         return processorServiceslist;
@@ -142,9 +128,34 @@ public final class GameCore extends Game  {
     }
 
     
-  
-    
-    
+    public void addScreen(Screen screen){
+        this.setScreen(screen);
+    }
+
+    @Override
+    public SpriteBatch getBatch() {
+        return this.batch;
+    }
+
+    @Override
+    public int getWidth() {
+        return this.width;
+    }
+
+    @Override
+    public int getHeight() {
+        return this.height;
+    }
+
+    @Override
+    public List<ProcessorService> getProcessorServices() {
+        return this.processorServiceslist;
+    }
+
+    @Override
+    public MapService getMapService() {
+        return this.mapService;
+    }
 
 
 }

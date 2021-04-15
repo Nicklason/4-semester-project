@@ -75,6 +75,11 @@
             <version>4.3.0</version>
             <type>jar</type>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dk.sdu.se4.screen</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

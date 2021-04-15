@@ -60,6 +60,7 @@
     <module>dk.sdu.se4.player</module>
     <module>dk.sdu.se4.commonbullet</module>
     <module>dk.sdu.se4.commonweapon</module>
+    <module>dk.sdu.se4.screen</module>
   </modules>
 
   <build>
