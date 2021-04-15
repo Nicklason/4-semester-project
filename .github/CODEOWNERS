@@ -1,3 +1,4 @@
+./github/workflows @Nicklason
 /dk.sdu.se4.core/** @Nicklason
 /dk.sdu.se4.map/** @Nicklason
 /dk.sdu.se4.common/** @stped18 @Kjalris
@@ -5,3 +6,6 @@
 /dk.sdu.se4.commongameinput/** @frederikstroem @Nicklason
 /dk.sdu.se4.keyboardinput/** @frederikstroem @Nicklason
 /dk.sdu.se4.gamedata/** @frederikstroem @Lucassass
+/dk.sdu.se4.bullet/** @DenBedste @Kjalris
+/dk.sdu.se4.weapon/** @DenBedste @Kjalris
+/dk.sdu.se4.player/** @DenBedste @Lucassass
