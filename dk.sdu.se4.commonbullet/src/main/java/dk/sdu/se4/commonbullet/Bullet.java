@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.se4.weapon;
+package dk.sdu.se4.commonbullet;
 
 import dk.sdu.se4.common.entity.Entity;
 
-
-
 /**
  *
- * @author kjalris and denbedste
+ * @author Kasper
  */
-public class Weapon extends Entity{
+public class Bullet extends Entity{
     
 }
