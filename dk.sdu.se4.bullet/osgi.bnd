@@ -1,1 +1,2 @@
 Service-Component: META-INF/Plugin.xml, META-INF/Processor.xml
+Export-Package: dk.sdu.se4.bullet

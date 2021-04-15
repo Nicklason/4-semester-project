@@ -27,19 +27,21 @@ public final class GameCore extends Game  {
 
     private final static Logger logger = LoggerFactory.getLogger(GameCore.class);
     LwjglApplication application = null;
-    public MapService mapService=null;
+    protected MapService mapService=null;
     private GameInput gameInput = null;
-    private List<PluginService> pluginlist = new ArrayList<>();
-    private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
-    private List<ProcessorService> processorServiceslist = new ArrayList<>();
-    private SpriteBatch batch;
+    protected List<PluginService> pluginlist = new ArrayList<>();
+    protected List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
+    protected List<ProcessorService> processorServiceslist = new ArrayList<>();
+    protected SpriteBatch batch;
+    protected int width = 800;
+    protected int height = 600;
     
     public GameCore() {
         logger.info("Creating {}", this);
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "4. semester project";
-        cfg.width = 800;
-        cfg.height = 600;
+        cfg.width = width;
+        cfg.height = height;
         cfg.useGL30 = false;
         cfg.resizable = false;
         application = new LwjglApplication(this, cfg);
@@ -55,47 +57,9 @@ public final class GameCore extends Game  {
        
     }
 
-    @Override
-    public void render() {
-        super.render();
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
-            setScreen(new StartMenu(this));
-           
-        }
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        this.batch.begin();
-        if ( this.mapService != null) {
-            updateProcessors();
-            drawEnitys();
-        }else{
-            logger.error("mapservices is {}", this.mapService);
-        }
-        
-        batch.end();
-    }
 
-    private void updateProcessors() {
 
-        for (ProcessorService processorService : this.getProcessorServiceslist()) {
-            processorService.process();
-        }
-    }
 
-    private void drawEnitys() {
-        for (Entity entity :  this.mapService.getEntities()) {
-            EntityTypePart type = entity.getPart(EntityTypePart.class);
-            ImagePart imagePart = entity.getPart(ImagePart.class);
-            PositionPart p = entity.getPart(PositionPart.class);
-            VisibilityPart vb = entity.getPart(VisibilityPart.class);
-            System.out.println(entity.getClass().getName());
-            if (imagePart != null) {
-                this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
-            }
-
-        }
-
-    }
 
     public List<ProcessorService> getProcessorServiceslist() {
         return processorServiceslist;
