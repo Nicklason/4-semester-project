@@ -17,11 +17,8 @@ public class BulletPlugin extends BulletCore implements PluginService {
     @Override
     public void unload() {
         if(this.mapService != null) {
-            for(Entity e : this.mapService.getEntities(Bullet.class)) {
-                TimePart timePart = e.getPart(TimePart.class);
-                if(timePart.getTime() == 0) {
-                    this.mapService.removeEntity(e);
-                }
+            for (Entity e : this.mapService.getEntities(Bullet.class)) {
+                this.mapService.removeEntity(e);
             }
         }
     }
