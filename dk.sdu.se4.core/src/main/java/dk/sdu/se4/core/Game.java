@@ -8,8 +8,12 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import dk.sdu.se4.commongameinput.GameInput;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.AnimationPart;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.MapService;
@@ -49,9 +53,11 @@ public final class Game implements ApplicationListener {
     @Override
     public void create() {
         this.batch = new SpriteBatch();
+        
         for(PluginService p : this.pluginlist){
             p.load();
         }
+        
     }
 
     @Override
@@ -60,6 +66,8 @@ public final class Game implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
+        
+        
 
         for (ProcessorService processorService : this.processorServiceslist) {
             processorService.process();
@@ -67,12 +75,21 @@ public final class Game implements ApplicationListener {
         
         for (Entity entity : this.mapService.getEntities()) {
             ImagePart imagePart = entity.getPart(ImagePart.class);
+            AnimationPart animationPart = entity.getPart(AnimationPart.class);
             PositionPart p = entity.getPart(PositionPart.class);
 
             if (imagePart!=null){
                 this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
             }
+            
+            if (animationPart!=null){
+                this.batch.draw(animationPart.getAnimation(1), p.getX(), p.getY());
+                //animationPart.getAnimation(1).draw(this.batch);
+                //animationPart.getAnimation(1).setPosition(p.getX(), p.getY());
+                System.out.println("animation kaldt");
+            }
         }
+        
 
         batch.end();
     }

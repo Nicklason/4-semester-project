@@ -6,6 +6,7 @@
 package dk.sdu.se4.player;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.AnimationPart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.service.ProcessorService;
 
@@ -26,6 +27,9 @@ public class PlayerProcessor extends PlayerCore implements ProcessorService {
                 mp.setMovingLeft(false);
                 mp.setMovingRight(false);
                 mp.process(e);
+                
+                AnimationPart ap = e.getPart(AnimationPart.class);
+                ap.setAnimation(1, 0);
             }
         }
     }
