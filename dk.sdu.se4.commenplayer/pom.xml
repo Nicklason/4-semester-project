@@ -9,8 +9,8 @@
   </parent>
 
   <properties>
-    <bundle.symbolicName>dk.sdu.se4.commenPlayer</bundle.symbolicName>
-    <bundle.namespace>dk.sdu.se4.commenPlayer</bundle.namespace>
+    <bundle.symbolicName>dk.sdu.se4.commenplayer</bundle.symbolicName>
+    <bundle.namespace>dk.sdu.se4.commenplayer</bundle.namespace>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>

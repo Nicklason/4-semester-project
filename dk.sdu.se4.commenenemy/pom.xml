@@ -9,8 +9,8 @@
   </parent>
 
   <properties>
-    <bundle.symbolicName>dk.sdu.se4.commenEnemy</bundle.symbolicName>
-    <bundle.namespace>dk.sdu.se4.commenEnemy</bundle.namespace>
+    <bundle.symbolicName>dk.sdu.se4.commenenemy</bundle.symbolicName>
+    <bundle.namespace>dk.sdu.se4.commenenemy</bundle.namespace>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
