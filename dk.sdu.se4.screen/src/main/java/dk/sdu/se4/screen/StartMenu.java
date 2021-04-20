@@ -69,6 +69,7 @@ public class StartMenu implements Screen{
         this.game.getBatch().end();
         
     }
+    //This feature sets the sound and the delay time for the loop. so that to song is finish before the runtime continues
     private void addsoundWithDelay(Sound sound, int delayTime){
         sound.setVolume(sound.play(),0.1f);
         //sound.play();
@@ -80,11 +81,13 @@ public class StartMenu implements Screen{
             e.printStackTrace();
         }
     }
-
+    //This feature sets the position of the Exit button by the images
+    //and create an hove over by changing the image
     private void insertExitButton(){
         if(Gdx.input.getX()< (this.game.getWidth()/2.66)+this.exitbtn.getWidth()&& Gdx.input.getX()>(this.game.getWidth()/2.66) &&
                 Gdx.input.getY()<(this.game.getHeight()/1.7)+this.exitbtn.getHeight() && Gdx.input.getY()>(this.game.getHeight()/1.7)){
             this.game.getBatch().draw(this.exitbtn,(float)(this.game.getWidth()/2)-(this.exitbtn.getWidth()/2),(float) (this.game.getHeight()/3));
+            // this is libgdx mouse click for event the button
             if(Gdx.input.isTouched()){
                 addsoundWithDelay(this.exitsound,2);
                 Gdx.app.exit();
@@ -93,10 +96,13 @@ public class StartMenu implements Screen{
             this.game.getBatch().draw(this.exitActivebtn,(float)(this.game.getWidth()/2)-(this.exitActivebtn.getWidth()/2),(float) (this.game.getHeight()/3));
         }
     }
+    //This feature sets the position of the play button by the images
+    //and create an hove over by changing the image
     private void insertPlayButton(){
         if(Gdx.input.getX()< (this.game.getWidth()/2.66)+this.playbtn.getWidth()&& Gdx.input.getX()>(this.game.getWidth()/2.66) &&
                 Gdx.input.getY()<(this.game.getHeight()/2.7)+this.playbtn.getHeight() && Gdx.input.getY()>(this.game.getHeight()/2.7)){
             this.game.getBatch().draw(this.playbtn,(float)(this.game.getWidth()/2)-(this.playbtn.getWidth()/2),(float) (this.game.getHeight()/2));
+            // this is libgdx mouse click for event the button
             if(Gdx.input.isTouched()){
                 addsoundWithDelay(this.playsound,2);
                 this.dispose();
