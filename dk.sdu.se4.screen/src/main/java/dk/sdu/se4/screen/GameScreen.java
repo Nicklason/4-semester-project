@@ -49,9 +49,12 @@ public class GameScreen implements Screen {
   public void render(float deltaTime) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        // set the position for the cammara
         game.getCamera().position.set(game.getWidth()/2, game.getHeight()/2,0);
         this.game.getBatch().setProjectionMatrix(game.getCamera().combined);
+        // starting the drawing
         this.game.getBatch().begin();
+        // the Mapservices validation for running the program
         if ( this.mapService != null) {
             updateProcessors();
             drawEnitys();
@@ -66,16 +69,18 @@ public class GameScreen implements Screen {
             this.pause();
             this.game.addScreen(new ShopScreen(this.game));
         }
+        // Draw the User interface
         this.game.getBatch().draw(ui,-game.getWidth()/2,-game.getHeight()/2);
         this.game.getBatch().end();
   }
+  // updating the processes in the gameScreen
   private void updateProcessors() {
 
     for (ProcessorService processorService : game.getProcessorServices()) {
       processorService.process();
     }
   }
-
+  // Draw the Game Entitys and objects to the Screen/Batch 
   private void drawEnitys() {
     for (Entity entity :  this.mapService.getEntities()) {
       EntityTypePart type = entity.getPart(EntityTypePart.class);
