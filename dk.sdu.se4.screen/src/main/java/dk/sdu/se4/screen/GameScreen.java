@@ -57,7 +57,7 @@ public class GameScreen implements Screen {
         // the Mapservices validation for running the program
         if ( this.mapService != null) {
             updateProcessors();
-            drawEnitys();
+            drawEntitys();
         }else{
             logger.error("mapservices is {}", this.mapService);
         }
@@ -80,8 +80,8 @@ public class GameScreen implements Screen {
       processorService.process();
     }
   }
-  // Draw the Game Entitys and objects to the Screen/Batch 
-  private void drawEnitys() {
+  // Draw the Game Entitys and objects to the Screen/Batch
+  private void drawEntitys() {
     for (Entity entity :  this.mapService.getEntities()) {
       EntityTypePart type = entity.getPart(EntityTypePart.class);
       ImagePart imagePart = entity.getPart(ImagePart.class);
