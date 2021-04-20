@@ -5,6 +5,7 @@
  */
 package dk.sdu.se4.player;
 
+import dk.sdu.se4.commenPlayer.Player;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.DirectionPart;
 import dk.sdu.se4.common.entity.part.MovingPart;

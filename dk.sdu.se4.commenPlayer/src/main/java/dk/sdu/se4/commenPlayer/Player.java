@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dk.sdu.se4.enemy;
+package dk.sdu.se4.commenPlayer;
 
 import dk.sdu.se4.common.entity.Entity;
 
-
-
 /**
  *
- * @author steff
+ * @author Kasper
+ * @author Lucas
  */
-public class Enemy extends Entity{
+public class Player extends Entity {
     
 }

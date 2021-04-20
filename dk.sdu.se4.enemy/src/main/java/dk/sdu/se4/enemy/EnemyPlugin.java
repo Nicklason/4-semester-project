@@ -5,6 +5,7 @@
  */
 package dk.sdu.se4.enemy;
 
+import dk.sdu.se4.commenEnemy.Enemy;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.DirectionPart;
 import dk.sdu.se4.common.entity.part.ImagePart;
