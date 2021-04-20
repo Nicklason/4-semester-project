@@ -4,7 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.ImagePart;
@@ -23,12 +26,18 @@ public class GameScreen implements Screen {
   private MapService mapService=null;
   private Texture ui;
 
+
+
   public GameScreen(GameService gameCore) {
     this.game=gameCore;
     this.ui = new Texture("../dk.sdu.se4.screen/src/main/resources/img/UI.png");
     if(this.mapService==null){
       this.mapService=gameCore.getMapService();
     }
+
+
+
+
   }
 
   @Override
@@ -40,8 +49,9 @@ public class GameScreen implements Screen {
   public void render(float deltaTime) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        game.getCamera().position.set(game.getWidth()/2, game.getHeight()/2,0);
+        this.game.getBatch().setProjectionMatrix(game.getCamera().combined);
         this.game.getBatch().begin();
-
         if ( this.mapService != null) {
             updateProcessors();
             drawEnitys();
@@ -56,7 +66,7 @@ public class GameScreen implements Screen {
             this.pause();
             this.game.addScreen(new ShopScreen(this.game));
         }
-        this.game.getBatch().draw(ui,0,0);
+        this.game.getBatch().draw(ui,-game.getWidth()/2,-game.getHeight()/2);
         this.game.getBatch().end();
   }
   private void updateProcessors() {

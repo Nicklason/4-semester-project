@@ -3,6 +3,7 @@ package dk.sdu.se4.core;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.service.*;
 import dk.sdu.se4.commongameinput.GameInput;
@@ -25,6 +26,7 @@ public final class GameCore extends Game implements GameService {
     private SpriteBatch batch;
     private int width = 800;
     private int height = 600;
+    private OrthographicCamera camera;
     
     public GameCore() {
         logger.info("Creating {}", this);
@@ -36,7 +38,8 @@ public final class GameCore extends Game implements GameService {
         cfg.resizable = false;
         application = new LwjglApplication(this, cfg);
         logger.debug("Creating {}", application);
-       
+        camera = new OrthographicCamera(this.width, this.height);
+        camera.translate(this.width/2, this.height/2,0);
 
     }
  
@@ -155,6 +158,11 @@ public final class GameCore extends Game implements GameService {
     @Override
     public MapService getMapService() {
         return this.mapService;
+    }
+
+    @Override
+    public OrthographicCamera getCamera() {
+        return this.camera;
     }
 
 
