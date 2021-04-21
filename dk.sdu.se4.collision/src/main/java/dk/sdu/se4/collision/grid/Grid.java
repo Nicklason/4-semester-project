@@ -18,6 +18,11 @@ public class Grid {
         this.height = height;
         
         this.cells = new GridCell[gridWidth][gridHeight];
+        for (int i=0; i < this.gridHeight; i++) {
+            for (int j=0; j<this.gridWidth; j++) {
+                this.cells[j][i] = new GridCell();
+            }
+        }
     }
     
     public void setWidth(int width) {
@@ -44,6 +49,7 @@ public class Grid {
         
         return cells[gridIndexX][gridIndexY];
     }
+    
     
     public void addEntity(Entity entity) {
         PositionPart positionPart = entity.getPart(PositionPart.class);
@@ -85,10 +91,6 @@ public class Grid {
         
         if (gridCell != null) {
             gridCell.removeEntity(entity);
-            
-            if (!gridCell.hasEntities()) {
-                cells[gridIndexX][gridIndexY] = null;
-            }
         }
     }
     
@@ -118,10 +120,6 @@ public class Grid {
         
             if (previousGridCell != null) {
                 previousGridCell.removeEntity(entity);
-
-                if (!previousGridCell.hasEntities()) {
-                    cells[previousGridIndexX][previousGridIndexY] = null;
-                }
             }
             
             // Add entity
@@ -129,10 +127,6 @@ public class Grid {
         
             if (currentGridCell != null) {
                 currentGridCell.removeEntity(entity);
-
-                if (!currentGridCell.hasEntities()) {
-                    cells[currentGridIndexX][currentGridIndexY] = null;
-                }
             }
         }
     }
