@@ -5,6 +5,7 @@
  */
 package dk.sdu.se4.node;
 
+import dk.sdu.se4.common.entity.part.NodePart;
 import dk.sdu.se4.commonnode.Node;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
@@ -19,14 +20,15 @@ import org.slf4j.LoggerFactory;
  *
  * @author Kasper
  */
-public class NodePlugin implements PluginService {
+public class NodePlugin extends NodeCore implements PluginService {
 
-    private Entity[] nodes;
+    private Entity[][] nodes;
     private int height;
     private int width;
-    protected MapService mapService=null;
-    protected Logger log = LoggerFactory.getLogger(this.getClass());
-    private int x, y = 32;
+
+
+    private final int x = 32;
+    private final int y = 32;
 
     public NodePlugin() {
     }
@@ -38,14 +40,20 @@ public class NodePlugin implements PluginService {
         if(this.mapService != null) {
             this.height = this.mapService.getHeight();
             this.width = this.mapService.getWidth();
-            nodes = new Entity[(this.height/32)*(this.width/32)];
+            nodes = new Entity[(this.height/32)][(this.width/32)];
             for(int i = 0; i < nodes.length; i++) {
-                nodes[i] = new Node();
-                nodes[i].addPart(new ImagePart(new File("../dk.sdu.se4.node/src/main/resources/img/200m.PNG"), 32, 32));
-                x*=i;
-                y*=i; 
-                nodes[i].addPart(new PositionPart(x, y));
-                this.mapService.addEntity(nodes[i]);
+                for(int j = 0;j<nodes[i].length;j++){
+                    nodes[i][j] = new Node();
+                    int x1=x*i;
+                    int y1=y*j;
+                    PositionPart p = new PositionPart(x1, y1);
+                    NodePart np = new NodePart();
+                    np.setState(NodePart.State.UNVISITED);
+                    nodes[i][j].addPart(p);
+                    nodes[i][j].addPart(np);
+                    this.mapService.addEntity(nodes[i][j]);
+                }
+
             }
         }
     }
@@ -57,14 +65,5 @@ public class NodePlugin implements PluginService {
         }
         nodes = null;
     }
-    
-    public void addMapService(MapService mapService) {
-        log.debug("Add Mapservice on {}", this.getClass());
-        this.mapService = mapService;
-    }
 
-    public void removeMapService(MapService mapService) {
-        log.debug("Remove Mapservice from {}", this.getClass());
-        this.mapService = null;
-    }
 }
