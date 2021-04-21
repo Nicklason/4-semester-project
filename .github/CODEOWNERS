@@ -1,5 +1,5 @@
 ./github/workflows @Nicklason
-/dk.sdu.se4.core/** @Nicklason
+/dk.sdu.se4.core/** @Nicklason @stped18
 /dk.sdu.se4.map/** @Nicklason
 /dk.sdu.se4.common/** @stped18 @Kjalris
 /dk.sdu.se4.enemy/** @stped18 @Nicklason @Kjalris
@@ -9,3 +9,5 @@
 /dk.sdu.se4.bullet/** @DenBedste @Kjalris
 /dk.sdu.se4.weapon/** @DenBedste @Kjalris
 /dk.sdu.se4.player/** @DenBedste @Lucassass
+/dk.sdu.se4.commonenemy/** @stped18
+/dk.sdu.se4.commonplayer/** @stped18
