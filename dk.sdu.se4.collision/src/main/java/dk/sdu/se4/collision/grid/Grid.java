@@ -1,6 +1,7 @@
 package dk.sdu.se4.collision.grid;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.CollisionPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 
 public class Grid {
@@ -48,13 +49,19 @@ public class Grid {
         int gridIndexY = getGridIndexYByCoordinate(y);
         
         return cells[gridIndexX][gridIndexY];
-    }
-    
+    }    
     
     public void addEntity(Entity entity) {
         PositionPart positionPart = entity.getPart(PositionPart.class);
+        CollisionPart collisionPart = entity.getPart(CollisionPart.class);
         
+        // if the entitit´y has no position, dont create it
         if (positionPart == null) {
+            return;
+        }
+        
+        // If the entity has no collision, dont create it
+        if (collisionPart == null) {
             return;
         }
         
@@ -64,20 +71,22 @@ public class Grid {
         int gridIndexX = getGridIndexXByCoordinate(x);
         int gridIndexY = getGridIndexYByCoordinate(y);
         
-        GridCell gridCell = cells[gridIndexX][gridIndexY];
-        
-        if (gridCell == null) {
-            gridCell = new GridCell();
-            cells[gridIndexX][gridIndexY] = gridCell;
-        }
+        GridCell gridCell = cells[gridIndexX][gridIndexY];     
         
         gridCell.addEntity(entity);
     }
     
     public void removeEntity(Entity entity) {
         PositionPart positionPart = entity.getPart(PositionPart.class);
+        CollisionPart collisionPart = entity.getPart(CollisionPart.class);
         
+        // if the entitit´y has no position, dont create it
         if (positionPart == null) {
+            return;
+        }
+        
+        // If the entity has no collision, dont create it
+        if (collisionPart == null) {
             return;
         }
         
@@ -89,9 +98,9 @@ public class Grid {
         
         GridCell gridCell = cells[gridIndexX][gridIndexY];
         
-        if (gridCell != null) {
-            gridCell.removeEntity(entity);
-        }
+
+        gridCell.removeEntity(entity);
+        
     }
     
     public void entityMoved(Entity entity, int previousX, int previousY) {
@@ -118,16 +127,14 @@ public class Grid {
             // Remove entity
             GridCell previousGridCell = cells[previousGridIndexX][previousGridIndexY];
         
-            if (previousGridCell != null) {
-                previousGridCell.removeEntity(entity);
-            }
+            previousGridCell.removeEntity(entity);
+
             
             // Add entity
             GridCell currentGridCell = cells[currentGridIndexX][currentGridIndexY];
         
-            if (currentGridCell != null) {
-                currentGridCell.removeEntity(entity);
-            }
+
+            currentGridCell.removeEntity(entity);
         }
     }
 }
