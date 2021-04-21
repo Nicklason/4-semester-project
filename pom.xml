@@ -60,8 +60,8 @@
     <module>dk.sdu.se4.player</module>
     <module>dk.sdu.se4.commonbullet</module>
     <module>dk.sdu.se4.commonweapon</module>
-    <module>dk.sdu.se4.commenPlayer</module>
-    <module>dk.sdu.se4.commenEnemy</module>
+    <module>dk.sdu.se4.commonplayer</module>
+    <module>dk.sdu.se4.commonenemy</module>
   </modules>
 
   <build>
