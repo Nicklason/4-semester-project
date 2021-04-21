@@ -44,6 +44,12 @@ public class GridCell {
     public void removeEntity(Entity entity) {
         if (entities.containsKey(entity.getId())) {
             entities.remove(entity.getId());
+            
+            if (entities.isEmpty()) {
+                friendlyCount = 0;
+                enemyCount = 0;
+                return;
+            }
 
             FriendlyPart friendlyPart = entity.getPart(FriendlyPart.class);
             
