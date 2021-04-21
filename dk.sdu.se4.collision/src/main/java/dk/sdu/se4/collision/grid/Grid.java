@@ -50,7 +50,7 @@ public class Grid {
     }
     
     private int getGridIndexYByCoordinate(int y) {
-        int gridSize = width / gridWidth;
+        int gridSize = height / gridHeight;
         return y / gridSize;
     }
     
