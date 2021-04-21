@@ -6,6 +6,7 @@
 package dk.sdu.se4.enemy;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.CollisionPart;
 import dk.sdu.se4.common.entity.part.FriendlyPart;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.LifePart;
@@ -36,6 +37,7 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy[i].addPart(new MovingPart(10));
                 enemy[i].addPart(new LifePart(100));
                 enemy[i].addPart(new FriendlyPart(false));
+                enemy[i].addPart(new CollisionPart(100,100));
                 File file = new File("../dk.sdu.se4.enemy/src/main/resources/img/zombi.png");
                 enemy[i].addPart(new ImagePart(file, 150, 150));
                 this.mapService.addEntity(enemy[i]);

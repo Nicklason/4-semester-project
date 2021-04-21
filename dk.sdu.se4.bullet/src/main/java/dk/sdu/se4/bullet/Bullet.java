@@ -12,7 +12,5 @@ import dk.sdu.se4.common.entity.Entity;
  * @author Kasper
  */
 class Bullet extends Entity{
-    public Bullet() {
-        super(true);
-    }
+
 }

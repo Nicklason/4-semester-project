@@ -1,6 +1,7 @@
 package dk.sdu.se4.bullet;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.CollisionPart;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
@@ -41,6 +42,7 @@ public class BulletPlugin extends BulletCore implements PluginService {
         bullet.addPart(new TimePart(3));
         bullet.addPart(new MovingPart(2));
         bullet.addPart(new ImagePart(new File("../dk.sdu.se4.Equipment/src/main/resources/img/bullet.png"), 100, 50));
+        bullet.addPart(new CollisionPart(10,10));
         return bullet;
     }
 }
