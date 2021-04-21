@@ -1,6 +1,7 @@
 package dk.sdu.se4.collision.grid;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.FriendlyPart;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,8 +24,14 @@ public class GridCell {
     public void addEntity(Entity entity) {
         if (!entities.containsKey(entity.getId())) {
             entities.put(entity.getId(), entity);
-
-            if (entity.isFriendly()) {
+            
+            FriendlyPart friendlyPart = entity.getPart(FriendlyPart.class);
+            
+            if (friendlyPart == null) {
+                return;
+            }
+            
+            if (friendlyPart.isFriendly()) {
                 friendlyCount++;
             } else {
                 enemyCount++;
@@ -36,7 +43,13 @@ public class GridCell {
         if (entities.containsKey(entity.getId())) {
             entities.remove(entity.getId());
 
-            if (entity.isFriendly()) {
+            FriendlyPart friendlyPart = entity.getPart(FriendlyPart.class);
+            
+            if (friendlyPart == null) {
+                return;
+            }
+            
+            if (friendlyPart.isFriendly()) {
                 friendlyCount--;
             } else {
                 enemyCount--;
