@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.weapon">
+    <implementation class="dk.sdu.se4.weapon.WeaponProcessor"/>
+    <service>
+        <provide interface="dk.sdu.se4.common.service.ProcessorService"/>
+    </service>
+    <reference bind="addMapService" cardinality="1..1"
+               interface="dk.sdu.se4.common.service.MapService"
+               name="MapService" policy="dynamic" unbind="removeMapService" />
+    <reference bind="addGameInput" cardinality="1..1"
+               interface="dk.sdu.se4.commongameinput.GameInput"
+               name="GameInput" policy="dynamic" unbind="removeGameInput"/>
+</scr:component>

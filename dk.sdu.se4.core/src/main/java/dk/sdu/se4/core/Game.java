@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.service.GameDataService;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.common.service.PostProcessorService;
@@ -26,12 +27,14 @@ public final class Game implements ApplicationListener {
     private final static Logger logger = LoggerFactory.getLogger(Game.class);
     private MapService mapService = null;
     private GameInput gameInput = null;
+    private GameDataService gameData = null;
 
     private List<PluginService> pluginlist = new ArrayList<>();
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
     private SpriteBatch batch;
     private OrthographicCamera cam;
+
     LwjglApplication application = null;
 
     public Game() {
@@ -61,9 +64,11 @@ public final class Game implements ApplicationListener {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
+
         if (this.mapService!=null){
             updateProcessors();
             drawEnitys();
+
         }
         batch.end();
     }

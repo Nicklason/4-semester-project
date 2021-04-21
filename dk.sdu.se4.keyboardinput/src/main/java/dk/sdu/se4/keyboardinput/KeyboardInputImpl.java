@@ -18,7 +18,6 @@ public class KeyboardInputImpl extends InputAdapter implements GameInput {
         }
     }
 
-    @Override
     public boolean keyDown(int keycode) {
         switch (keycode) {
             case Keys.W:
