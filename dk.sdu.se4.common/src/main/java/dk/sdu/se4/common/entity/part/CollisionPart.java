@@ -20,6 +20,14 @@ public class CollisionPart implements EntityPart {
         this.height = height;
         this.width = width;
     }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }    
     
     @Override
     public void process(Entity entity) {
