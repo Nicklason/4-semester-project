@@ -13,7 +13,5 @@ import dk.sdu.se4.common.entity.Entity;
  * @author Lucas
  */
 public class Player extends Entity {
-    public Player () {
-        super(true);
-    }
+
 }
