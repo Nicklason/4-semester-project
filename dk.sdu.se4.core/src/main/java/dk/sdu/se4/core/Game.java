@@ -67,7 +67,7 @@ public final class Game implements ApplicationListener {
     @Override
     public void render() {
         // Clear screen to black
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(160, 160, 160, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.batch.begin();
         
@@ -85,6 +85,7 @@ public final class Game implements ApplicationListener {
             if (imagePart!=null){
                 this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
             }
+            
             System.out.print("seconds : ");
             timer++;
             System.out.println((int)(timer/1000));

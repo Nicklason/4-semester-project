@@ -36,7 +36,7 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 int x = (int) (Math.random() * 800) + 1;
                 int y = (int) (Math.random() * 600) + 1;
                 enemy[i].addPart(new PositionPart(x, y));
-                enemy[i].addPart(new MovingPart(10));
+                enemy[i].addPart(new MovingPart(1));
                 enemy[i].addPart(new LifePart(100));
                 
                 //File file = new File("/C:/Users/marti/Google Drev/Billeder/81ff0d61-cece-4b8b-af79-1e0a5a3542ea.png");

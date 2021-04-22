@@ -5,9 +5,9 @@
  */
 package dk.sdu.se4.common.entity.part;
 
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import dk.sdu.se4.common.entity.Entity;
 import java.io.File;
 
@@ -17,15 +17,22 @@ import java.io.File;
  */
 public class AnimationPart implements EntityPart{
     
-    ImagePart[] sprites;
-    Texture texture;
+    private Texture[] sprites;
+    private Texture texture;
     
     
     public AnimationPart(String[] sprites, String filePath, int width, int height) {
-        this.sprites = new ImagePart[sprites.length];
+        this.sprites = new Texture[sprites.length];
         for (int i = 0; i < sprites.length; i++) {
-            this.sprites[i] = new ImagePart(new File (filePath + sprites[i] + ".png"), width, height);
+            this.sprites[i] = createImage(new File (filePath + sprites[i] + ".png"), width, height);
         }
+    }
+    
+    private Texture createImage(File file, int width, int hight) {
+        Pixmap old = new Pixmap(new FileHandle(file) );
+        Pixmap newimg = new Pixmap(width, hight, old.getFormat());
+        newimg.drawPixmap(old,0, 0, old.getWidth(), old.getHeight(),0, 0, newimg.getWidth(), newimg.getHeight() );
+        return new Texture(newimg);
     }
     
     
@@ -33,8 +40,7 @@ public class AnimationPart implements EntityPart{
         int tempInt = (int) startFrame + (animationTimer % numberOfFrames);
         System.out.print("frame : ");
         System.out.println(tempInt);
-        int temp = 1;
-        texture = sprites[tempInt].getTexture();
+        texture = sprites[tempInt];
         return texture;
     }
     
