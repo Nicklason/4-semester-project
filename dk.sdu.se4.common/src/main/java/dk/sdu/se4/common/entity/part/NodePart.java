@@ -35,7 +35,6 @@ public class NodePart implements EntityPart {
             this.entitymap.remove(entity);
         }
         this.entitymap.put(entity, positionPart);
-        System.out.println(entitymap.toString());
     }
 
     public State getState() {

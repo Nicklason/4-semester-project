@@ -7,4 +7,8 @@
     <reference bind="addMapService" cardinality="1..1"
                interface="dk.sdu.se4.common.service.MapService"
                name="MapService" policy="dynamic" unbind="removeMapService" />
+
+    <reference bind="addAIControlService" cardinality="1..1"
+               interface="dk.sdu.se4.common.service.AIControlService"
+               name="AIControlService" policy="dynamic" unbind="removeAIControlService" />
 </scr:component>
