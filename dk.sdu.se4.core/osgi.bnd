@@ -3,5 +3,5 @@
 #-----------------------------------------------------------------
 Bundle-SymbolicName: core
 Bundle-ActivationPolicy: lazy
-Service-Component: META-INF/component.xml,  META-INF/gamescreen.xml
+Service-Component: META-INF/component.xml
 
