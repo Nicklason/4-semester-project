@@ -6,6 +6,7 @@
 package dk.sdu.se4.enemy;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.AnimationPart;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
@@ -23,6 +24,9 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
 
     private Entity[] enemy = new Enemy[10];
     private BundleContext bundle;
+    
+    private String[] frames = {"ers_1s", "ers_2s", "ers_3s", "ers_4s", "ers_5s", "ers_4s", "ers_3s", "ers_2s"};
+    private String filePath = "../dk.sdu.se4.enemy/src/main/resources/img/";
 
     @Override
     public void load() {
@@ -34,9 +38,12 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy[i].addPart(new PositionPart(x, y));
                 enemy[i].addPart(new MovingPart(10));
                 enemy[i].addPart(new LifePart(100));
+                
                 //File file = new File("/C:/Users/marti/Google Drev/Billeder/81ff0d61-cece-4b8b-af79-1e0a5a3542ea.png");
-                File file = new File("../dk.sdu.se4.enemy/src/main/resources/img/zombi.png");
-                enemy[i].addPart(new ImagePart(file, 150, 150));
+                //File file = new File("../dk.sdu.se4.enemy/src/main/resources/img/zombi.png");
+                //enemy[i].addPart(new ImagePart(file, 150, 150));
+                
+                enemy[i].addPart(new AnimationPart(frames, filePath, 256, 256));
                 this.mapService.addEntity(enemy[i]);
             }
 

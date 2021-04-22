@@ -27,9 +27,6 @@ public class PlayerProcessor extends PlayerCore implements ProcessorService {
                 mp.setMovingLeft(false);
                 mp.setMovingRight(false);
                 mp.process(e);
-                
-                AnimationPart ap = e.getPart(AnimationPart.class);
-                ap.setAnimation(1, 0);
             }
         }
     }

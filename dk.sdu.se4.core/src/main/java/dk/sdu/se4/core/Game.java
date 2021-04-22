@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Timer;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.AnimationPart;
 import dk.sdu.se4.common.entity.part.ImagePart;
@@ -27,6 +28,8 @@ public final class Game implements ApplicationListener {
 
     private MapService mapService = null;
     private GameInput gameInput = null;
+    
+    int timer = 1;
 
     private List<PluginService> pluginlist = new ArrayList<>();
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
@@ -42,6 +45,7 @@ public final class Game implements ApplicationListener {
         cfg.height = 600;
         cfg.useGL30 = false;
         cfg.resizable = false;
+        
 
         application = new LwjglApplication(this, cfg);
         cam = new OrthographicCamera(1280 ,720);
@@ -81,12 +85,15 @@ public final class Game implements ApplicationListener {
             if (imagePart!=null){
                 this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
             }
+            System.out.print("seconds : ");
+            timer++;
+            System.out.println((int)(timer/1000));
             
             if (animationPart!=null){
-                this.batch.draw(animationPart.getAnimation(1), p.getX(), p.getY());
+                this.batch.draw(animationPart.getAnimationFrame(0,8,1+(int)(timer/80)), p.getX(), p.getY());
                 //animationPart.getAnimation(1).draw(this.batch);
                 //animationPart.getAnimation(1).setPosition(p.getX(), p.getY());
-                System.out.println("animation kaldt");
+                
             }
         }
         

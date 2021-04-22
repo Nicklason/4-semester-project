@@ -5,6 +5,7 @@
  */
 package dk.sdu.se4.common.entity.part;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import dk.sdu.se4.common.entity.Entity;
@@ -16,11 +17,31 @@ import java.io.File;
  */
 public class AnimationPart implements EntityPart{
     
-    TextureAtlas textureAtlas;
-    Sprite sprites[];
-    int frames = 0;
-    int startFrame = 1;
+    ImagePart[] sprites;
+    Texture texture;
     
+    
+    public AnimationPart(String[] sprites, String filePath, int width, int height) {
+        this.sprites = new ImagePart[sprites.length];
+        for (int i = 0; i < sprites.length; i++) {
+            this.sprites[i] = new ImagePart(new File (filePath + sprites[i] + ".png"), width, height);
+        }
+    }
+    
+    
+    public Texture getAnimationFrame(int startFrame, int numberOfFrames, int animationTimer) {
+        int tempInt = (int) startFrame + (animationTimer % numberOfFrames);
+        System.out.print("frame : ");
+        System.out.println(tempInt);
+        int temp = 1;
+        texture = sprites[tempInt].getTexture();
+        return texture;
+    }
+    
+    
+    /*
+     * Old code
+     * 
     public AnimationPart(String[] animationSprites, File atlas) {
         this.textureAtlas = new TextureAtlas(atlas.getPath());
         this.sprites = new Sprite[animationSprites.length];
@@ -30,6 +51,7 @@ public class AnimationPart implements EntityPart{
         }
         
     }
+    
     
     public void setAnimation(int frames, int startFrame) {
         this.frames = frames;
@@ -43,6 +65,7 @@ public class AnimationPart implements EntityPart{
         
         return sprites[tempInt];
     }
+*/
     
     
     @Override

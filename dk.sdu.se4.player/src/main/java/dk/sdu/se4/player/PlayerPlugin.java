@@ -86,7 +86,7 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         player.addPart(new PositionPart(x, y));
         player.addPart(new MovingPart(5));
         player.addPart(new LifePart(100));
-        player.addPart(new AnimationPart(testArray, new File("../dk.sdu.se4.player/src/main/resources/img/sprites.txt")));
+        //player.addPart(new AnimationPart(testArray, new File("../dk.sdu.se4.player/src/main/resources/img/sprites.txt")));
         //player.addPart(new ImagePart(new File("../dk.sdu.se4.player/src/main/resources/img/player.png"), 50, 50));
         return player;
     }
