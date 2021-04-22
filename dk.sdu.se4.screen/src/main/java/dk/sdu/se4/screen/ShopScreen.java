@@ -47,7 +47,10 @@ public class ShopScreen implements Screen {
   private void draw(){
     this.game.getBatch().draw(shopui,0,0);
     this.game.getBatch().draw(shopLogo,(this.game.getWidth()/2)-(this.shopLogo.getWidth()/2),this.game.getHeight()-100);
-
+    if(Gdx.input.isKeyPressed(Input.Keys.P)){
+      this.resume();
+      this.game.addScreen(new GameScreen(this.game));
+    }
   }
 
   @Override

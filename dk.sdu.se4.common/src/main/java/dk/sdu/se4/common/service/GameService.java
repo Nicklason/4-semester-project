@@ -10,25 +10,11 @@ import java.util.List;
 
 public interface GameService {
 
-  public void create();
-
-  List<ProcessorService> getProcessorServiceslist();
+  void create();
 
   void addMapService(MapService mapService);
 
   void removeMapService(MapService mapService);
-
-  void addPlugin(PluginService pluginService);
-
-  void removePlugin(PluginService pluginService);
-
-  void addProcessorService(ProcessorService ProcessorService);
-
-  void removeProcessorService(ProcessorService ProcessorService);
-
-  void addPostProcessorService(PostProcessorService postProcessorService);
-
-  void removePostProcessorService(PostProcessorService postProcessorService);
 
   void addScreen(Screen screen);
 

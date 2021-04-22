@@ -4,15 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
-import dk.sdu.se4.common.entity.part.VisibilityPart;
 import dk.sdu.se4.common.service.GameService;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.ProcessorService;
@@ -88,7 +84,7 @@ public class GameScreen implements Screen {
       EntityTypePart type = entity.getPart(EntityTypePart.class);
       ImagePart imagePart = entity.getPart(ImagePart.class);
       PositionPart p = entity.getPart(PositionPart.class);
-      VisibilityPart vb = entity.getPart(VisibilityPart.class);
+
 
       if (imagePart != null) {
         this.game.getBatch().draw(imagePart.getTexture(), p.getX(), p.getY());
