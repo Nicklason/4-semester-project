@@ -2,4 +2,3 @@
 # Use this file to add customized Bnd instructions for the bundle
 #-----------------------------------------------------------------
 Bundle-SymbolicName: screen
-Service-Component: META-INF/gamescreen.xml

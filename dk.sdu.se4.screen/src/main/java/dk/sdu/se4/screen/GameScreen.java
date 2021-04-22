@@ -119,11 +119,5 @@ public class GameScreen implements Screen {
   public void dispose() {
 
   }
-  public void addMapService(MapService mapService) {
-    this.mapService = mapService;
-  }
 
-  public void removeMapService(MapService mapService) {
-    this.mapService = null;
-  }
 }
