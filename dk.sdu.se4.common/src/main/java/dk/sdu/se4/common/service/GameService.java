@@ -9,13 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.List;
 
 public interface GameService {
-
-  void create();
-
-  void addMapService(MapService mapService);
-
-  void removeMapService(MapService mapService);
-
+  
   void addScreen(Screen screen);
 
   SpriteBatch getBatch();
