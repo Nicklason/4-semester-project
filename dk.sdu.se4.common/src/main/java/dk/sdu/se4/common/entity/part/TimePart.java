@@ -18,6 +18,10 @@ public class TimePart implements EntityPart {
         this.time -= time;
     }
 
+    public void setTime(float time) {
+        this.time = time;
+    }
+    
     @Override
     public void process(Entity e) {
         
