@@ -7,6 +7,7 @@ package dk.sdu.se4.enemy;
 
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.EntityType;
+import dk.sdu.se4.common.entity.part.AnimationPart;
 import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.DirectionPart;
 import dk.sdu.se4.common.entity.part.ImagePart;
@@ -24,6 +25,12 @@ import org.osgi.framework.BundleContext;
 public class EnemyPlugin extends EnemyCore implements PluginService {
     private Entity[] enemy = new Enemy[10];
     private BundleContext bundle;
+    
+    private String[] frames = {"ers_1s", "ers_2s", "ers_3s", "ers_4s", "ers_5s", "ers_4s", "ers_3s", "ers_2s"};
+    private String filePath = "../dk.sdu.se4.enemy/src/main/resources/img/";
+    
+    //                                                ..\dk.sdu.se4.enemy\src\main\resources\img\ers_1s.png
+    //C:\Users\marti\Documents\GitHub\4-semester-project\dk.sdu.se4.enemy\src\main\resources\img\ers_1s.png
   
     
 
@@ -36,11 +43,14 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 int y = (int) (Math.random() * 600) + 1;
                 enemy[i].addPart(new EntityTypePart(EntityType.MOVINGENTITY));
                 enemy[i].addPart(new PositionPart(x, y));
-                enemy[i].addPart(new MovingPart(10));
+                enemy[i].addPart(new MovingPart(1));
                 enemy[i].addPart(new DirectionPart(false, false, false, false));
                 enemy[i].addPart(new LifePart(100));
-                File file = new File("../dk.sdu.se4.enemy/src/main/resources/img/zombi.png");
-                enemy[i].addPart(new ImagePart(file, 50, 50));
+                //File file = new File("../dk.sdu.se4.enemy/src/main/resources/img/zombi.png");
+                //enemy[i].addPart(new ImagePart(file, 50, 50));
+                
+                AnimationPart animationPart = new AnimationPart(frames, filePath, 128, 128);
+                enemy[i].addPart(animationPart);
                 this.mapService.addEntity(enemy[i]);
             }
         } else {

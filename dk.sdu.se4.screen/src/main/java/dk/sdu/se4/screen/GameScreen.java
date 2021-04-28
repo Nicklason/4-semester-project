@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.ImagePart;
+import dk.sdu.se4.common.entity.part.AnimationPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.GameService;
 import dk.sdu.se4.common.service.MapService;
@@ -21,6 +22,8 @@ public class GameScreen implements Screen {
   private GameService game;
   private MapService mapService=null;
   private Texture ui;
+  
+  private int timer = 1;
 
 
 
@@ -83,12 +86,24 @@ public class GameScreen implements Screen {
     for (Entity entity :  this.mapService.getEntities()) {
       EntityTypePart type = entity.getPart(EntityTypePart.class);
       ImagePart imagePart = entity.getPart(ImagePart.class);
+      AnimationPart animationPart = entity.getPart(AnimationPart.class);
       PositionPart p = entity.getPart(PositionPart.class);
 
 
-      if (imagePart != null) {
+    if (imagePart != null) {
         this.game.getBatch().draw(imagePart.getTexture(), p.getX(), p.getY());
-      }
+    }
+      
+    timer++;
+
+    if (animationPart!=null){
+        System.out.println("hey Fuckers : " + animationPart);
+        this.game.getBatch().draw(animationPart.getAnimationFrame(0,8,1+(int)(timer/80)), p.getX(), p.getY());
+        animationPart.nullTexture();
+        //animationPart.getAnimation(1).draw(this.batch);
+        //animationPart.getAnimation(1).setPosition(p.getX(), p.getY());
+
+    }
 
 
     }
