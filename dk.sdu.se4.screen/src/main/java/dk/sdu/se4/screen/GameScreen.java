@@ -97,7 +97,6 @@ public class GameScreen implements Screen {
     timer++;
 
     if (animationPart!=null){
-        System.out.println("hey Fuckers : " + animationPart);
         this.game.getBatch().draw(animationPart.getAnimationFrame(0,8,1+(int)(timer/80)), p.getX(), p.getY());
         animationPart.nullTexture();
         //animationPart.getAnimation(1).draw(this.batch);

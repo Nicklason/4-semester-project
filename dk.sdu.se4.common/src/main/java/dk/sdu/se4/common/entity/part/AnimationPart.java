@@ -28,7 +28,6 @@ public class AnimationPart implements EntityPart{
     
     
     public AnimationPart(String[] sprites, String filePath, int width, int height) {
-        System.out.println("Animation Part Constructor");
         this.width = width;
         this.height = height;
         this.textureArray = new FileHandle[sprites.length];
@@ -59,12 +58,13 @@ public class AnimationPart implements EntityPart{
     
     
     public Texture getAnimationFrame(int startFrame, int numberOfFrames, int animationTimer) {
-        
         int tempInt = (int) startFrame + (animationTimer % numberOfFrames);
-        
         if (!isFull) {
             texture = createImage(textureArray[tempInt], this.width, this.height);
             texturesArray[tempInt] = texture;
+            if(tempInt == this.texturesArray.length){
+                isFull=true;
+            }
             return texture;
         } else {
             return texturesArray[tempInt];
