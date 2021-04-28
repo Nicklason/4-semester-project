@@ -10,6 +10,10 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import dk.sdu.se4.common.service.GameService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +36,9 @@ public class StartMenu implements Screen{
     private Sound startsound;
     private Sound playsound;
     private Sound exitsound;
+    private Animation animation;
+    private float elapsed;
+    private float running=-1000;
 
 
 
@@ -47,13 +54,18 @@ public class StartMenu implements Screen{
         this.startsound =  Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/Zombiestart.mp3"));
         this.playsound =  Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/ZombiePlay.mp3"));
         this.exitsound =  Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/Zombieexit.mp3"));
+        this.animation = GifHandler.loadGIFAnimation(Animation.PlayMode.LOOP, Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/img/loading.gif").read());
     }
 
 
 
 
     public void show() {
-        this.addsoundWithDelay(this.startsound,2);
+       // this.addsoundWithDelay(this.startsound,2);
+        this.startsound.setVolume(this.startsound.play(),0.1f);
+
+
+
     }
 
     @Override
@@ -61,11 +73,18 @@ public class StartMenu implements Screen{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.game.getBatch().begin();
-        this.game.getBatch().draw(this.background,(float)(this.game.getWidth()/2)-(this.background.getWidth()/2),(float) (this.game.getHeight()/2)-(this.background.getHeight()/2));
-        this.game.getBatch().draw(this.headline,(float)(this.game.getWidth()/2)-(this.headline.getWidth()/2), (float) (this.game.getHeight()/1.333));
 
-        insertExitButton();
-        insertPlayButton();
+        if (elapsed<200) {
+            this.game.getBatch().draw(animation.getKeyFrame(elapsed), running, 0);
+            elapsed++;
+            running+=10;
+        }else{
+            this.game.getBatch().draw(this.background, (float) (this.game.getWidth() / 2) - (this.background.getWidth() / 2), (float) (this.game.getHeight() / 2) - (this.background.getHeight() / 2));
+            this.game.getBatch().draw(this.headline, (float) (this.game.getWidth() / 2) - (this.headline.getWidth() / 2), (float) (this.game.getHeight() / 1.333));
+
+            insertExitButton();
+            insertPlayButton();
+        }
         this.game.getBatch().end();
         
     }
