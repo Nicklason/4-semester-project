@@ -19,6 +19,14 @@ public class ScorePart implements EntityPart {
     }
 
     /**
+     * Get current score
+     * @return current score
+     */
+    public int getCurrentScore() {
+        return this.currentScore;
+    }
+
+    /**
      * Decrease score with amount
      * @param amount The amount to decrease
      */
