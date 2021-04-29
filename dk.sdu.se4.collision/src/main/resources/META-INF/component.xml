@@ -2,6 +2,10 @@
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.collision">
     <implementation class="dk.sdu.se4.collision.CollisionServiceImpl"/>
     <service>
-        <provide interface="dk.sdu.se4.commoncollision.CommonCollision"/>
+        <provide interface="dk.sdu.se4.common.service.PostProcessorService"/>
     </service>
+    
+    <reference bind="addMapService" cardinality="0..n"
+               interface="dk.sdu.se4.common.service.MapService"
+               name="MapService" policy="dynamic" unbind="removeMapService"/>
 </scr:component>

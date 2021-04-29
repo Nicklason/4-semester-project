@@ -55,7 +55,8 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         player.addPart(new LifePart(100));
         player.addPart(new ImagePart(new File("../dk.sdu.se4.player/src/main/resources/img/player.png"), 50, 50));
         player.addPart(new FriendlyPart(true));
-        player.addPart(new CollisionPart(100,100));
+        player.addPart(new CollisionPart(50, 50));
+        player.addPart(new FriendlyPart(true));
         return player;
     }
     

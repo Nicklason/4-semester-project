@@ -39,9 +39,10 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy[i].addPart(new DirectionPart(false, false, false, false));
                 enemy[i].addPart(new LifePart(100));
                 enemy[i].addPart(new FriendlyPart(false));
-                enemy[i].addPart(new CollisionPart(100,100));
+                enemy[i].addPart(new CollisionPart(50, 50));
                 File file = new File("../dk.sdu.se4.enemy/src/main/resources/img/zombi.png");
-                enemy[i].addPart(new ImagePart(file, 150, 150));
+                enemy[i].addPart(new ImagePart(file, 50, 50));
+                enemy[i].addPart(new FriendlyPart(false));
                 this.mapService.addEntity(enemy[i]);
             }
         } else {

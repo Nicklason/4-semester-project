@@ -5,10 +5,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Vector2;
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.CollisionPart;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.GameDataService;
@@ -34,6 +38,8 @@ public final class Game implements ApplicationListener {
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
     private SpriteBatch batch;
     private OrthographicCamera cam;
+    private ShapeRenderer sr;
+    private boolean debug = true;
 
     LwjglApplication application = null;
 
@@ -56,6 +62,7 @@ public final class Game implements ApplicationListener {
     @Override
     public void create() {
         this.batch = new SpriteBatch();
+        this.sr = new ShapeRenderer();
     }
 
     @Override
@@ -63,19 +70,25 @@ public final class Game implements ApplicationListener {
         // Clear screen to black
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        this.batch.begin();
 
         if (this.mapService!=null){
             updateProcessors();
+            updatePostProcessors();
             drawEnitys();
 
         }
-        batch.end();
     }
 
     private void updateProcessors() {
         
         for (ProcessorService processorService : this.processorServiceslist) {
+            processorService.process();
+        }
+    }
+    
+    private void updatePostProcessors() {
+        
+        for (PostProcessorService processorService : this.postProcessorServiceslist) {
             processorService.process();
         }
     }
@@ -85,7 +98,32 @@ public final class Game implements ApplicationListener {
                 ImagePart imagePart = entity.getPart(ImagePart.class);
                 PositionPart p = entity.getPart(PositionPart.class);
                 if (imagePart != null) {
+                    this.batch.begin();
                     this.batch.draw(imagePart.getTexture(), p.getX(), p.getY());
+                    this.batch.end();
+                }
+                
+                if (this.debug == true) {
+                    CollisionPart collisionPart = entity.getPart(CollisionPart.class);
+                
+                    if (collisionPart == null || p == null) {
+                        continue;
+                    }
+
+
+                    sr.begin(ShapeRenderer.ShapeType.Line);
+                    // sr.rect(p.getX(), p.getY(), collisionPart.getWidth(), collisionPart.getHeight());
+
+                    // Bottom
+                    sr.line(p.getX(), p.getY(), p.getX() + collisionPart.getWidth(), p.getY(), Color.BLUE, Color.BLUE);
+                    // Left
+                    sr.line(p.getX(), p.getY(), p.getX(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+                    // Right
+                    sr.line(p.getX() + collisionPart.getWidth(), p.getY(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+                    // Top
+                    sr.line(p.getX(), p.getY() + collisionPart.getHeight(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+
+                    sr.end();
                 }
             }
         
