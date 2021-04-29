@@ -62,7 +62,6 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                                 tp.setTime(fireRate);
                                 reloaded = false;
                             }
-                            System.out.println(tp.getTime());
                             continue;
                         }
                         if(tp.getTime() <= 0) {
