@@ -39,8 +39,7 @@ public final class GameCore extends Game implements GameService {
         application = new LwjglApplication(this, cfg);
         logger.debug("Creating {}", application);
         camera = new OrthographicCamera(this.width, this.height);
-        camera.translate(this.width/2, this.height/2,0);
-
+        camera.translate(0, 0);
     }
  
     @Override

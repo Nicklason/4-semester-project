@@ -44,14 +44,14 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
     
     public Entity createPlayer() {
         Player player = new Player();
-        int x = 200;
-        int y = 200;
+        int x = 336;
+        int y = 236;
         
         player.addPart(new PositionPart(x, y));
         player.addPart(new MovingPart(10));
         player.addPart(new DirectionPart(false, false, false, false));
         player.addPart(new LifePart(100));
-        player.addPart(new ImagePart(new File("../dk.sdu.se4.player/src/main/resources/img/player.png"), 50, 50));
+        player.addPart(new ImagePart(new File("../dk.sdu.se4.player/src/main/resources/img/player_1.png"), 128, 128));
         
         return player;
     }

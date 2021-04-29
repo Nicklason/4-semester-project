@@ -63,6 +63,8 @@
     <module>dk.sdu.se4.screen</module>
     <module>dk.sdu.se4.commontile</module>
     <module>dk.sdu.se4.tile</module>
+    <module>dk.sdu.se4.lake</module>
+    <module>dk.sdu.se4.commonlake</module>
   </modules>
 
   <build>

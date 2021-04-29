@@ -18,20 +18,20 @@ import java.io.File;
  */
 public class TilePlugin extends TileCore implements PluginService {
     
-    int numberOfTiles = 33;
+    int numberOfTiles = 20;
     Tile tile;
     
     @Override
     public void load() {
        if(this.mapService != null) {
-           File file = new File("../dk.sdu.se4.tile/src/main/resources/img/grass.png");
+           File file = new File("../dk.sdu.se4.tile/src/main/resources/img/grass_x4.png");
            for(int i = 0; i < numberOfTiles; i++) {
-               int x = i * 32;
+               int x = i * 64;
                for (int j = 0; j < numberOfTiles; j++) {
-                   int y = j * 32;
+                   int y = j * 44;
                    tile = new Tile();
                    tile.addPart(new PositionPart(x, y));
-                   tile.addPart(new ImagePart(file, 32, 32));
+                   tile.addPart(new ImagePart(file, 64, 44));
                    this.mapService.addEntity(tile);
                }
            }
