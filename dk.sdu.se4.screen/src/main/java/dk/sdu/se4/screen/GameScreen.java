@@ -3,8 +3,10 @@ package dk.sdu.se4.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import static com.badlogic.gdx.graphics.Color.toFloatBits;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.ImagePart;
@@ -21,7 +23,7 @@ public class GameScreen implements Screen {
   private GameService game;
   private MapService mapService=null;
   private Texture ui;
-
+  private BitmapFont bitmapFont = new BitmapFont();
 
 
   public GameScreen(GameService gameCore) {
@@ -69,6 +71,11 @@ public class GameScreen implements Screen {
         }
         // Draw the User interface
         this.game.getBatch().draw(ui,0,0);
+        // Draw the player score
+        bitmapFont.setColor(toFloatBits(151, 26, 26, 255));
+        bitmapFont.setScale(1.25f, 1.25f);
+        bitmapFont.draw(this.game.getBatch(), "42069", 95, game.getHeight() - 26);  // TODO: Implement me plz.
+        // ending the drawing
         this.game.getBatch().end();
   }
   // updating the processes in the gameScreen
