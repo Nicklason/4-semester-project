@@ -21,7 +21,18 @@
     <name>${bundle.symbolicName}</name>
 
     <packaging>bundle</packaging>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions></instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <!--
          | uncomment to add all imported (non-local) bundles to your compilation classpath
@@ -57,6 +68,17 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+            <version>4.3.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dk.sdu.se4.screen</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

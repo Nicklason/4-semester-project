@@ -62,6 +62,7 @@
     <module>dk.sdu.se4.commonweapon</module>
     <module>dk.sdu.se4.commonplayer</module>
     <module>dk.sdu.se4.commonenemy</module>
+    <module>dk.sdu.se4.screen</module>
   </modules>
 
   <build>
