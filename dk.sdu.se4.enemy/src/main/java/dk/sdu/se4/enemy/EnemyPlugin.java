@@ -13,6 +13,7 @@ import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.ScorePart;
 import dk.sdu.se4.common.service.PluginService;
 import java.io.File;
 import org.osgi.framework.BundleContext;
@@ -39,6 +40,7 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy[i].addPart(new MovingPart(10));
                 enemy[i].addPart(new DirectionPart(false, false, false, false));
                 enemy[i].addPart(new LifePart(100));
+                enemy[i].addPart(new ScorePart(10));
                 File file = new File("../dk.sdu.se4.enemy/src/main/resources/img/zombi.png");
                 enemy[i].addPart(new ImagePart(file, 50, 50));
                 this.mapService.addEntity(enemy[i]);
