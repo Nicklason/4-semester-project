@@ -12,6 +12,7 @@ import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.GameService;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.ProcessorService;
+import dk.sdu.se4.commontile.Tile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,15 +31,10 @@ public class GameScreen implements Screen {
     if(this.mapService==null){
       this.mapService=gameCore.getMapService();
     }
-
-
-
-
   }
 
   @Override
   public void show() {
-
   }
 
   @Override
@@ -73,23 +69,28 @@ public class GameScreen implements Screen {
   }
   // updating the processes in the gameScreen
   private void updateProcessors() {
-
     for (ProcessorService processorService : game.getProcessorServices()) {
       processorService.process();
     }
   }
   // Draw the Game Entitys and objects to the Screen/Batch
   private void drawEntitys() {
+    for(Entity e : this.mapService.getEntities(Tile.class)) {
+        ImagePart imagePart = e.getPart(ImagePart.class);
+        PositionPart positionPart = e.getPart(PositionPart.class);
+        
+        this.game.getBatch().draw(imagePart.getTexture(), positionPart.getX(), positionPart.getY());
+    }
     for (Entity entity :  this.mapService.getEntities()) {
       EntityTypePart type = entity.getPart(EntityTypePart.class);
       ImagePart imagePart = entity.getPart(ImagePart.class);
       PositionPart p = entity.getPart(PositionPart.class);
 
 
-      if (imagePart != null) {
+      if (imagePart != null && !entity.getClass().equals(Tile.class)) {
         this.game.getBatch().draw(imagePart.getTexture(), p.getX(), p.getY());
       }
-
+      
 
     }
 

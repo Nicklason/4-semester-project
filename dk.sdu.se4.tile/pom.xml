@@ -9,16 +9,16 @@
   </parent>
 
   <properties>
-    <bundle.symbolicName>dk.sdu.se4.screen</bundle.symbolicName>
-    <bundle.namespace>dk.sdu.se4.screen</bundle.namespace>
+    <bundle.symbolicName>dk.sdu.se4.tile</bundle.symbolicName>
+    <bundle.namespace>dk.sdu.se4.tile</bundle.namespace>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>dk.sdu.se4.semester-project</groupId>
-  <artifactId>dk.sdu.se4.screen</artifactId>
+  <artifactId>dk.sdu.se4.tile</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>${bundle.symbolicName}</name>
+  <name>dk.sdu.se4.tile</name>
 
   <packaging>bundle</packaging>
 
@@ -44,18 +44,8 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>dk.sdu.se4.libgdx</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>1.2.3</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
       <artifactId>dk.sdu.se4.common</artifactId>
-      <version>${project.version}</version>
+      <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
