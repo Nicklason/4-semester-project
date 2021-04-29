@@ -15,7 +15,7 @@ public class ScorePart implements EntityPart {
      * @param score Score of entity
      */
     public ScorePart(int score) {
-        this.currentScore = currentScore;
+        this.currentScore = score;
     }
 
     /**
