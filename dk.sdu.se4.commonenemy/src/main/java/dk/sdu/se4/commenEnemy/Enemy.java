@@ -11,7 +11,7 @@ import dk.sdu.se4.common.entity.Entity;
 
 /**
  *
- * @author steff
+ * @author Steffen
  */
 public class Enemy extends Entity{
     

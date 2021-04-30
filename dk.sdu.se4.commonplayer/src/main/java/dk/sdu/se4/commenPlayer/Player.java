@@ -11,6 +11,7 @@ import dk.sdu.se4.common.entity.Entity;
  *
  * @author Kasper
  * @author Lucas
+ * @author Steffen
  */
 public class Player extends Entity {
     
