@@ -5,14 +5,12 @@
  */
 package dk.sdu.se4.enemy;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.EntityType;
 import dk.sdu.se4.common.entity.part.*;
 import dk.sdu.se4.common.service.PluginService;
-import java.io.File;
-import org.osgi.framework.BundleContext;
+
 
 /**
  *
@@ -20,7 +18,7 @@ import org.osgi.framework.BundleContext;
  */
 public class EnemyPlugin extends EnemyCore implements PluginService {
     private Entity[] enemy = new Enemy[10];
-    private BundleContext bundle;
+
   
     
 

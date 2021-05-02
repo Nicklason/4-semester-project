@@ -10,7 +10,6 @@ import dk.sdu.se4.common.entity.part.*;
 import dk.sdu.se4.common.service.PluginService;
 import dk.sdu.se4.commonweapon.Weapon;
 
-import java.io.File;
 /**
  *
  * @author Kasper
