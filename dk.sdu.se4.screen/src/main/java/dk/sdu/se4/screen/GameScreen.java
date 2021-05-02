@@ -105,8 +105,9 @@ public class GameScreen implements Screen {
             }
 
             /*
-            // Uncomment this to see collision boxes
-            CollisionPart collisionPart = entity.getPart(CollisionPart.class);
+            // If true the entties collisionbox is shown. If false they dont.
+            if (true) {
+                CollisionPart collisionPart = entity.getPart(CollisionPart.class);
 
             if (collisionPart == null) {
                 continue;
