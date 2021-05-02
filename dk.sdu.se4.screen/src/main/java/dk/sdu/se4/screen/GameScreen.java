@@ -145,15 +145,17 @@ public class GameScreen extends SpriteHandler implements Screen {
 
 
   private void drawSprite(SpritePart spritePart, PositionPart positionPart) {
-    this.spriteBatch.begin();
-    Texture texture = this.assetManager.get(spritePart.getSpritePath(), Texture.class);
-    Sprite sprite = new Sprite(texture);
-    sprite.setX(positionPart.getX());
-    sprite.setY(positionPart.getY());
-    sprite.setAlpha(spritePart.getAlpha());
-    sprite.setSize(spritePart.getWidth(), spritePart.getHeight());
-    sprite.draw(this.spriteBatch);
-    this.spriteBatch.end();
+    if(spritePart.getAlpha()==1) {
+      Texture texture = this.assetManager.get(spritePart.getSpritePath(), Texture.class);
+      Sprite sprite = new Sprite(texture);
+      sprite.setX(positionPart.getX());
+      sprite.setY(positionPart.getY());
+      sprite.setAlpha(spritePart.getAlpha());
+      sprite.setSize(spritePart.getWidth(), spritePart.getHeight());
+      this.spriteBatch.begin();
+      sprite.draw(this.spriteBatch);
+      this.spriteBatch.end();
+    }
   }
 
 }
