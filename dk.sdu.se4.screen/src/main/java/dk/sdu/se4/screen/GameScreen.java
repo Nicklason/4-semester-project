@@ -104,26 +104,26 @@ public class GameScreen implements Screen {
                 this.game.getBatch().end();
             }
 
-            if (true) {
-                CollisionPart collisionPart = entity.getPart(CollisionPart.class);
+            /*
+            // Uncomment this to see collision boxes
+            CollisionPart collisionPart = entity.getPart(CollisionPart.class);
 
-                if (collisionPart == null) {
-                    continue;
-                }
-                
-                this.game.getShapeRenderer().begin(ShapeRenderer.ShapeType.Line);
-
-                // Bottom
-                this.game.getShapeRenderer().line(p.getX(), p.getY(), p.getX() + collisionPart.getWidth(), p.getY(), Color.BLUE, Color.BLUE);
-                // Left
-                this.game.getShapeRenderer().line(p.getX(), p.getY(), p.getX(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
-                // Right
-                this.game.getShapeRenderer().line(p.getX() + collisionPart.getWidth(), p.getY(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
-                // Top
-                this.game.getShapeRenderer().line(p.getX(), p.getY() + collisionPart.getHeight(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
-
-                this.game.getShapeRenderer().end();
+            if (collisionPart == null) {
+                continue;
             }
+                
+            this.game.getShapeRenderer().begin(ShapeRenderer.ShapeType.Line);
+
+            // Bottom
+            this.game.getShapeRenderer().line(p.getX(), p.getY(), p.getX() + collisionPart.getWidth(), p.getY(), Color.BLUE, Color.BLUE);
+            // Left
+            this.game.getShapeRenderer().line(p.getX(), p.getY(), p.getX(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+            // Right
+            this.game.getShapeRenderer().line(p.getX() + collisionPart.getWidth(), p.getY(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+            // Top
+            this.game.getShapeRenderer().line(p.getX(), p.getY() + collisionPart.getHeight(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+
+            this.game.getShapeRenderer().end(); */
         }
     }
 
