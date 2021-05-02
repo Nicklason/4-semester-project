@@ -1,4 +1,4 @@
 #-----------------------------------------------------------------
 # Use this file to add customized Bnd instructions for the bundle
 #-----------------------------------------------------------------
-Export-Package: dk.sdu.se4.commenenemy
+Export-Package: dk.sdu.se4.commonenemy
