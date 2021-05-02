@@ -7,11 +7,6 @@ package dk.sdu.se4.weapon;
 
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.*;
-import dk.sdu.se4.common.entity.part.MovingPart;
-import dk.sdu.se4.common.entity.part.PositionPart;
-import dk.sdu.se4.common.entity.part.DirectionPart;
-import dk.sdu.se4.common.entity.part.TimePart;
-import dk.sdu.se4.common.entity.part.WeaponPart;
 import dk.sdu.se4.common.service.ProcessorService;
 import dk.sdu.se4.commonbullet.Bullet;
 import dk.sdu.se4.commongameinput.GameInput;
