@@ -7,8 +7,6 @@ import dk.sdu.se4.common.service.PluginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.stream.events.EntityReference;
-
 public class GameGuiPlugin implements PluginService {
 
   protected Logger log = LoggerFactory.getLogger(this.getClass());
