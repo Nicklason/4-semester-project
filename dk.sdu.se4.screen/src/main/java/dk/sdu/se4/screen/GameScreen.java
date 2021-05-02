@@ -3,34 +3,44 @@ package dk.sdu.se4.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import dk.sdu.se4.common.entity.Entity;
-import dk.sdu.se4.common.entity.part.EntityTypePart;
-import dk.sdu.se4.common.entity.part.ImagePart;
-import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.*;
 import dk.sdu.se4.common.service.GameService;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.ProcessorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GameScreen implements Screen {
+import java.util.ArrayList;
+import java.util.Comparator;
+
+public class GameScreen extends SpriteHandler implements Screen {
   private final static Logger logger = LoggerFactory.getLogger(GameScreen.class);
 
   private GameService game;
   private MapService mapService=null;
   private Texture ui;
+  private Stage stage;
+  private SpriteBatch spriteBatch;
+
 
 
 
   public GameScreen(GameService gameCore) {
     this.game=gameCore;
-    this.ui = new Texture("../dk.sdu.se4.screen/src/main/resources/img/UI.png");
+    this.stage=new Stage();
+    this.spriteBatch = new SpriteBatch();
     if(this.mapService==null){
       this.mapService=gameCore.getMapService();
-    }
 
+    }
+    loadAssets(this.mapService);
 
 
 
@@ -48,14 +58,12 @@ public class GameScreen implements Screen {
         // set the position for the cammara
 
         game.getCamera().position.set(game.getWidth()/2, game.getHeight()/2,0);
-        //this.game.getBatch().setProjectionMatrix(game.getCamera().combined);
 
-        // starting the drawing
-        this.game.getBatch().begin();
+
         // the Mapservices validation for running the program
         if ( this.mapService != null) {
             updateProcessors();
-            drawEntitys();
+            draw();
         }else{
             logger.error("mapservices is {}", this.mapService);
         }
@@ -68,8 +76,7 @@ public class GameScreen implements Screen {
             this.game.addScreen(new ShopScreen(this.game));
         }
         // Draw the User interface
-        this.game.getBatch().draw(ui,0,0);
-        this.game.getBatch().end();
+
   }
   // updating the processes in the gameScreen
   private void updateProcessors() {
@@ -78,20 +85,35 @@ public class GameScreen implements Screen {
       processorService.process();
     }
   }
-  // Draw the Game Entitys and objects to the Screen/Batch
-  private void drawEntitys() {
-    for (Entity entity :  this.mapService.getEntities()) {
-      EntityTypePart type = entity.getPart(EntityTypePart.class);
-      ImagePart imagePart = entity.getPart(ImagePart.class);
-      PositionPart p = entity.getPart(PositionPart.class);
 
+  private void draw() {
+    ArrayList<Entity> entityList = new ArrayList<>();
 
-      if (imagePart != null) {
-        this.game.getBatch().draw(imagePart.getTexture(), p.getX(), p.getY());
+    // Populate list
+    for (Entity entity : this.mapService.getEntities()) {
+      SpritePart spritePart = entity.getPart(SpritePart.class);
+      PositionPart positionPart = entity.getPart(PositionPart.class);
+      if (spritePart != null && positionPart != null) {
+        entityList.add(entity);
+      }
+    }
+    entityList.sort(new Comparator<Entity>() {
+      @Override
+      public int compare(Entity e1, Entity e2) {
+        SpritePart spritePartone = e1.getPart(SpritePart.class);
+        SpritePart spriteParttwo = e2.getPart(SpritePart.class);
+        return spritePartone.getLayer() - spriteParttwo.getLayer();
+      }
+    });
+    for (Entity entity : entityList) {
+      SpritePart spritePart = entity.getPart(SpritePart.class);
+      PositionPart positionPart = entity.getPart(PositionPart.class);
+      if (spritePart.getLayer()<100){
+        drawSprite(spritePart, positionPart);
       }
 
-
     }
+
 
   }
 
@@ -118,6 +140,20 @@ public class GameScreen implements Screen {
   @Override
   public void dispose() {
 
+  }
+
+
+
+  private void drawSprite(SpritePart spritePart, PositionPart positionPart) {
+    this.spriteBatch.begin();
+    Texture texture = this.assetManager.get(spritePart.getSpritePath(), Texture.class);
+    Sprite sprite = new Sprite(texture);
+    sprite.setX(positionPart.getX());
+    sprite.setY(positionPart.getY());
+    sprite.setAlpha(spritePart.getAlpha());
+    sprite.setSize(spritePart.getWidth(), spritePart.getHeight());
+    sprite.draw(this.spriteBatch);
+    this.spriteBatch.end();
   }
 
 }
