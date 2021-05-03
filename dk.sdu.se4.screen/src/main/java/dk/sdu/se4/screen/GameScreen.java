@@ -3,7 +3,6 @@ package dk.sdu.se4.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -16,13 +15,10 @@ import dk.sdu.se4.common.service.GameService;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.common.service.ProcessorService;
-import dk.sdu.se4.commonlake.Lake;
-import dk.sdu.se4.commontile.Tile;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Comparator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GameScreen extends SpriteHandler implements Screen {
   private final static Logger logger = LoggerFactory.getLogger(GameScreen.class);
@@ -160,7 +156,7 @@ public class GameScreen extends SpriteHandler implements Screen {
     }
 
 
-  }
+  
             /*
             // If true the entties collisionbox is shown. If false they dont.
             if (true) {
@@ -182,8 +178,8 @@ public class GameScreen extends SpriteHandler implements Screen {
             this.game.getShapeRenderer().line(p.getX(), p.getY() + collisionPart.getHeight(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
 
             this.game.getShapeRenderer().end(); */
-    }
-    }
+}
+    
 
   @Override
   public void resize(int i, int i1) {
