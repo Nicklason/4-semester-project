@@ -67,11 +67,6 @@
       <artifactId>dk.sdu.se4.commonweapon</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>dk.sdu.se4.commonweapon</artifactId>
-      <version>${project.version}</version>
-    </dependency>
   </dependencies>
 
 </project>

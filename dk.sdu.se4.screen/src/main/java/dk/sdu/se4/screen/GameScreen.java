@@ -3,13 +3,10 @@ package dk.sdu.se4.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.se4.common.entity.Entity;
-import dk.sdu.se4.common.entity.part.CollisionPart;
 import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
@@ -101,11 +98,17 @@ public class GameScreen implements Screen {
         // Draw the User interface
         this.game.getBatch().draw(ui,x,y);
         this.game.getBatch().end();
+  
   }
   // updating the processes in the gameScreen
   private void updateProcessors() {
     for (ProcessorService processorService : game.getProcessorServices()) {
       processorService.process();
+    }
+  }
+  private void updatePostProcessors(){
+      for (PostProcessorService postProcessorService : game.getPostProcessorServiceslist()) {
+      postProcessorService.process();
     }
   }
 
@@ -131,7 +134,7 @@ public class GameScreen implements Screen {
 
       if (imagePart != null && !entity.getClass().equals(Tile.class) && !entity.getClass().equals(Lake.class)) {
         this.game.getBatch().draw(imagePart.getTexture(), p.getX(), p.getY());
-    
+      }
             /*
             // If true the entties collisionbox is shown. If false they dont.
             if (true) {
@@ -153,7 +156,7 @@ public class GameScreen implements Screen {
             this.game.getShapeRenderer().line(p.getX(), p.getY() + collisionPart.getHeight(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
 
             this.game.getShapeRenderer().end(); */
-        }
+    }
     }
 
   @Override
