@@ -86,7 +86,7 @@ public class GameScreen extends SpriteHandler implements Screen {
         this.game.getBatch().setProjectionMatrix(cam.combined);
         // starting the drawing
         this.game.getBatch().begin();
-
+        this.game.getBatch().end();
         // the Mapservices validation for running the program
         if ( this.mapService != null) {
             updateProcessors();
