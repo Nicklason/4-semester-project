@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,7 +14,10 @@ import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.*;
 import dk.sdu.se4.common.service.GameService;
 import dk.sdu.se4.common.service.MapService;
+import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.common.service.ProcessorService;
+import dk.sdu.se4.commonlake.Lake;
+import dk.sdu.se4.commontile.Tile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +33,10 @@ public class GameScreen extends SpriteHandler implements Screen {
   private Stage stage;
   private SpriteBatch spriteBatch;
 
+  int x = 0;
+  int y = 0;
+  private static final double DIAGONAL_SCALING_CONSTANT = Math.sqrt(2) / 2;
+  
 
 
 
@@ -41,14 +49,10 @@ public class GameScreen extends SpriteHandler implements Screen {
 
     }
     loadAssets(this.mapService);
-
-
-
   }
 
   @Override
   public void show() {
-
   }
 
   @Override
@@ -57,13 +61,42 @@ public class GameScreen extends SpriteHandler implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // set the position for the cammara
 
-        game.getCamera().position.set(game.getWidth()/2, game.getHeight()/2,0);
+        OrthographicCamera cam = (OrthographicCamera) game.getCamera();
+        cam.position.set(game.getWidth()/2, game.getHeight()/2,0);
+        //this.game.getBatch().setProjectionMatrix(game.getCamera().combined);
 
+        
+        //translate camera on keypresses
+        int oldX = x;
+        int oldY = y;
+        if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+            y+=10;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.S)) {
+            y-=10;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
+            x-=10;
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.D)) {
+            x+=10;
+        }
+        if(oldX!=x && oldY!=y) {
+            x = (int) Math.round((x-oldX) * DIAGONAL_SCALING_CONSTANT) + oldX;
+            y = (int) Math.round((y-oldY) * DIAGONAL_SCALING_CONSTANT) + oldY;
+        }
+        cam.translate(x, y);
+        cam.update();
+        this.game.getBatch().setProjectionMatrix(cam.combined);
+        // starting the drawing
+        this.game.getBatch().begin();
 
         // the Mapservices validation for running the program
         if ( this.mapService != null) {
             updateProcessors();
             draw();
+            updatePostProcessors();
+
         }else{
             logger.error("mapservices is {}", this.mapService);
         }
@@ -77,14 +110,26 @@ public class GameScreen extends SpriteHandler implements Screen {
         }
         // Draw the User interface
 
+        //TODO Update with SpritePart
+       // this.game.getBatch().draw(ui,x,y);
+       // this.game.getBatch().end();
+  
+
   }
   // updating the processes in the gameScreen
   private void updateProcessors() {
-
     for (ProcessorService processorService : game.getProcessorServices()) {
       processorService.process();
     }
   }
+
+  private void updatePostProcessors(){
+      for (PostProcessorService postProcessorService : game.getPostProcessorServiceslist()) {
+      postProcessorService.process();
+    }
+  }
+
+ 
 
   private void draw() {
     ArrayList<Entity> entityList = new ArrayList<>();
@@ -116,6 +161,29 @@ public class GameScreen extends SpriteHandler implements Screen {
 
 
   }
+            /*
+            // If true the entties collisionbox is shown. If false they dont.
+            if (true) {
+                CollisionPart collisionPart = entity.getPart(CollisionPart.class);
+
+            if (collisionPart == null) {
+                continue;
+            }
+                
+            this.game.getShapeRenderer().begin(ShapeRenderer.ShapeType.Line);
+
+            // Bottom
+            this.game.getShapeRenderer().line(p.getX(), p.getY(), p.getX() + collisionPart.getWidth(), p.getY(), Color.BLUE, Color.BLUE);
+            // Left
+            this.game.getShapeRenderer().line(p.getX(), p.getY(), p.getX(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+            // Right
+            this.game.getShapeRenderer().line(p.getX() + collisionPart.getWidth(), p.getY(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+            // Top
+            this.game.getShapeRenderer().line(p.getX(), p.getY() + collisionPart.getHeight(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+
+            this.game.getShapeRenderer().end(); */
+    }
+    }
 
   @Override
   public void resize(int i, int i1) {

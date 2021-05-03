@@ -9,16 +9,16 @@
   </parent>
 
   <properties>
-    <bundle.symbolicName>dk.sdu.se4.weapon</bundle.symbolicName>
-    <bundle.namespace>dk.sdu.se4.weapon</bundle.namespace>
+    <bundle.symbolicName>dk.sdu.se4.tile</bundle.symbolicName>
+    <bundle.namespace>dk.sdu.se4.tile</bundle.namespace>
   </properties>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>dk.sdu.se4.semester-project</groupId>
-  <artifactId>dk.sdu.se4.weapon</artifactId>
+  <artifactId>dk.sdu.se4.tile</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>${bundle.symbolicName}</name>
+  <name>dk.sdu.se4.tile</name>
 
   <packaging>bundle</packaging>
 
@@ -47,24 +47,9 @@
       <artifactId>dk.sdu.se4.common</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
-        <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>dk.sdu.se4.commongameinput</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>dk.sdu.se4.commonbullet</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>dk.sdu.se4.player</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>dk.sdu.se4.commonweapon</artifactId>
+      <artifactId>dk.sdu.se4.commontile</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
