@@ -61,12 +61,12 @@
     <module>dk.sdu.se4.commonbullet</module>
     <module>dk.sdu.se4.commonweapon</module>
     <module>dk.sdu.se4.screen</module>
+    <module>dk.sdu.se4.gui</module>
     <module>dk.sdu.se4.collision</module>
     <module>dk.sdu.se4.commontile</module>
     <module>dk.sdu.se4.tile</module>
     <module>dk.sdu.se4.lake</module>
     <module>dk.sdu.se4.commonlake</module>
-
   </modules>
 
   <build>
