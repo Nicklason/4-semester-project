@@ -24,7 +24,8 @@ import org.slf4j.LoggerFactory;
  *
  * @author steff
  */
-public class StartMenu extends SpriteHandler implements Screen{
+public class StartMenu extends SpriteHandler implements Screen {
+
     private final static Logger logger = LoggerFactory.getLogger(StartMenu.class);
     private GameService game;
     private Sound startsound;
@@ -32,25 +33,20 @@ public class StartMenu extends SpriteHandler implements Screen{
     private Sound exitsound;
     private SpriteBatch spriteBatch;
     private ArrayList<Entity> entityList = new ArrayList<>();
-    private Quitsort quitsort;
-
-
+    private QuickSort quicksort;
 
     public StartMenu(GameService GameCore) {
         this.game = GameCore;
         this.spriteBatch = new SpriteBatch();
-        this.startsound =  Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/Zombiestart.mp3"));
-        this.playsound =  Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/ZombiePlay.mp3"));
-        this.exitsound =  Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/Zombieexit.mp3"));
-        this.quitsort = new Quitsort();
+        this.startsound = Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/Zombiestart.mp3"));
+        this.playsound = Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/ZombiePlay.mp3"));
+        this.exitsound = Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/Zombieexit.mp3"));
+        this.quicksort = new QuickSort();
         this.loadAssets(this.game.getMapService());
     }
 
-
-
-
     public void show() {
-        this.addsoundWithDelay(this.startsound,2);
+        this.addsoundWithDelay(this.startsound, 2);
     }
 
     @Override
@@ -59,9 +55,10 @@ public class StartMenu extends SpriteHandler implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         draw();
     }
+
     //This feature sets the sound and the delay time for the loop. so that to song is finish before the runtime continues
-    private void addsoundWithDelay(Sound sound, int delayTime){
-        sound.setVolume(sound.play(),0.1f);
+    private void addsoundWithDelay(Sound sound, int delayTime) {
+        sound.setVolume(sound.play(), 0.1f);
         //sound.play();
 
         logger.info("Sound play {}", sound);
@@ -71,6 +68,7 @@ public class StartMenu extends SpriteHandler implements Screen{
             e.printStackTrace();
         }
     }
+
     private void draw() {
         entityList.clear();
         // Populate list
@@ -78,25 +76,25 @@ public class StartMenu extends SpriteHandler implements Screen{
             SpritePart spritePart = entity.getPart(SpritePart.class);
             PositionPart positionPart = entity.getPart(PositionPart.class);
             UIPart ap = entity.getPart(UIPart.class);
-            if (spritePart != null && positionPart != null && spritePart.getLayer()>100) {
+            if (spritePart != null && positionPart != null && spritePart.getLayer() > 100) {
                 entityList.add(entity);
             }
         }
-        this.quitsort.quickSort(entityList, 0, entityList.size()-1);
-        for(Entity entity:entityList){
+        this.quicksort.quickSort(entityList, 0, entityList.size() - 1);
+        for (Entity entity : entityList) {
             SpritePart sp = entity.getPart(SpritePart.class);
             PositionPart ps = entity.getPart(PositionPart.class);
             UIPart ap = entity.getPart(UIPart.class);
             if (ap.getType() == UIPart.Type.BUTTON) {
-                if (this.game.getHeight()-Gdx.input.getY()  > ps.getY() && this.game.getHeight()-Gdx.input.getY() < ps.getY() +sp.getHeight() &&
-                        Gdx.input.getX() > ps.getX() && Gdx.input.getX()  < ps.getX() + sp.getWidth()) {
+                if (this.game.getHeight() - Gdx.input.getY() > ps.getY() && this.game.getHeight() - Gdx.input.getY() < ps.getY() + sp.getHeight()
+                        && Gdx.input.getX() > ps.getX() && Gdx.input.getX() < ps.getX() + sp.getWidth()) {
                     ap.setActive(true);
-                    if(ap.getName()=="play"){
+                    if (ap.getName() == "play") {
                         if (Gdx.input.isTouched()) {
                             this.game.addScreen(new GameScreen(this.game));
                         }
                     }
-                    if(ap.getName()=="exit"){
+                    if (ap.getName() == "exit") {
                         if (Gdx.input.isTouched()) {
                             Gdx.app.exit();
                         }
@@ -118,7 +116,7 @@ public class StartMenu extends SpriteHandler implements Screen{
 
     @Override
     public void resize(int i, int i1) {
-    
+
     }
 
     @Override
@@ -132,7 +130,7 @@ public class StartMenu extends SpriteHandler implements Screen{
 
     @Override
     public void hide() {
-       
+
     }
 
     @Override
@@ -140,9 +138,8 @@ public class StartMenu extends SpriteHandler implements Screen{
         logger.info("Dispose  {}", this);
     }
 
-
     private void drawSprite(SpritePart spritePart, PositionPart positionPart) {
-        if(spritePart.getAlpha()==1) {
+        if (spritePart.getAlpha() == 1) {
             Texture texture = this.assetManager.get(spritePart.getSpritePath(), Texture.class);
             Sprite sprite = new Sprite(texture);
             sprite.setX(positionPart.getX());
@@ -154,5 +151,5 @@ public class StartMenu extends SpriteHandler implements Screen{
             this.spriteBatch.end();
         }
     }
-    
+
 }

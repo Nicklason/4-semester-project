@@ -14,7 +14,7 @@ import java.util.List;
  * @author Steffen
  * @author Kasper
  */
-public class Quitsort {
+public class QuickSort {
     
     
     

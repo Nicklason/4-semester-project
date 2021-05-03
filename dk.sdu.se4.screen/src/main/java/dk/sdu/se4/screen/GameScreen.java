@@ -27,7 +27,7 @@ public class GameScreen extends SpriteHandler implements Screen {
   private Texture ui;
   private Stage stage;
   private SpriteBatch spriteBatch;
-  private Quitsort quitsort;
+  private QuickSort quicksort;
 
   int x = 0;
   int y = 0;
@@ -44,7 +44,7 @@ public class GameScreen extends SpriteHandler implements Screen {
       this.mapService=gameCore.getMapService();
 
     }
-    this.quitsort= new Quitsort();
+    this.quicksort= new QuickSort();
     loadAssets(this.mapService);
   }
 
@@ -141,7 +141,7 @@ public class GameScreen extends SpriteHandler implements Screen {
     }
       
     
-    quitsort.quickSort(entityList, 0, entityList.size()-1);
+    quicksort.quickSort(entityList, 0, entityList.size()-1);
     
     for (Entity entity : entityList) {
       SpritePart spritePart = entity.getPart(SpritePart.class);
