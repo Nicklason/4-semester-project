@@ -6,7 +6,9 @@
 package dk.sdu.se4.player;
 
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.CollisionPart;
 import dk.sdu.se4.common.entity.part.DirectionPart;
+import dk.sdu.se4.common.entity.part.FriendlyPart;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.MovingPart;
@@ -51,7 +53,9 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         player.addPart(new MovingPart(10));
         player.addPart(new DirectionPart(false, false, false, false));
         player.addPart(new LifePart(100));
-        player.addPart(new ImagePart(new File("../dk.sdu.se4.player/src/main/resources/img/player_1.png"), 128, 128));
+        player.addPart(new ImagePart(new File("../dk.sdu.se4.player/src/main/resources/img/player.png"), 50, 50));
+        player.addPart(new CollisionPart(50, 50));
+        player.addPart(new FriendlyPart(true));
         
         return player;
     }

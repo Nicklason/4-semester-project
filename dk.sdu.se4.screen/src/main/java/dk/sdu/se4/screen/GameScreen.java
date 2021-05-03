@@ -3,15 +3,19 @@ package dk.sdu.se4.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.se4.common.entity.Entity;
+import dk.sdu.se4.common.entity.part.CollisionPart;
 import dk.sdu.se4.common.entity.part.EntityTypePart;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.GameService;
 import dk.sdu.se4.common.service.MapService;
+import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.common.service.ProcessorService;
 import dk.sdu.se4.commonlake.Lake;
 import dk.sdu.se4.commontile.Tile;
@@ -51,6 +55,7 @@ public class GameScreen implements Screen {
         OrthographicCamera cam = (OrthographicCamera) game.getCamera();
         cam.position.set(game.getWidth()/2, game.getHeight()/2,0);
         //this.game.getBatch().setProjectionMatrix(game.getCamera().combined);
+
         
         //translate camera on keypresses
         int oldX = x;
@@ -76,9 +81,11 @@ public class GameScreen implements Screen {
         this.game.getBatch().setProjectionMatrix(cam.combined);
         // starting the drawing
         this.game.getBatch().begin();
+
         // the Mapservices validation for running the program
         if ( this.mapService != null) {
             updateProcessors();
+            updatePostProcessors();
             drawEntitys();
         }else{
             logger.error("mapservices is {}", this.mapService);
@@ -101,6 +108,7 @@ public class GameScreen implements Screen {
       processorService.process();
     }
   }
+
   // Draw the Game Entitys and objects to the Screen/Batch
   private void drawEntitys() {
     for(Entity e : this.mapService.getEntities(Tile.class)) {
@@ -123,12 +131,30 @@ public class GameScreen implements Screen {
 
       if (imagePart != null && !entity.getClass().equals(Tile.class) && !entity.getClass().equals(Lake.class)) {
         this.game.getBatch().draw(imagePart.getTexture(), p.getX(), p.getY());
-      }
-      
+    
+            /*
+            // If true the entties collisionbox is shown. If false they dont.
+            if (true) {
+                CollisionPart collisionPart = entity.getPart(CollisionPart.class);
 
+            if (collisionPart == null) {
+                continue;
+            }
+                
+            this.game.getShapeRenderer().begin(ShapeRenderer.ShapeType.Line);
+
+            // Bottom
+            this.game.getShapeRenderer().line(p.getX(), p.getY(), p.getX() + collisionPart.getWidth(), p.getY(), Color.BLUE, Color.BLUE);
+            // Left
+            this.game.getShapeRenderer().line(p.getX(), p.getY(), p.getX(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+            // Right
+            this.game.getShapeRenderer().line(p.getX() + collisionPart.getWidth(), p.getY(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+            // Top
+            this.game.getShapeRenderer().line(p.getX(), p.getY() + collisionPart.getHeight(), p.getX() + collisionPart.getWidth(), p.getY() + collisionPart.getHeight(), Color.BLUE, Color.BLUE);
+
+            this.game.getShapeRenderer().end(); */
+        }
     }
-
-  }
 
   @Override
   public void resize(int i, int i1) {
