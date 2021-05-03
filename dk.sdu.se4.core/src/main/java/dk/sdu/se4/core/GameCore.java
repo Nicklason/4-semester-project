@@ -5,6 +5,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.se4.common.service.*;
 import dk.sdu.se4.commongameinput.GameInput;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public final class GameCore extends Game implements GameService {
     private List<PostProcessorService> postProcessorServiceslist = new ArrayList<>();
     private List<ProcessorService> processorServiceslist = new ArrayList<>();
     private SpriteBatch batch;
+    private ShapeRenderer shapeRenderer;
     private int width = 800;
     private int height = 600;
     private OrthographicCamera camera;
@@ -46,12 +48,17 @@ public final class GameCore extends Game implements GameService {
     @Override
     public void create() {
        this.batch = new SpriteBatch();
+       this.shapeRenderer = new ShapeRenderer();
         setScreen(new StartMenu(this));
        
     }
 
     public List<ProcessorService> getProcessorServiceslist() {
         return processorServiceslist;
+    }
+    
+    public List<PostProcessorService> getPostProcessorServiceslist() {
+        return postProcessorServiceslist;
     }
 
     
@@ -138,6 +145,10 @@ public final class GameCore extends Game implements GameService {
     @Override
     public SpriteBatch getBatch() {
         return this.batch;
+    }
+    
+    public ShapeRenderer getShapeRenderer() {
+        return this.shapeRenderer;
     }
 
     @Override
