@@ -6,7 +6,6 @@
 package dk.sdu.se4.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
@@ -16,12 +15,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.*;
 import dk.sdu.se4.common.service.GameService;
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -35,6 +32,7 @@ public class StartMenu extends SpriteHandler implements Screen{
     private Sound exitsound;
     private SpriteBatch spriteBatch;
     private ArrayList<Entity> entityList = new ArrayList<>();
+    private Quitsort quitsort;
 
 
 
@@ -44,6 +42,7 @@ public class StartMenu extends SpriteHandler implements Screen{
         this.startsound =  Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/Zombiestart.mp3"));
         this.playsound =  Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/ZombiePlay.mp3"));
         this.exitsound =  Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/Zombieexit.mp3"));
+        this.quitsort = new Quitsort();
         this.loadAssets(this.game.getMapService());
     }
 
@@ -83,14 +82,7 @@ public class StartMenu extends SpriteHandler implements Screen{
                 entityList.add(entity);
             }
         }
-        entityList.sort(new Comparator<Entity>() {
-            @Override
-            public int compare(Entity e1, Entity e2) {
-                SpritePart spritePartone = e1.getPart(SpritePart.class);
-                SpritePart spriteParttwo = e2.getPart(SpritePart.class);
-                return spritePartone.getLayer() - spriteParttwo.getLayer();
-            }
-        });
+        this.quitsort.quickSort(entityList, 0, entityList.size()-1);
         for(Entity entity:entityList){
             SpritePart sp = entity.getPart(SpritePart.class);
             PositionPart ps = entity.getPart(PositionPart.class);
