@@ -42,6 +42,16 @@
       <artifactId>org.osgi.compendium</artifactId>
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>dk.sdu.se4.common</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>dk.sdu.se4.commontile</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 
 </project>
