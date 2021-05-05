@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="dk.sdu.se4.lake.plugin">
+    <implementation class="dk.sdu.se4.lake.LakePlugin"/>
+    <service>
+        <provide interface="dk.sdu.se4.common.service.PluginService"/>
+    </service>
+    <reference bind="addMapService" cardinality="1..1"
+               interface="dk.sdu.se4.common.service.MapService"
+               name="MapService" policy="dynamic" unbind="removeMapService" />
+</scr:component>
+

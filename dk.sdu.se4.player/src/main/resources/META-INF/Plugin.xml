@@ -8,4 +8,3 @@
                interface="dk.sdu.se4.common.service.MapService"
                name="MapService" policy="dynamic" unbind="removeMapService" />
 </scr:component>
-
