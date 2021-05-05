@@ -16,7 +16,7 @@ public class SpriteHandler {
   public void loadAssets(MapService mapService) {
     for (Entity entity : mapService.getEntities()) {
       SpritePart spritePart = entity.getPart(SpritePart.class);
-      if (spritePart != null) {
+      if (spritePart != null && spritePart.getSpritePath() != "") {
         assetManager.load(spritePart.getSpritePath(), Texture.class);
         assetManager.update();
       }

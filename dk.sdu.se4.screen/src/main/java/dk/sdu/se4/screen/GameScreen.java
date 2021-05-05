@@ -28,7 +28,7 @@ public class GameScreen extends SpriteHandler implements Screen {
   private GameService game;
   private MapService mapService=null;
   private Texture ui;
-  private BitmapFont bitmapFont = new BitmapFont();
+  private BitmapFont bitmapFont;
   private Stage stage;
   private SpriteBatch spriteBatch;
 
@@ -43,6 +43,7 @@ public class GameScreen extends SpriteHandler implements Screen {
     this.game=gameCore;
     this.stage=new Stage();
     this.spriteBatch = new SpriteBatch();
+    this.bitmapFont = new BitmapFont();
     if(this.mapService==null){
       this.mapService=gameCore.getMapService();
 
@@ -155,8 +156,13 @@ public class GameScreen extends SpriteHandler implements Screen {
     for (Entity entity : entityList) {
       SpritePart spritePart = entity.getPart(SpritePart.class);
       PositionPart positionPart = entity.getPart(PositionPart.class);
+      TextPart textPart = entity.getPart(TextPart.class);
       if (spritePart.getLayer()<100){
-        drawSprite(spritePart, positionPart);
+        if (textPart != null) {
+            drawText(textPart, positionPart);
+        } else {
+            drawSprite(spritePart, positionPart);
+        }
       }
 
     }
@@ -227,5 +233,13 @@ public class GameScreen extends SpriteHandler implements Screen {
       this.spriteBatch.end();
     }
   }
+
+    private void drawText(TextPart textPart, PositionPart positionPart) {
+        bitmapFont.setColor(toFloatBits(textPart.getColorRed(), textPart.getColorGreen(), textPart.getColorBlue(), textPart.getColorAlpha()));
+        bitmapFont.setScale(textPart.getScaleX(), textPart.getScaleY());
+        this.spriteBatch.begin();
+        bitmapFont.draw(this.spriteBatch, textPart.getText(), positionPart.getX(), positionPart.getY());
+        this.spriteBatch.end();
+    }
 
 }

@@ -15,7 +15,8 @@ public class GameGuiPlugin implements PluginService {
   public void load() {
 
     if (mapService!=null){
-      this.mapService.addEntity(addUIEntity("UI/UI.png",800,600,99,0,0 ,new UIPart(UIPart.Type.IMAGE,true, "UI")));
+      this.mapService.addEntity(addUIEntity("UI/UI.png",800,600,98,0,0 ,new UIPart(UIPart.Type.IMAGE,true, "UI")));
+      this.mapService.addEntity(addTextEntity(99, 95, (int)(600-26), new TextPart()));
 
       this.mapService.addEntity(addUIEntity("UI/Background.png",400,500,102,(800-400)/2,(600-500)/2, new UIPart( UIPart.Type.IMAGE,true, "MenuBackground")));
 
@@ -55,6 +56,14 @@ public class GameGuiPlugin implements PluginService {
     gameGuiEntity.addPart(new PositionPart(X,Y));
     gameGuiEntity.addPart(uiPart);
     gameGuiEntity.addPart(new SpritePart(path, width,height, layer));
+    return gameGuiEntity;
+  }
+  
+  private Entity addTextEntity(int layer, int X, int Y, TextPart textPart){
+    Entity gameGuiEntity = new GuiEntity();
+    gameGuiEntity.addPart(new PositionPart(X,Y));
+    gameGuiEntity.addPart(textPart);
+    gameGuiEntity.addPart(new SpritePart("", 0, 0, layer));
     return gameGuiEntity;
   }
 

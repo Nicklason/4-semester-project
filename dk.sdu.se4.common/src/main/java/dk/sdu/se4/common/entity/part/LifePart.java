@@ -10,6 +10,10 @@ public class LifePart implements EntityPart{
     private int maxHealth;
     private int currentHealth;
 
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
     /**
      * Creates new instance of LifePart
      * @param maxHealth Max health
