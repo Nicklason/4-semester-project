@@ -116,10 +116,6 @@ public class GameScreen extends SpriteHandler implements Screen {
         // // ending the drawing
         // this.game.getBatch().end();
 
-        //TODO Update with SpritePart
-       // this.game.getBatch().draw(ui,x,y);
-       // this.game.getBatch().end();
-
 
   }
   // updating the processes in the gameScreen
