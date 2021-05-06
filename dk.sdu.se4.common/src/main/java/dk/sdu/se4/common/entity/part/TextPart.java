@@ -7,6 +7,7 @@ import dk.sdu.se4.common.entity.Entity;
  * @author
  */
 public class TextPart implements EntityPart {
+    private String id;
     private String text;
     private float scaleX;
     private float scaleY;
@@ -15,7 +16,8 @@ public class TextPart implements EntityPart {
     private int colorBlue;
     private int colorAlpha;
 
-    public TextPart() {
+    public TextPart(String id) {
+        this.id = id;
         this.text = "Not loaded.";
         this.scaleX = 1.25f;
         this.scaleY = 1.25f;
@@ -23,6 +25,10 @@ public class TextPart implements EntityPart {
         this.colorGreen = 26;
         this.colorBlue = 26;
         this.colorAlpha = 255;
+    }
+    
+    public String getId() {
+        return id;
     }
 
     public String getText() {

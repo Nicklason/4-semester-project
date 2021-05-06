@@ -16,7 +16,7 @@ public class GameGuiPlugin implements PluginService {
 
     if (mapService!=null){
       this.mapService.addEntity(addUIEntity("UI/UI.png",800,600,98,0,0 ,new UIPart(UIPart.Type.IMAGE,true, "UI")));
-      this.mapService.addEntity(addTextEntity(99, 95, (int)(600-26), new TextPart()));
+      this.mapService.addEntity(addTextEntity(99, 95, (int)(600-26), new TextPart("playerScore")));
 
       this.mapService.addEntity(addUIEntity("UI/Background.png",400,500,102,(800-400)/2,(600-500)/2, new UIPart( UIPart.Type.IMAGE,true, "MenuBackground")));
 
