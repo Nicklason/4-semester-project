@@ -56,7 +56,6 @@
     <module>dk.sdu.se4.enemy</module>
     <module>dk.sdu.se4.weapon</module>
     <module>dk.sdu.se4.bullet</module>
-    <module>dk.sdu.se4.gamedata</module>
     <module>dk.sdu.se4.player</module>
     <module>dk.sdu.se4.commonbullet</module>
     <module>dk.sdu.se4.commonweapon</module>
