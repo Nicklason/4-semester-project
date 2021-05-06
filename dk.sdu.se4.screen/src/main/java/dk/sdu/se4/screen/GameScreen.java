@@ -16,7 +16,6 @@ import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.common.service.ProcessorService;
 import java.util.ArrayList;
-import java.util.Comparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,6 +27,7 @@ public class GameScreen extends SpriteHandler implements Screen {
   private Texture ui;
   private Stage stage;
   private SpriteBatch spriteBatch;
+  private QuickSort quicksort;
 
   int x = 0;
   int y = 0;
@@ -44,6 +44,7 @@ public class GameScreen extends SpriteHandler implements Screen {
       this.mapService=gameCore.getMapService();
 
     }
+    this.quicksort= new QuickSort();
     loadAssets(this.mapService);
   }
 
@@ -138,14 +139,10 @@ public class GameScreen extends SpriteHandler implements Screen {
         entityList.add(entity);
       }
     }
-    entityList.sort(new Comparator<Entity>() {
-      @Override
-      public int compare(Entity e1, Entity e2) {
-        SpritePart spritePartone = e1.getPart(SpritePart.class);
-        SpritePart spriteParttwo = e2.getPart(SpritePart.class);
-        return spritePartone.getLayer() - spriteParttwo.getLayer();
-      }
-    });
+      
+    
+    quicksort.quickSort(entityList, 0, entityList.size()-1);
+    
     for (Entity entity : entityList) {
       SpritePart spritePart = entity.getPart(SpritePart.class);
       PositionPart positionPart = entity.getPart(PositionPart.class);
