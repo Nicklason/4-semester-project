@@ -1,9 +1,7 @@
 package dk.sdu.se4.collision;
 
 import dk.sdu.se4.common.entity.Entity;
-import dk.sdu.se4.common.entity.part.CollisionPart;
-import dk.sdu.se4.common.entity.part.FriendlyPart;
-import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.*;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import java.util.Collection;
@@ -58,7 +56,38 @@ public class CollisionServiceImpl implements PostProcessorService {
                     aPositionPart.getX() + aCollisionPart.getWidth() > bPositionPart.getX() &&
                     aPositionPart.getY() < bPositionPart.getY() + bCollisionPart.getHeight() &&
                     aPositionPart.getY() + aCollisionPart.getHeight() > bPositionPart.getY()) {
+                    
                     System.out.println("Collision between friendly and unfriendly");
+
+                    // Check if bullet collides with enemy.
+                    if (("Bullet".equals(a.getClass().getSimpleName()) && "Enemy".equals(b.getClass().getSimpleName())) ||
+                        ("Bullet".equals(b.getClass().getSimpleName()) && "Enemy".equals(a.getClass().getSimpleName()))) {
+                        Entity player = null;
+                        Entity bullet = null;
+                        Entity enemy = null;
+                        for (Entity entity: entities) {
+                            if ("Player".equals(entity.getClass().getSimpleName())) {
+                                player = entity;
+                            }
+                        }
+                        if ("Bullet".equals(a.getClass().getSimpleName()) && "Enemy".equals(b.getClass().getSimpleName())) {
+                            bullet = a;
+                            enemy = b;
+                        } else {
+                            bullet = b;
+                            enemy = a;
+                        }
+                        ScorePart playerScorePart = player.getPart(ScorePart.class);
+                        ScorePart enemyScorePart = enemy.getPart(ScorePart.class);
+                        LifePart enemyLifePart = enemy.getPart(LifePart.class);
+                        if (enemyLifePart.getCurrentHealth() - enemyLifePart.getCurrentHealth() <= 0) {
+                            System.out.println("Player score increased by " + enemyScorePart.getCurrentScore());
+                            playerScorePart.increaseScore(enemyScorePart.getCurrentScore());
+                            enemyLifePart.removeHealth(enemyLifePart.getCurrentHealth());
+                            //this.mapService.removeEntity(bullet);
+                        }
+                        
+                    }
                 }
             }
         }
