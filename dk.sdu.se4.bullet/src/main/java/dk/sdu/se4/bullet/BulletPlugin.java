@@ -15,6 +15,8 @@ public class BulletPlugin extends BulletCore implements PluginService {
         bullet.addPart(new TimePart(0.01f));
         bullet.addPart(new DirectionPart(false,false, false, false));
         bullet.addPart(new MovingPart(0));
+        bullet.addPart(new CollisionPart(16, 16));
+        bullet.addPart(new FriendlyPart(true));
         this.mapService.addEntity(bullet);
 
     }
