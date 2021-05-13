@@ -43,7 +43,7 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         player.addPart(new LifePart(100));
         player.addPart(new ScorePart(0));
         player.addPart(new SpritePart("Player/player.png",16,16,1));
-        player.addPart(new CollisionPart(128, 128));
+        player.addPart(new CollisionPart(16, 16));
         player.addPart(new FriendlyPart(true));
 
 
