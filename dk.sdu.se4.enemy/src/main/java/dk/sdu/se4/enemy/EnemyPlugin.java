@@ -31,7 +31,7 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 int y = (int) (Math.random() * 600) + 1;
                 enemy[i].addPart(new EntityTypePart(EntityType.MOVINGENTITY));
                 enemy[i].addPart(new PositionPart(x, y));
-                enemy[i].addPart(new MovingPart(10));
+                enemy[i].addPart(new MovingPart(2));
                 enemy[i].addPart(new DirectionPart(false, false, false, false));
                 enemy[i].addPart(new LifePart(100));
                 enemy[i].addPart(new SpritePart("Enemy/zombi.png",16,16,1));
