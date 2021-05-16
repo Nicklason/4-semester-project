@@ -58,7 +58,6 @@ public class CollisionServiceImpl implements PostProcessorService {
                     aPositionPart.getX() + aCollisionPart.getWidth() > bPositionPart.getX() &&
                     aPositionPart.getY() < bPositionPart.getY() + bCollisionPart.getHeight() &&
                     aPositionPart.getY() + aCollisionPart.getHeight() > bPositionPart.getY()) {
-                    System.out.println("Collision between friendly and unfriendly");
                 }
             }
         }

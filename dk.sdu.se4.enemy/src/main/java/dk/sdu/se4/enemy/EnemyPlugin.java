@@ -17,7 +17,7 @@ import dk.sdu.se4.common.service.PluginService;
  * @author steff
  */
 public class EnemyPlugin extends EnemyCore implements PluginService {
-    private Entity[] enemy = new Enemy[10];
+    private Entity[] enemy = new Enemy[2];
 
   
     
@@ -37,6 +37,7 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy[i].addPart(new SpritePart("Enemy/zombi.png",16,16,1));
                 enemy[i].addPart(new CollisionPart(50, 50));
                 enemy[i].addPart(new FriendlyPart(false));
+                enemy[i].addPart(new TypePart(Type.ENEMY));
                 this.mapService.addEntity(enemy[i]);
             }
         } else {

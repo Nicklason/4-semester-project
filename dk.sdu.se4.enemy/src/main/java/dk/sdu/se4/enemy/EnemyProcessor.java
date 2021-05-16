@@ -8,7 +8,14 @@ package dk.sdu.se4.enemy;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.DirectionPart;
 import dk.sdu.se4.common.entity.part.MovingPart;
+import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.service.AIControlSystem;
+import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.ProcessorService;
+import dk.sdu.se4.player.Player;
+
+import java.awt.*;
+import java.util.Collection;
 
 /**
  *
@@ -16,32 +23,45 @@ import dk.sdu.se4.common.service.ProcessorService;
  */
 public class EnemyProcessor extends EnemyCore implements ProcessorService {
 
+    private AIControlSystem aiControlSystem = null;
+    private Entity target;
+
     @Override
     public void process() {
         if (this.mapService != null) {
+            if (this.aiControlSystem!=null){
+                Collection<Entity> pl = this.mapService.getEntities(Player.class);
+                for (Entity p: pl){
+                    this.target = p;
+                    aiControlSystem.grideBulder(this.target);
+                }
+
+            }
             for (Entity e : this.mapService.getEntities(Enemy.class)) {
                 MovingPart mp = e.getPart(MovingPart.class);
                 DirectionPart dp = e.getPart(DirectionPart.class);
-                int choise = (int) (Math.random() * 100) + 1;
-                
-                dp.setMovingUp(false);
-                dp.setMovingDown(false);
-                dp.setMovingLeft(false);
-                dp.setMovingRight(false);
-                
-                if (choise < 20) {
-                    dp.setMovingUp(true);
-                } else if (choise > 30 && choise < 50) {
-                    dp.setMovingDown(true);
-                } else if (choise > 60 && choise < 75) {
-                    dp.setMovingLeft(true);
-                } else if (choise > 90) {
-                    dp.setMovingRight(true);
+                if (this.aiControlSystem!=null){
+                    PositionPart aiPos= this.aiControlSystem.pathFinding(e,this.target);
+                    if (aiPos!=null){
+                        PositionPart ep= e.getPart(PositionPart.class);
+                        ep.translate(aiPos.getX(), aiPos.getY());
+                    }
+
                 }
-                mp.process(e);
             }
         }else{
             log.error("mapservices is null");
         }
+    }
+
+
+    public void addAIControlSystem(AIControlSystem aIControlSystem) {
+        log.debug("Add AIControlSystem on {}", this.getClass());
+        this.aiControlSystem = aIControlSystem;
+    }
+
+    public void removeAIControlSystem(AIControlSystem aiControlSystem) {
+        log.debug("Remove AIControlSystem from {}", this.getClass());
+        this.aiControlSystem = null;
     }
 }
