@@ -26,7 +26,7 @@ public class GameGuiPlugin implements PluginService {
 
       this.mapService.addEntity(addUIEntity("UI/exit.png",200,60,103,(int)(800-200)/2,275, new UIPart(UIPart.Type.BUTTON,true,"exit" )));
 
-
+      this.mapService.addEntity(addTextEntity(99, 95, (int)(600-26), new TextPart("playerScore")));
 
     }
 
@@ -55,6 +55,14 @@ public class GameGuiPlugin implements PluginService {
     gameGuiEntity.addPart(new PositionPart(X,Y));
     gameGuiEntity.addPart(uiPart);
     gameGuiEntity.addPart(new SpritePart(path, width,height, layer));
+    return gameGuiEntity;
+  }
+  
+  private Entity addTextEntity(int layer, int X, int Y, TextPart textPart){
+    Entity gameGuiEntity = new GuiEntity();
+    gameGuiEntity.addPart(new PositionPart(X,Y));
+    gameGuiEntity.addPart(textPart);
+    gameGuiEntity.addPart(new SpritePart("", 0, 0, layer));
     return gameGuiEntity;
   }
 
