@@ -21,6 +21,8 @@ import java.io.File;
 public class WeaponProcessor extends WeaponCore implements ProcessorService {
     
     private GameInput gameInput = null;
+    boolean reloaded = false;
+    int reloadTime = 2;
     
     public void addGameInput(GameInput gameInput) {
         this.gameInput = gameInput;
@@ -37,8 +39,8 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                 WeaponPart wp = e.getPart(WeaponPart.class);
                 PositionPart pp = e.getPart(PositionPart.class);
                 DirectionPart dp = e.getPart(DirectionPart.class);
+                TimePart tp = e.getPart(TimePart.class);
                 if(this.gameInput.isPressed(GameInputKeys.SPACE)) {
-                    //TODO use wp firerate for shooting interval
                     if (wp.getType()) {
                         if(wp.getTotalBullets() == 0) {
                             //Weapon out of ammo
@@ -46,20 +48,29 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                             continue;
                         }
                         if(wp.getCurrentMagazine() == 0) {
-                            wp.reload();
+                          if(reloaded == false) {
+                                tp.setTime(reloadTime);
+                                reloaded = true;
+                            }
+                            if(tp.getTime() <= 0) {
+                                wp.reload();
+                                float fireRate = wp.getFireRate();
+                                tp.setTime(fireRate);
+                                reloaded = false;
+                            }
+                            continue;
                         }
-                        wp.removeBullet();
+                        if(tp.getTime() <= 0) {
+                            wp.removeBullet();
+                            tp.setTime((float) 0.2);
 
-                        // Add bullet here
-                        Entity bullet = new Bullet();
-                        bullet.addPart(new PositionPart(pp.getX(), pp.getY()));
-                        bullet.addPart(sp);
-                        bullet.addPart(new TimePart(3));
-                        bullet.addPart(new DirectionPart(dp.getMovingUp(), dp.getMovingDown(), dp.getMovingLeft(), dp.getMovingRight()));
-                        bullet.addPart(new MovingPart(4));
-                        bullet.addPart(new CollisionPart(4, 4));
-                        bullet.addPart(new FriendlyPart(true));
-                        this.mapService.addEntity(bullet);
+                            Entity bullet = new Bullet();
+                            bullet.addPart(new PositionPart(pp.getX(), pp.getY()));
+                            bullet.addPart(new ImagePart(new File("../dk.sdu.se4.bullet/src/main/resources/img/bullet.png"), 10, 10));
+                            bullet.addPart(new DirectionPart(dp.getMovingUp(), dp.getMovingDown(), dp.getMovingLeft(), dp.getMovingRight()));
+                            bullet.addPart(new MovingPart(15));
+                            bullet.addPart(new TimePart(3));
+                            this.mapService.addEntity(bullet);
                     }
                     else {
                         // Add melee here
