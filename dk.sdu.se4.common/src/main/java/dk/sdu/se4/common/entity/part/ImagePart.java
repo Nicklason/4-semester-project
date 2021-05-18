@@ -16,7 +16,6 @@ import java.io.File;
  * @author steff
  */
 public class ImagePart implements EntityPart {
-
     private FileHandle fileHandle;
     private int width;
     private int hight;
@@ -26,7 +25,6 @@ public class ImagePart implements EntityPart {
         this.fileHandle = new FileHandle(file);
         this.hight=hight;
         this.width=width;
-        
     }
 
     public Texture getTexture() {
@@ -37,12 +35,8 @@ public class ImagePart implements EntityPart {
             this.texture= new Texture(newimg);
         }
         return this.texture;
-        
     }
 
     @Override
-    public void process(Entity entity) {
-
-    }
-
+    public void process(Entity entity) {}
 }

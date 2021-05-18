@@ -16,7 +16,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class GameCore extends Game implements GameService {
-
     private final static Logger logger = LoggerFactory.getLogger(GameCore.class);
     LwjglApplication application = null;
     private MapService mapService=null;
@@ -47,10 +46,9 @@ public final class GameCore extends Game implements GameService {
  
     @Override
     public void create() {
-       this.batch = new SpriteBatch();
-       this.shapeRenderer = new ShapeRenderer();
-        setScreen(new StartMenu(this));
-       
+        this.batch = new SpriteBatch();
+        this.shapeRenderer = new ShapeRenderer();
+         setScreen(new StartMenu(this));
     }
 
     public List<ProcessorService> getProcessorServiceslist() {
@@ -60,8 +58,6 @@ public final class GameCore extends Game implements GameService {
     public List<PostProcessorService> getPostProcessorServiceslist() {
         return postProcessorServiceslist;
     }
-
-    
      
     public void addMapService(MapService mapService) {
         logger.debug("Add {}", mapService.getClass().getName());
@@ -81,7 +77,6 @@ public final class GameCore extends Game implements GameService {
         } else {
             logger.error("Map Service is null");
         }
-
     }
 
     public void removePlugin(PluginService pluginService) {

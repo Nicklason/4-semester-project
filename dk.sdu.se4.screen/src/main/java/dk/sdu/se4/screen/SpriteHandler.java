@@ -2,10 +2,6 @@ package dk.sdu.se4.screen;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import dk.sdu.se4.common.entity.Entity;
-import dk.sdu.se4.common.entity.part.*;
-import dk.sdu.se4.common.entity.part.PositionPart;
 
 public class SpriteHandler {
     protected static final AssetManager assetManager = new AssetManager();
@@ -25,5 +21,7 @@ public class SpriteHandler {
             assetManager.load(assetPaths[i], Texture.class);
             assetManager.update();
         }
+
+        assetManager.finishLoading();
     }
 }

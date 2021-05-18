@@ -17,7 +17,7 @@ import dk.sdu.se4.common.service.PluginService;
  * @author steff
  */
 public class EnemyPlugin extends EnemyCore implements PluginService {
-    private Entity[] enemy = new Enemy[10];
+    private int enemyCount = 10;
 
   
     
@@ -25,19 +25,19 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
     @Override
     public void load() {
         if (this.mapService != null) {
-            for (int i = 0; i < enemy.length; i++) {
-                enemy[i] = new Enemy();
+            for (int i = 0; i < enemyCount; i++) {
+                Enemy enemy = new Enemy();
                 int x = (int) (Math.random() * 800) + 1;
                 int y = (int) (Math.random() * 600) + 1;
-                enemy[i].addPart(new EntityTypePart(EntityType.MOVINGENTITY));
-                enemy[i].addPart(new PositionPart(x, y));
-                enemy[i].addPart(new MovingPart(2));
-                enemy[i].addPart(new DirectionPart(false, false, false, false));
-                enemy[i].addPart(new LifePart(100));
-                enemy[i].addPart(new SpritePart("Enemy/zombi.png",16,16,1));
-                enemy[i].addPart(new CollisionPart(16, 16));
-                enemy[i].addPart(new FriendlyPart(false));
-                this.mapService.addEntity(enemy[i]);
+                enemy.addPart(new EntityTypePart(EntityType.MOVINGENTITY));
+                enemy.addPart(new PositionPart(x, y));
+                enemy.addPart(new MovingPart(2));
+                enemy.addPart(new DirectionPart(false, false, false, false));
+                enemy.addPart(new LifePart(5));
+                enemy.addPart(new SpritePart("Enemy/zombi.png",16,16,1));
+                enemy.addPart(new CollisionPart(16, 16));
+                enemy.addPart(new FriendlyPart(false));
+                this.mapService.addEntity(enemy);
             }
         } else {
             log.error("mapService is null in {}", this.getClass());
