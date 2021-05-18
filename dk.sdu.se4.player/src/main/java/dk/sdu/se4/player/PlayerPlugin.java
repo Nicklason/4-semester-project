@@ -35,6 +35,10 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
             for (Entity e : this.mapService.getEntities(Player.class)) {
                 this.mapService.removeEntity(e);
             }
+            
+            for (Entity e : this.mapService.getEntities(Weapon.class)) {
+                this.mapService.removeEntity(e);
+            }
         }
     }
     
