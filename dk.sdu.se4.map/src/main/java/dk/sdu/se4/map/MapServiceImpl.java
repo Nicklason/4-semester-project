@@ -4,8 +4,8 @@ import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.service.MapService;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +17,7 @@ public class MapServiceImpl implements MapService {
     
     public MapServiceImpl() {
         log.info("Created {}", this.getClass().getName());
-        this.entities = new HashMap();
+        this.entities = new ConcurrentHashMap<>();
     }
 
     public int getHeight() {
