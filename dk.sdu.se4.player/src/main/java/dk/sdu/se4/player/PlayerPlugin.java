@@ -35,6 +35,10 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
             for (Entity e : this.mapService.getEntities(Player.class)) {
                 this.mapService.removeEntity(e);
             }
+            
+            for (Entity e : this.mapService.getEntities(Weapon.class)) {
+                this.mapService.removeEntity(e);
+            }
         }
     }
     
@@ -44,11 +48,11 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         int y = 0;
         
         player.addPart(new PositionPart(x, y));
-        player.addPart(new MovingPart(10));
+        player.addPart(new MovingPart(3));
         player.addPart(new DirectionPart(false, false, false, false));
         player.addPart(new LifePart(100));
         player.addPart(new SpritePart("Player/player.png",16,16,1));
-        player.addPart(new CollisionPart(128, 128));
+        player.addPart(new CollisionPart(16, 16));
         player.addPart(new FriendlyPart(true));
         player.addPart(new TypePart(Type.PLAYER));
         
@@ -61,13 +65,16 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         
         PositionPart playerPositionPart = player.getPart(PositionPart.class);
         DirectionPart playerDirectionPart = player.getPart(DirectionPart.class);
+        WeaponPart weaponPart = new WeaponPart(true, 100, 20, (float) 0.2);
         
         // The weapon should have the same position and direction as the player
         // it is attached to
         weapon.addPart(playerPositionPart);
         weapon.addPart(playerDirectionPart);
         // true means shooting gun gun
-        weapon.addPart(new WeaponPart(true, 100, 20, 5));
+        weapon.addPart(weaponPart);
+        float fireRate = weaponPart.getFireRate();
+        weapon.addPart(new TimePart(fireRate));
         return weapon;
     }
     

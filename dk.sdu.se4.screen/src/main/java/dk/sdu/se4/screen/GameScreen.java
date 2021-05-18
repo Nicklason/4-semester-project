@@ -16,43 +16,41 @@ import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.common.service.ProcessorService;
 import java.util.ArrayList;
-import java.util.Comparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GameScreen extends SpriteHandler implements Screen {
-  private final static Logger logger = LoggerFactory.getLogger(GameScreen.class);
+    private final static Logger logger = LoggerFactory.getLogger(GameScreen.class);
 
-  private GameService game;
-  private MapService mapService=null;
-  private Texture ui;
-  private Stage stage;
-  private SpriteBatch spriteBatch;
+    private GameService game;
+    private MapService mapService=null;
+    private Texture ui;
+    private Stage stage;
+    private SpriteBatch spriteBatch;
+    private QuickSort quicksort;
 
-  int x = 0;
-  int y = 0;
-  private static final double DIAGONAL_SCALING_CONSTANT = Math.sqrt(2) / 2;
-  
+    int x = 0;
+    int y = 0;
+    private static final double DIAGONAL_SCALING_CONSTANT = Math.sqrt(2) / 2;
 
+    public GameScreen(GameService gameCore) {
+        this.game=gameCore;
+        this.stage=new Stage();
+        this.spriteBatch = new SpriteBatch();
+        if(this.mapService==null){
+          this.mapService=gameCore.getMapService();
 
-
-  public GameScreen(GameService gameCore) {
-    this.game=gameCore;
-    this.stage=new Stage();
-    this.spriteBatch = new SpriteBatch();
-    if(this.mapService==null){
-      this.mapService=gameCore.getMapService();
-
+        }
+        this.quicksort= new QuickSort();
+        loadAssets();
     }
-    loadAssets(this.mapService);
-  }
 
-  @Override
-  public void show() {
-  }
+    @Override
+    public void show() {
+    }
 
-  @Override
-  public void render(float deltaTime) {
+    @Override
+    public void render(float deltaTime) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // set the position for the cammara
@@ -60,6 +58,7 @@ public class GameScreen extends SpriteHandler implements Screen {
         OrthographicCamera cam = (OrthographicCamera) game.getCamera();
         cam.position.set(game.getWidth()/2, game.getHeight()/2,0);
         //this.game.getBatch().setProjectionMatrix(game.getCamera().combined);
+        this.game.getGameDataService().setDeltaTime(Gdx.graphics.getDeltaTime());
 
         
         //translate camera on keypresses
@@ -89,6 +88,13 @@ public class GameScreen extends SpriteHandler implements Screen {
         this.game.getBatch().end();
         // the Mapservices validation for running the program
         if ( this.mapService != null) {
+            // Hack for removeTime in TimePart :::: FIX THIS PLZ SOMEONE plez
+            for(Entity e : this.mapService.getEntities()) {
+                TimePart tp = e.getPart(TimePart.class);
+                if(tp != null) {
+                    tp.removeTime(this.game.getGameDataService().getDeltaTime());
+                }
+            }
             updateProcessors();
             draw();
             updatePostProcessors();
@@ -111,49 +117,43 @@ public class GameScreen extends SpriteHandler implements Screen {
        // this.game.getBatch().end();
   
 
-  }
-  // updating the processes in the gameScreen
-  private void updateProcessors() {
-    for (ProcessorService processorService : game.getProcessorServices()) {
-      processorService.process();
     }
-  }
-
-  private void updatePostProcessors(){
-      for (PostProcessorService postProcessorService : game.getPostProcessorServiceslist()) {
-      postProcessorService.process();
+    // updating the processes in the gameScreen
+    private void updateProcessors() {
+        for (ProcessorService processorService : game.getProcessorServices()) {
+          processorService.process();
+        }
     }
-  }
 
- 
-
-  private void draw() {
-    ArrayList<Entity> entityList = new ArrayList<>();
-
-    // Populate list
-    for (Entity entity : this.mapService.getEntities()) {
-      SpritePart spritePart = entity.getPart(SpritePart.class);
-      PositionPart positionPart = entity.getPart(PositionPart.class);
-      if (spritePart != null && positionPart != null) {
-        entityList.add(entity);
-      }
+    private void updatePostProcessors(){
+        for (PostProcessorService postProcessorService : game.getPostProcessorServiceslist()) {
+            postProcessorService.process();
+        }
     }
-    entityList.sort(new Comparator<Entity>() {
-      @Override
-      public int compare(Entity e1, Entity e2) {
-        SpritePart spritePartone = e1.getPart(SpritePart.class);
-        SpritePart spriteParttwo = e2.getPart(SpritePart.class);
-        return spritePartone.getLayer() - spriteParttwo.getLayer();
-      }
-    });
-    for (Entity entity : entityList) {
-      SpritePart spritePart = entity.getPart(SpritePart.class);
-      PositionPart positionPart = entity.getPart(PositionPart.class);
-      if (spritePart.getLayer()<100){
-        drawSprite(spritePart, positionPart);
-      }
 
-    }
+    private void draw() {
+        ArrayList<Entity> entityList = new ArrayList<>();
+
+        // Populate list
+        for (Entity entity : this.mapService.getEntities()) {
+            SpritePart spritePart = entity.getPart(SpritePart.class);
+            PositionPart positionPart = entity.getPart(PositionPart.class);
+            if (spritePart != null && positionPart != null) {
+                entityList.add(entity);
+            }
+        }
+
+
+        quicksort.quickSort(entityList, 0, entityList.size()-1);
+
+        for (Entity entity : entityList) {
+            SpritePart spritePart = entity.getPart(SpritePart.class);
+            PositionPart positionPart = entity.getPart(PositionPart.class);
+            if (spritePart.getLayer()<100){
+                drawSprite(spritePart, positionPart);
+            }
+
+        }
 
 
   
@@ -181,45 +181,45 @@ public class GameScreen extends SpriteHandler implements Screen {
 }
     
 
-  @Override
-  public void resize(int i, int i1) {
+    @Override
+    public void resize(int i, int i1) {
 
-  }
-
-  @Override
-  public void pause() {
-    logger.info("Pause Game at {}", this);
-  }
-
-  @Override
-  public void resume() {
-    logger.info("Resume Game at {}", this);
-  }
-
-  @Override
-  public void hide() {
-
-  }
-
-  @Override
-  public void dispose() {
-
-  }
-
-
-
-  private void drawSprite(SpritePart spritePart, PositionPart positionPart) {
-    if(spritePart.getAlpha()==1) {
-      Texture texture = this.assetManager.get(spritePart.getSpritePath(), Texture.class);
-      Sprite sprite = new Sprite(texture);
-      sprite.setX(positionPart.getX());
-      sprite.setY(positionPart.getY());
-      sprite.setAlpha(spritePart.getAlpha());
-      sprite.setSize(spritePart.getWidth(), spritePart.getHeight());
-      this.spriteBatch.begin();
-      sprite.draw(this.spriteBatch);
-      this.spriteBatch.end();
     }
-  }
+
+    @Override
+    public void pause() {
+      logger.info("Pause Game at {}", this);
+    }
+
+    @Override
+    public void resume() {
+      logger.info("Resume Game at {}", this);
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+
+    }
+
+
+
+    private void drawSprite(SpritePart spritePart, PositionPart positionPart) {
+        if(spritePart.getAlpha()==1) {
+            Texture texture = this.assetManager.get(spritePart.getSpritePath(), Texture.class);
+            Sprite sprite = new Sprite(texture);
+            sprite.setX(positionPart.getX());
+            sprite.setY(positionPart.getY());
+            sprite.setAlpha(spritePart.getAlpha());
+            sprite.setSize(spritePart.getWidth(), spritePart.getHeight());
+            this.spriteBatch.begin();
+            sprite.draw(this.spriteBatch);
+            this.spriteBatch.end();
+        }
+    }
 
 }

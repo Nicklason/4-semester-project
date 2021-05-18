@@ -8,16 +8,7 @@ import java.io.File;
 
 public class BulletPlugin extends BulletCore implements PluginService {
     @Override
-    public void load() {
-        Entity bullet = new Bullet();
-        bullet.addPart(new SpritePart("Bullets/bullet.png", 16,16,2));
-        bullet.addPart(new PositionPart(-999999, -999999));
-        bullet.addPart(new TimePart(0.01f));
-        bullet.addPart(new DirectionPart(false,false, false, false));
-        bullet.addPart(new MovingPart(0));
-        this.mapService.addEntity(bullet);
-
-    }
+    public void load() {}
 
     @Override
     public void unload() {
