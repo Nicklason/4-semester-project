@@ -57,6 +57,14 @@ public class MovingPart implements EntityPart {
             deltaX += changeHorizontal * this.stepSize;
             deltaY += changeVertical * this.stepSize;
         }
+
+        // Remember which way the player was walking
+        if (changeHorizontal != 0 || changeVertical != 0) {
+            directionPart.setLookingUp(directionPart.getMovingUp());
+            directionPart.setLookingDown(directionPart.getMovingDown());
+            directionPart.setLookingLeft(directionPart.getMovingLeft());
+            directionPart.setLookingRight(directionPart.getMovingRight());
+        }
         
         // x and y should be a float to move the correct distance
         // diagonally, but it is probably not that important anyway; if stepSize
