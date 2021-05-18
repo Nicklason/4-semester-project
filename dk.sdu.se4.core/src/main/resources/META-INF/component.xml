@@ -26,4 +26,8 @@
                interface="dk.sdu.se4.common.service.PostProcessorService"
                name="PostProcessorService" policy="dynamic" unbind="removePostProcessorService" />
 
+    <reference bind="addGameData" cardinality="0..n"
+               interface="dk.sdu.se4.common.service.GameDataService"
+               name="GameData" policy="dynamic" unbind="removeGameData" />
+
 </scr:component>
