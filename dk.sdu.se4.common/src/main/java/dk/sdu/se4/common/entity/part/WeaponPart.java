@@ -16,9 +16,9 @@ public class WeaponPart implements EntityPart {
     private int totalBullets;
     private int magazineSize;
     private int currentMagazine;
-    private int fireRate;
+    private float fireRate;
 
-    public WeaponPart(boolean type, int totalBullets, int magazineSize, int fireRate) {
+    public WeaponPart(boolean type, int totalBullets, int magazineSize, float fireRate) {
         this.type = type;
         this.totalBullets = totalBullets;
         this.magazineSize = magazineSize;
@@ -69,5 +69,8 @@ public class WeaponPart implements EntityPart {
     public void process(Entity entity) {
     }
     
-    
+    public float getFireRate() {
+        return fireRate;
+    }
+
 }
