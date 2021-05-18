@@ -61,7 +61,7 @@ public class GameScreen extends SpriteHandler implements Screen {
         OrthographicCamera cam = (OrthographicCamera) game.getCamera();
         cam.position.set(game.getWidth()/2, game.getHeight()/2,0);
         //this.game.getBatch().setProjectionMatrix(game.getCamera().combined);
-        this.gameData.setDeltaTime(Gdx.graphics.getDeltaTime());
+        this.game.getGameData().setDeltaTime(Gdx.graphics.getDeltaTime());
 
         
         //translate camera on keypresses
@@ -95,7 +95,7 @@ public class GameScreen extends SpriteHandler implements Screen {
             for(Entity e : this.mapService.getEntities()) {
                 TimePart tp = e.getPart(TimePart.class);
                 if(tp != null) {
-                    tp.removeTime(this.gameData.getDeltaTime());
+                    tp.removeTime(this.game.getGameData().getDeltaTime());
                 }
             }
             updateProcessors();
