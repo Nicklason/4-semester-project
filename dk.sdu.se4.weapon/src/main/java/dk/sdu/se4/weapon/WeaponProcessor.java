@@ -64,13 +64,16 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                             wp.removeBullet();
                             tp.setTime((float) 0.2);
 
-                            Entity bullet = new Bullet();
-                            bullet.addPart(new PositionPart(pp.getX(), pp.getY()));
-                            bullet.addPart(new ImagePart(new File("../dk.sdu.se4.bullet/src/main/resources/img/bullet.png"), 10, 10));
-                            bullet.addPart(new DirectionPart(dp.getMovingUp(), dp.getMovingDown(), dp.getMovingLeft(), dp.getMovingRight()));
-                            bullet.addPart(new MovingPart(15));
-                            bullet.addPart(new TimePart(3));
-                            this.mapService.addEntity(bullet);
+                        // Add bullet here
+                        Entity bullet = new Bullet();
+                        bullet.addPart(new PositionPart(pp.getX(), pp.getY()));
+                        bullet.addPart(sp);
+                        bullet.addPart(new TimePart(3));
+                        bullet.addPart(new DirectionPart(dp.getLookingUp(), dp.getLookingDown(), dp.getLookingLeft(), dp.getLookingRight()));
+                        bullet.addPart(new MovingPart(4));
+                        bullet.addPart(new CollisionPart(4, 4));
+                        bullet.addPart(new FriendlyPart(true));
+                        this.mapService.addEntity(bullet);
                     }
                     else {
                         // Add melee here
