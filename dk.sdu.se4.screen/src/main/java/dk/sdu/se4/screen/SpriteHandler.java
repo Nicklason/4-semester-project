@@ -6,20 +6,25 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.*;
 import dk.sdu.se4.common.entity.part.PositionPart;
-import dk.sdu.se4.common.service.MapService;
 
 public class SpriteHandler {
 
   protected static final AssetManager assetManager = new AssetManager();
+  private String[] assetPaths = new String[]{
+    "Bullets/bullet.png",
+    "Enemy/zombi.png",
+    "Player/player.png",
+    "UI/UI.png",
+    "UI/Background.png",
+    "UI/HeadLine.png",
+    "UI/play.png",
+    "UI/exit.png"
+  };
 
-
-  public void loadAssets(MapService mapService) {
-    for (Entity entity : mapService.getEntities()) {
-      SpritePart spritePart = entity.getPart(SpritePart.class);
-      if (spritePart != null) {
-        assetManager.load(spritePart.getSpritePath(), Texture.class);
+  public void loadAssets() {
+    for (int i = 0; i < assetPaths.length; i++) {
+        assetManager.load(assetPaths[i], Texture.class);
         assetManager.update();
-      }
     }
     assetManager.finishLoading();
   }

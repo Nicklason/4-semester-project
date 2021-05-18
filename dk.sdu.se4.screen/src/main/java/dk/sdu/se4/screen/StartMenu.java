@@ -42,7 +42,7 @@ public class StartMenu extends SpriteHandler implements Screen {
         this.playsound = Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/ZombiePlay.mp3"));
         this.exitsound = Gdx.audio.newSound(Gdx.files.internal("../dk.sdu.se4.screen/src/main/resources/sound/Zombieexit.mp3"));
         this.quicksort = new QuickSort();
-        this.loadAssets(this.game.getMapService());
+        this.loadAssets();
     }
 
     public void show() {

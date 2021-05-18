@@ -45,7 +45,7 @@ public class GameScreen extends SpriteHandler implements Screen {
 
     }
     this.quicksort= new QuickSort();
-    loadAssets(this.mapService);
+    loadAssets();
   }
 
   @Override
