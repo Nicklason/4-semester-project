@@ -70,9 +70,6 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         weapon.addPart(weaponPart);
         float fireRate = weaponPart.getFireRate();
         weapon.addPart(new TimePart(fireRate));
-        this.mapService.addEntity(weapon);
-        
-        
         return weapon;
     }
     

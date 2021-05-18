@@ -19,8 +19,10 @@ import java.io.File;
  * @author steff
  */
 public class WeaponProcessor extends WeaponCore implements ProcessorService {
-    
     private GameInput gameInput = null;
+    boolean reloaded = false;
+    int reloadTime = 2;
+    private SpritePart sp = new SpritePart("Bullets/bullet.png", 4,4,2);
     
     public void addGameInput(GameInput gameInput) {
         this.gameInput = gameInput;
@@ -29,7 +31,7 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
     public void removeGameInput(GameInput gameInput) {
         this.gameInput = null;
     }
-    private SpritePart sp = new SpritePart("Bullets/bullet.png", 4,4,2);
+
     @Override
     public void process() {
         if (this.mapService != null) {
@@ -37,8 +39,8 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                 WeaponPart wp = e.getPart(WeaponPart.class);
                 PositionPart pp = e.getPart(PositionPart.class);
                 DirectionPart dp = e.getPart(DirectionPart.class);
+                TimePart tp = e.getPart(TimePart.class);
                 if(this.gameInput.isPressed(GameInputKeys.SPACE)) {
-                    //TODO use wp firerate for shooting interval
                     if (wp.getType()) {
                         if(wp.getTotalBullets() == 0) {
                             //Weapon out of ammo
@@ -46,28 +48,41 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                             continue;
                         }
                         if(wp.getCurrentMagazine() == 0) {
-                            wp.reload();
-                        }
-                        wp.removeBullet();
+                            System.out.println("no bullets need reloading");
+                            if(reloaded == false) {
+                                tp.setTime(reloadTime);
+                                reloaded = true;
+                            }
 
-                        // Add bullet here
-                        Entity bullet = new Bullet();
-                        bullet.addPart(new PositionPart(pp.getX(), pp.getY()));
-                        bullet.addPart(sp);
-                        bullet.addPart(new TimePart(3));
-                        bullet.addPart(new DirectionPart(dp.getLookingUp(), dp.getLookingDown(), dp.getLookingLeft(), dp.getLookingRight()));
-                        bullet.addPart(new MovingPart(4));
-                        bullet.addPart(new CollisionPart(4, 4));
-                        bullet.addPart(new FriendlyPart(true));
-                        this.mapService.addEntity(bullet);
-                    }
-                    else {
+                            if(tp.getTime() <= 0) {
+                                wp.reload();
+                                float fireRate = wp.getFireRate();
+                                tp.setTime(fireRate);
+                                reloaded = false;
+                            }
+                            continue;
+                        }
+
+                        if(tp.getTime() <= 0) {
+                            wp.removeBullet();
+                            tp.setTime((float) 0.2);
+
+                            // Add bullet here
+                            Entity bullet = new Bullet();
+                            bullet.addPart(new PositionPart(pp.getX(), pp.getY()));
+                            bullet.addPart(sp);
+                            bullet.addPart(new TimePart(3));
+                            bullet.addPart(new DirectionPart(dp.getLookingUp(), dp.getLookingDown(), dp.getLookingLeft(), dp.getLookingRight()));
+                            bullet.addPart(new MovingPart(4));
+                            bullet.addPart(new CollisionPart(4, 4));
+                            bullet.addPart(new FriendlyPart(true));
+                            this.mapService.addEntity(bullet);
+                        }
+                    } else {
                         // Add melee here
                     }
                 }
             }
-
         }
     }
-
 }
