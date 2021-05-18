@@ -10,9 +10,19 @@ import dk.sdu.se4.common.service.GameDataService;
 public class GameData implements GameDataService {
 
     protected int points = 0;
+    protected float deltaTime;
 
     public int getPoints() {
         return this.points;
+    }
+    
+    
+    public void setDeltaTime(float deltaTime) {
+        this.deltaTime = deltaTime;
+    }
+
+    public float getDeltaTime() {
+        return this.deltaTime;
     }
 
     public void addPoints(int points) {
