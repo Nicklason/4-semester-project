@@ -1,11 +1,13 @@
 package dk.sdu.se4.screen;
 
+import static com.badlogic.gdx.graphics.Color.toFloatBits;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -28,6 +30,7 @@ public class GameScreen extends SpriteHandler implements Screen {
     private Stage stage;
     private SpriteBatch spriteBatch;
     private QuickSort quicksort;
+    private BitmapFont bitmapFont;
 
     int x = 0;
     int y = 0;
@@ -37,6 +40,7 @@ public class GameScreen extends SpriteHandler implements Screen {
         this.game=gameCore;
         this.stage=new Stage();
         this.spriteBatch = new SpriteBatch();
+        this.bitmapFont = new BitmapFont();
         if(this.mapService==null){
           this.mapService=gameCore.getMapService();
 
@@ -138,6 +142,7 @@ public class GameScreen extends SpriteHandler implements Screen {
         for (Entity entity : this.mapService.getEntities()) {
             SpritePart spritePart = entity.getPart(SpritePart.class);
             PositionPart positionPart = entity.getPart(PositionPart.class);
+            
             if (spritePart != null && positionPart != null) {
                 entityList.add(entity);
             }
@@ -149,7 +154,10 @@ public class GameScreen extends SpriteHandler implements Screen {
         for (Entity entity : entityList) {
             SpritePart spritePart = entity.getPart(SpritePart.class);
             PositionPart positionPart = entity.getPart(PositionPart.class);
-            if (spritePart.getLayer()<100){
+            TextPart textPart = entity.getPart(TextPart.class);
+            if (textPart != null) {
+                drawText(textPart, positionPart);
+            } else if (spritePart.getLayer()<100){
                 drawSprite(spritePart, positionPart);
             }
 
@@ -220,6 +228,14 @@ public class GameScreen extends SpriteHandler implements Screen {
             sprite.draw(this.spriteBatch);
             this.spriteBatch.end();
         }
+    }
+
+    private void drawText(TextPart textPart, PositionPart positionPart) {
+        bitmapFont.setColor(toFloatBits(textPart.getColorRed(), textPart.getColorGreen(), textPart.getColorBlue(), textPart.getColorAlpha()));
+        bitmapFont.setScale(textPart.getScaleX(), textPart.getScaleY());
+        this.spriteBatch.begin();
+        bitmapFont.draw(this.spriteBatch, textPart.getText(), positionPart.getX(), positionPart.getY());
+        this.spriteBatch.end();
     }
 
 }

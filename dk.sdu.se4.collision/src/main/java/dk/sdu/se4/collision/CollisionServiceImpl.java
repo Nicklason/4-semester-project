@@ -5,6 +5,8 @@ import dk.sdu.se4.common.entity.part.CollisionPart;
 import dk.sdu.se4.common.entity.part.FriendlyPart;
 import dk.sdu.se4.common.entity.part.LifePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
+import dk.sdu.se4.common.entity.part.TextPart;
+import dk.sdu.se4.common.service.GameDataService;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.commonbullet.Bullet;
@@ -12,6 +14,7 @@ import java.util.Collection;
 
 public class CollisionServiceImpl implements PostProcessorService {
     private MapService mapService = null;
+    private GameDataService gameDataService = null;
     
     public void addMapService(MapService mapService) {
         this.mapService = mapService;
@@ -19,6 +22,14 @@ public class CollisionServiceImpl implements PostProcessorService {
     
     public void removeMapService(MapService mapService) {
         this.mapService = null;
+    }
+    
+    public void addGameDataService(GameDataService gameDataService) {
+        this.gameDataService = gameDataService;
+    }
+    
+    public void removeGameDataService(GameDataService gameDataService) {
+        this.gameDataService = null;
     }
     
     @Override
@@ -68,8 +79,6 @@ public class CollisionServiceImpl implements PostProcessorService {
                     if (aIsBullet || b.getClass().equals(Bullet.class)) {
                         // Bullet is colliding with enemy
                         
-                        // Get health parts for both a and b
-                        
                         LifePart enemyLifePart = (aIsBullet ? b : a).getPart(LifePart.class);
                         
                         if (aIsBullet) {
@@ -86,17 +95,21 @@ public class CollisionServiceImpl implements PostProcessorService {
                             } else {
                                 this.mapService.removeEntity(a);
                             }
-                            break;
+                            this.gameDataService.addPoints(1);
                         }
-                        
-                        break;
 
-                        // Deal damage to enemy
-                        // Deal damage to bullet
-                        
-                        // Remove bullet / enemy if they have 0 health
+                        break;
                     }
                 }
+            }
+        }
+        
+        for (Entity e : this.mapService.getEntities()) {
+            TextPart tp = e.getPart(TextPart.class);
+            if (tp != null && tp.getId().equals("playerScore")) {
+                System.out.println(this.gameDataService);
+                tp.setText(String.valueOf(this.gameDataService.getPoints()));
+                break;
             }
         }
     }
