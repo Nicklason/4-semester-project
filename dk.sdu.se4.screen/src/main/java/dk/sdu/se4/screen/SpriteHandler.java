@@ -9,20 +9,16 @@ import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.MapService;
 
 public class SpriteHandler {
+    protected static final AssetManager assetManager = new AssetManager();
 
-  protected static final AssetManager assetManager = new AssetManager();
-
-
-  public void loadAssets(MapService mapService) {
-    for (Entity entity : mapService.getEntities()) {
-      SpritePart spritePart = entity.getPart(SpritePart.class);
-      if (spritePart != null) {
-        assetManager.load(spritePart.getSpritePath(), Texture.class);
-        assetManager.update();
-      }
+    public void loadAssets(MapService mapService) {
+        for (Entity entity : mapService.getEntities()) {
+            SpritePart spritePart = entity.getPart(SpritePart.class);
+            if (spritePart != null) {
+              assetManager.load(spritePart.getSpritePath(), Texture.class);
+              assetManager.update();
+            }
+        }
+        assetManager.finishLoading();
     }
-    assetManager.finishLoading();
-  }
-
-
 }
