@@ -60,13 +60,19 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         
         PositionPart playerPositionPart = player.getPart(PositionPart.class);
         DirectionPart playerDirectionPart = player.getPart(DirectionPart.class);
+        WeaponPart weaponPart = new WeaponPart(true, 100, 20, (float) 0.2);
         
         // The weapon should have the same position and direction as the player
         // it is attached to
         weapon.addPart(playerPositionPart);
         weapon.addPart(playerDirectionPart);
         // true means shooting gun gun
-        weapon.addPart(new WeaponPart(true, 100, 20, 5));
+        weapon.addPart(weaponPart);
+        float fireRate = weaponPart.getFireRate();
+        weapon.addPart(new TimePart(fireRate));
+        this.mapService.addEntity(weapon);
+        
+        
         return weapon;
     }
     
