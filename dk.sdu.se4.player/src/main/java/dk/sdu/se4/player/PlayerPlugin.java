@@ -44,11 +44,11 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
         int y = 200;
         
         player.addPart(new PositionPart(x, y));
-        player.addPart(new MovingPart(10));
+        player.addPart(new MovingPart(3));
         player.addPart(new DirectionPart(false, false, false, false));
         player.addPart(new LifePart(100));
         player.addPart(new SpritePart("Player/player.png",16,16,1));
-        player.addPart(new CollisionPart(128, 128));
+        player.addPart(new CollisionPart(16, 16));
         player.addPart(new FriendlyPart(true));
         
         
