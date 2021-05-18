@@ -29,7 +29,7 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
     public void removeGameInput(GameInput gameInput) {
         this.gameInput = null;
     }
-    private SpritePart sp = new SpritePart("Bullets/bullet.png", 16,16,2);
+    private SpritePart sp = new SpritePart("Bullets/bullet.png", 4,4,2);
     @Override
     public void process() {
         if (this.mapService != null) {
@@ -56,8 +56,8 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                         bullet.addPart(sp);
                         bullet.addPart(new TimePart(3));
                         bullet.addPart(new DirectionPart(dp.getMovingUp(), dp.getMovingDown(), dp.getMovingLeft(), dp.getMovingRight()));
-                        bullet.addPart(new MovingPart(15));
-                        bullet.addPart(new CollisionPart(10, 10));
+                        bullet.addPart(new MovingPart(4));
+                        bullet.addPart(new CollisionPart(4, 4));
                         bullet.addPart(new FriendlyPart(true));
                         this.mapService.addEntity(bullet);
                     }
