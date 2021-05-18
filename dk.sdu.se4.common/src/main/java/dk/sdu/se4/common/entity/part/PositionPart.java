@@ -35,4 +35,12 @@ public class PositionPart implements EntityPart{
 
     @Override
     public void process(Entity entity) {}
+
+    @Override
+    public String toString() {
+        return "PositionPart{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

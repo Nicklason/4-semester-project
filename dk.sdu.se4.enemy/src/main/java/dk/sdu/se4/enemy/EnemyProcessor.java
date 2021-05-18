@@ -24,34 +24,38 @@ import java.util.Collection;
 public class EnemyProcessor extends EnemyCore implements ProcessorService {
 
     private AIControlSystem aiControlSystem = null;
-    private Entity target;
+    private int count =0;
 
     @Override
     public void process() {
-        if (this.mapService != null) {
+        Entity target=null;
+        if (this.mapService != null && count ==120) {
             if (this.aiControlSystem!=null){
                 Collection<Entity> pl = this.mapService.getEntities(Player.class);
                 for (Entity p: pl){
-                    this.target = p;
-                    aiControlSystem.grideBulder(this.target);
+                    target = p;
+                    aiControlSystem.grideBulder(target);
                 }
 
             }
             for (Entity e : this.mapService.getEntities(Enemy.class)) {
                 MovingPart mp = e.getPart(MovingPart.class);
                 DirectionPart dp = e.getPart(DirectionPart.class);
-                if (this.aiControlSystem!=null){
-                    PositionPart aiPos= this.aiControlSystem.pathFinding(e,this.target);
-                    if (aiPos!=null){
+                if (this.aiControlSystem!=null ){
+                    PositionPart aiPos= this.aiControlSystem.pathFinding(e,target);
+                    System.out.println(aiPos.toString());
+                    if (aiPos!=null ){
                         PositionPart ep= e.getPart(PositionPart.class);
-                        ep.translate(aiPos.getX(), aiPos.getY());
+                        ep.translate(aiPos.getX()+ ep.getX(),aiPos.getY()+ ep.getY());
+                        this.count = 0;
                     }
 
                 }
             }
         }else{
-            log.error("mapservices is null");
+            //log.error("mapservices is null");
         }
+        count++;
     }
 
 
