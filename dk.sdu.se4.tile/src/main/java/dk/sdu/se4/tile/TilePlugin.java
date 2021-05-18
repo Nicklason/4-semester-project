@@ -10,7 +10,7 @@ import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.PluginService;
-import java.io.File;
+import dk.sdu.se4.common.entity.part.SpritePart;
 
 /**
  *
@@ -24,14 +24,14 @@ public class TilePlugin extends TileCore implements PluginService {
     @Override
     public void load() {
        if(this.mapService != null) {
-           File file = new File("../dk.sdu.se4.tile/src/main/resources/img/grass_x4.png");
+           SpritePart sp = new SpritePart("Tile/grass.png", 64, 44, 0);
            for(int i = 0; i < numberOfTiles; i++) {
                int x = i * 64;
                for (int j = 0; j < numberOfTiles; j++) {
                    int y = j * 44;
                    tile = new Tile();
                    tile.addPart(new PositionPart(x, y));
-                   tile.addPart(new ImagePart(file, 64, 44));
+                   tile.addPart(sp);
                    this.mapService.addEntity(tile);
                }
            }

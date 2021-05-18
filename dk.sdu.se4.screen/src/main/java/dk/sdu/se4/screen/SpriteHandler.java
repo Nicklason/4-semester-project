@@ -13,7 +13,9 @@ public class SpriteHandler {
       "UI/Background.png",
       "UI/HeadLine.png",
       "UI/play.png",
-      "UI/exit.png"
+      "UI/exit.png",
+      "Tile/grass.png",
+      "Tile/lake.png"
     };
 
     public void loadAssets() {

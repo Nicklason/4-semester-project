@@ -29,8 +29,8 @@ public class GameScreen extends SpriteHandler implements Screen {
     private SpriteBatch spriteBatch;
     private QuickSort quicksort;
 
-    int x = 0;
-    int y = 0;
+    int x = 1000;
+    int y = 1000;
     private static final double DIAGONAL_SCALING_CONSTANT = Math.sqrt(2) / 2;
 
     public GameScreen(GameService gameCore) {
@@ -55,8 +55,8 @@ public class GameScreen extends SpriteHandler implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // set the position for the cammara
 
-        OrthographicCamera cam = (OrthographicCamera) game.getCamera();
-        cam.position.set(game.getWidth()/2, game.getHeight()/2,0);
+        OrthographicCamera cam = this.game.getCamera();
+        //cam.position.set(this.game.getWidth()/2, this.game.getHeight()/2,0);
         //this.game.getBatch().setProjectionMatrix(game.getCamera().combined);
         this.game.getGameDataService().setDeltaTime(Gdx.graphics.getDeltaTime());
 
@@ -88,7 +88,6 @@ public class GameScreen extends SpriteHandler implements Screen {
         this.game.getBatch().end();
         // the Mapservices validation for running the program
         if ( this.mapService != null) {
-            // Hack for removeTime in TimePart :::: FIX THIS PLZ SOMEONE plez
             for(Entity e : this.mapService.getEntities()) {
                 TimePart tp = e.getPart(TimePart.class);
                 if(tp != null) {
