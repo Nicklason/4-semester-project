@@ -55,7 +55,7 @@ public class WeaponProcessor extends WeaponCore implements ProcessorService {
                         bullet.addPart(new PositionPart(pp.getX(), pp.getY()));
                         bullet.addPart(sp);
                         bullet.addPart(new TimePart(3));
-                        bullet.addPart(new DirectionPart(dp.getMovingUp(), dp.getMovingDown(), dp.getMovingLeft(), dp.getMovingRight()));
+                        bullet.addPart(new DirectionPart(dp.getLookingUp(), dp.getLookingDown(), dp.getLookingLeft(), dp.getLookingRight()));
                         bullet.addPart(new MovingPart(4));
                         bullet.addPart(new CollisionPart(4, 4));
                         bullet.addPart(new FriendlyPart(true));
