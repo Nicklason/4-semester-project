@@ -26,6 +26,8 @@ public interface GameService {
  List<PostProcessorService> getPostProcessorServiceslist();
 
   MapService getMapService();
+  
+  GameDataService getGameDataService();
 
   OrthographicCamera getCamera();
 }

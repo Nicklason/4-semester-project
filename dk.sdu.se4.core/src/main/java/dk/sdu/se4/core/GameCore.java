@@ -29,6 +29,7 @@ public final class GameCore extends Game implements GameService {
     private int width = 800;
     private int height = 600;
     private OrthographicCamera camera;
+    private GameDataService gameData;
     
     public GameCore() {
         logger.info("Creating {}", this);
@@ -170,10 +171,20 @@ public final class GameCore extends Game implements GameService {
         return this.mapService;
     }
 
+    public GameDataService getGameDataService() {
+        return this.gameData;
+    }
+
     @Override
     public OrthographicCamera getCamera() {
         return this.camera;
     }
 
+    public void addGameData(GameDataService gameData) {
+        this.gameData = gameData;
+    }
 
+    public void removeGameData(GameDataService gameData) {
+        this.gameData = null;
+    }
 }
