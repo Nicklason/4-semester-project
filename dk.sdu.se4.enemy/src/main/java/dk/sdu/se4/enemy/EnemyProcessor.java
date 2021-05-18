@@ -8,7 +8,10 @@ package dk.sdu.se4.enemy;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.DirectionPart;
 import dk.sdu.se4.common.entity.part.MovingPart;
+import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.ProcessorService;
+import dk.sdu.se4.player.Player;
+import java.util.Collection;
 
 /**
  *
@@ -18,30 +21,49 @@ public class EnemyProcessor extends EnemyCore implements ProcessorService {
 
     @Override
     public void process() {
-        if (this.mapService != null) {
-            for (Entity e : this.mapService.getEntities(Enemy.class)) {
-                MovingPart mp = e.getPart(MovingPart.class);
-                DirectionPart dp = e.getPart(DirectionPart.class);
-                int choise = (int) (Math.random() * 100) + 1;
-                
-                dp.setMovingUp(false);
-                dp.setMovingDown(false);
-                dp.setMovingLeft(false);
-                dp.setMovingRight(false);
-                
-                if (choise < 20) {
-                    dp.setMovingUp(true);
-                } else if (choise > 30 && choise < 50) {
-                    dp.setMovingDown(true);
-                } else if (choise > 60 && choise < 75) {
-                    dp.setMovingLeft(true);
-                } else if (choise > 90) {
-                    dp.setMovingRight(true);
-                }
-                mp.process(e);
+        if (this.mapService == null) {
+            return;
+        }
+
+        Collection<Entity> playerEntities = this.mapService.getEntities(Player.class);
+
+        if (playerEntities.size() != 1) {
+            return;
+        }
+        
+        Entity player = playerEntities.iterator().next();
+        
+        PositionPart playerPositionPart = player.getPart(PositionPart.class);
+
+        for (Entity e : this.mapService.getEntities(Enemy.class)) {
+            MovingPart mp = e.getPart(MovingPart.class);
+            DirectionPart dp = e.getPart(DirectionPart.class);
+            PositionPart pp = e.getPart(PositionPart.class);
+            
+            boolean movingUp = false;
+            boolean movingDown = false;
+            boolean movingLeft = false;
+            boolean movingRight = false;
+            
+            // Figure out where player is relative to enemy
+            if (playerPositionPart.getY() > pp.getY()) {
+                movingUp = true;
+            } else if (playerPositionPart.getY() < pp.getY()) {
+                movingDown = true;
             }
-        }else{
-            log.error("mapservices is null");
+            
+            if (playerPositionPart.getX() > pp.getX()) {
+                movingRight = true;
+            } else if (playerPositionPart.getX() < pp.getX()) {
+                movingLeft = true;
+            }
+
+            dp.setMovingUp(movingUp);
+            dp.setMovingDown(movingDown);
+            dp.setMovingLeft(movingLeft);
+            dp.setMovingRight(movingRight);
+            
+            mp.process(e);
         }
     }
 }
