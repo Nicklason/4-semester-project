@@ -7,9 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.*;
@@ -29,8 +27,10 @@ public class GameScreen extends SpriteHandler implements Screen {
     private Texture ui;
     private Stage stage;
     private SpriteBatch spriteBatch;
+    private SpriteBatch animationBatch;
     private QuickSort quicksort;
     private BitmapFont bitmapFont;
+    float statetime=0f;
 
     int x = 1000;
     int y = 1000;
@@ -40,6 +40,7 @@ public class GameScreen extends SpriteHandler implements Screen {
         this.game=gameCore;
         this.stage=new Stage();
         this.spriteBatch = new SpriteBatch();
+        this.animationBatch = new SpriteBatch();
         this.bitmapFont = new BitmapFont();
         if(this.mapService==null){
           this.mapService=gameCore.getMapService();
@@ -154,10 +155,13 @@ public class GameScreen extends SpriteHandler implements Screen {
             SpritePart spritePart = entity.getPart(SpritePart.class);
             PositionPart positionPart = entity.getPart(PositionPart.class);
             TextPart textPart = entity.getPart(TextPart.class);
+            AnimationPart animationPart = entity.getPart(AnimationPart.class);
             if (textPart != null) {
                 drawText(textPart, positionPart);
             } else if (spritePart.getLayer()<100){
                 drawSprite(spritePart, positionPart);
+            } else if(animationPart!=null){
+                drawAnimation(animationPart, positionPart);
             }
 
         }
@@ -235,6 +239,18 @@ public class GameScreen extends SpriteHandler implements Screen {
         this.spriteBatch.begin();
         bitmapFont.draw(this.spriteBatch, textPart.getText(), positionPart.getX(), positionPart.getY());
         this.spriteBatch.end();
+    }
+
+    private void drawAnimation(AnimationPart animationPart, PositionPart positionPart){
+        if (animationPart!=null){
+            this.animationBatch.begin();
+            TextureAtlas atlas = new TextureAtlas(Gdx.files.internal(animationPart.getPath()));
+            Animation animation = new Animation(1/12f, atlas.getRegions());
+
+            this.animationBatch.draw(animation.getKeyFrame(statetime,true), positionPart.getX(), positionPart.getY());
+            this.animationBatch.end();
+        }
+
     }
 
 }

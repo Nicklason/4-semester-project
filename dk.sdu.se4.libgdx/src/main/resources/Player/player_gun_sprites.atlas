@@ -1,0 +1,173 @@
+player_gun_sprites.png
+size: 408, 408
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+pre_1g
+  rotate: false
+  xy: 0, 0
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+pre_2g
+  rotate: false
+  xy: 68, 0
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+pre_3g
+  rotate: false
+  xy: 136, 0
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+pre_4g
+  rotate: false
+  xy: 204, 0
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+pre_5g
+  rotate: false
+  xy: 272, 0
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prn_1g
+  rotate: false
+  xy: 340, 0
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prn_2g
+  rotate: false
+  xy: 0, 84
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prn_3g
+  rotate: false
+  xy: 68, 84
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prn_4g
+  rotate: false
+  xy: 136, 84
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prn_5g
+  rotate: false
+  xy: 204, 84
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prs_1g
+  rotate: false
+  xy: 272, 84
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prs_2g
+  rotate: false
+  xy: 340, 84
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prs_3g
+  rotate: false
+  xy: 0, 168
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prs_4g
+  rotate: false
+  xy: 68, 168
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prs_5g
+  rotate: false
+  xy: 136, 168
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prw_1g
+  rotate: false
+  xy: 204, 168
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prw_2g
+  rotate: false
+  xy: 272, 168
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prw_3g
+  rotate: false
+  xy: 340, 168
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prw_4g
+  rotate: false
+  xy: 0, 252
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+prw_5g
+  rotate: false
+  xy: 68, 252
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+pse_g
+  rotate: false
+  xy: 136, 252
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+psn_g
+  rotate: false
+  xy: 204, 252
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+pss_g
+  rotate: false
+  xy: 272, 252
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
+psw_g
+  rotate: false
+  xy: 340, 252
+  size: 68, 84
+  orig: 68, 84
+  offset: 0, 0
+  index: -1
