@@ -107,7 +107,6 @@ public class CollisionServiceImpl implements PostProcessorService {
         for (Entity e : this.mapService.getEntities()) {
             TextPart tp = e.getPart(TextPart.class);
             if (tp != null && tp.getId().equals("playerScore")) {
-                System.out.println(this.gameDataService);
                 tp.setText(String.valueOf(this.gameDataService.getPoints()));
                 break;
             }
