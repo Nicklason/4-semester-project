@@ -22,8 +22,8 @@ import java.util.Collection;
  */
 public class EnemyProcessor extends EnemyCore implements ProcessorService {
 
-    private AIControlSystem aiControlSystem = null;
-    private int count =0;
+    //    private AIControlSystem aiControlSystem = null;
+    private int count = 0;
 
     @Override
     public void process() {
@@ -36,28 +36,28 @@ public class EnemyProcessor extends EnemyCore implements ProcessorService {
         if (playerEntities.size() != 1) {
             return;
         }
-        
+
         Entity player = playerEntities.iterator().next();
-        
+
         PositionPart playerPositionPart = player.getPart(PositionPart.class);
 
         for (Entity e : this.mapService.getEntities(Enemy.class)) {
             MovingPart mp = e.getPart(MovingPart.class);
             DirectionPart dp = e.getPart(DirectionPart.class);
             PositionPart pp = e.getPart(PositionPart.class);
-            
+
             boolean movingUp = false;
             boolean movingDown = false;
             boolean movingLeft = false;
             boolean movingRight = false;
-            
+
             // Figure out where player is relative to enemy
             if (playerPositionPart.getY() > pp.getY()) {
                 movingUp = true;
             } else if (playerPositionPart.getY() < pp.getY()) {
                 movingDown = true;
             }
-            
+
             if (playerPositionPart.getX() > pp.getX()) {
                 movingRight = true;
             } else if (playerPositionPart.getX() < pp.getX()) {
@@ -68,20 +68,21 @@ public class EnemyProcessor extends EnemyCore implements ProcessorService {
             dp.setMovingDown(movingDown);
             dp.setMovingLeft(movingLeft);
             dp.setMovingRight(movingRight);
-            
+
             mp.process(e);
         }
         count++;
     }
 
 
-    public void addAIControlSystem(AIControlSystem aIControlSystem) {
-        log.debug("Add AIControlSystem on {}", this.getClass());
-        this.aiControlSystem = aIControlSystem;
-    }
 
-    public void removeAIControlSystem(AIControlSystem aiControlSystem) {
-        log.debug("Remove AIControlSystem from {}", this.getClass());
-        this.aiControlSystem = null;
-    }
+//    public void addAIControlSystem(AIControlSystem aIControlSystem) {
+//        log.debug("Add AIControlSystem on {}", this.getClass());
+//        this.aiControlSystem = aIControlSystem;
+//    }
+//
+//    public void removeAIControlSystem(AIControlSystem aiControlSystem) {
+//        log.debug("Remove AIControlSystem from {}", this.getClass());
+//        this.aiControlSystem = null;
+//    }
 }

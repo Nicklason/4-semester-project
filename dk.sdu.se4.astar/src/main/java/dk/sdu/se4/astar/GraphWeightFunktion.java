@@ -13,6 +13,8 @@ public class GraphWeightFunktion {
   }
 
   public double get(GraphNode tail, GraphNode head ){
-    return this.map.get(tail).get(head);
+    double a = this.map.get(tail).get(head);
+    System.out.println(a);
+    return a;
   }
 }
