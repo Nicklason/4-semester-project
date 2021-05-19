@@ -8,4 +8,8 @@
     <reference bind="addMapService" cardinality="0..n"
                interface="dk.sdu.se4.common.service.MapService"
                name="MapService" policy="dynamic" unbind="removeMapService"/>
+    
+    <reference bind="addGameDataService" cardinality="0..n"
+               interface="dk.sdu.se4.common.service.GameDataService"
+               name="GameData" policy="dynamic" unbind="removeGameDataService" />
 </scr:component>
