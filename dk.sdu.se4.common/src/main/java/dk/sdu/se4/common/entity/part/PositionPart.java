@@ -32,6 +32,11 @@ public class PositionPart implements EntityPart{
         this.x += deltaX;
         this.y += deltaY;
     }
+    
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
     @Override
     public void process(Entity entity) {}

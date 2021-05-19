@@ -32,8 +32,10 @@ public class GameScreen extends SpriteHandler implements Screen {
     private QuickSort quicksort;
     private BitmapFont bitmapFont;
 
-    int x = 1000;
-    int y = 1000;
+    int x = 242;
+    int y = 229;
+    int oldX;
+    int oldY;
     private static final double DIAGONAL_SCALING_CONSTANT = Math.sqrt(2) / 2;
 
     public GameScreen(GameService gameCore) {
@@ -63,37 +65,54 @@ public class GameScreen extends SpriteHandler implements Screen {
         //cam.position.set(this.game.getWidth()/2, this.game.getHeight()/2,0);
         //this.game.getBatch().setProjectionMatrix(game.getCamera().combined);
         this.game.getGameDataService().setDeltaTime(Gdx.graphics.getDeltaTime());
-
+        
         
         //translate camera on keypresses
-        int oldX = x;
-        int oldY = y;
+        oldX = x;
+        oldY = y;
+
         if(Gdx.input.isKeyPressed(Input.Keys.W)) {
-            y+=10;
+            y+=3;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-            y-=10;
+            y-=3;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-            x-=10;
+            x-=3;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.D)) {
-            x+=10;
+            x+=3;
         }
-        if(oldX!=x && oldY!=y) {
+        if(oldX != x && oldY != y) {
             x = (int) Math.round((x-oldX) * DIAGONAL_SCALING_CONSTANT) + oldX;
             y = (int) Math.round((y-oldY) * DIAGONAL_SCALING_CONSTANT) + oldY;
         }
-        cam.translate(x, y);
+        cam.position.set(x, y, 0.0f);
         cam.update();
-        this.game.getBatch().setProjectionMatrix(cam.combined);
-        // starting the drawing
-        this.game.getBatch().begin();
-        this.game.getBatch().end();
+        spriteBatch.setProjectionMatrix(cam.combined);
+        
+        if(this.mapService != null) {
+            for(Entity e : this.mapService.getEntities()) {
+                
+            }
+        }
+
         // the Mapservices validation for running the program
         if ( this.mapService != null) {
             for(Entity e : this.mapService.getEntities()) {
                 TimePart tp = e.getPart(TimePart.class);
+                UIPart uip = e.getPart(UIPart.class);
+                TextPart tex = e.getPart(TextPart.class);
+                if(tex != null) {
+                    PositionPart p1 = e.getPart(PositionPart.class);
+                    p1.setPosition(x - (400-95), y + (574-300));
+                }
+                if(uip != null) {
+                    PositionPart p2 = e.getPart(PositionPart.class);
+                    if(uip.getName() == "UI") {
+                        p2.setPosition(x - 400, y - 300);
+                    }
+                }
                 if(tp != null) {
                     tp.removeTime(this.game.getGameDataService().getDeltaTime());
                 }
