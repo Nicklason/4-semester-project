@@ -9,7 +9,7 @@ import dk.sdu.se4.commonlake.Lake;
 import dk.sdu.se4.common.entity.part.ImagePart;
 import dk.sdu.se4.common.entity.part.PositionPart;
 import dk.sdu.se4.common.service.PluginService;
-import java.io.File;
+import dk.sdu.se4.common.entity.part.SpritePart;
 
 /**
  *
@@ -22,7 +22,7 @@ public class LakePlugin extends LakeCore implements PluginService {
         if(this.mapService != null) {
             Lake lake = new Lake();
             lake.addPart(new PositionPart(500, 500));
-            lake.addPart(new ImagePart(new File("../dk.sdu.se4.lake/src/main/resources/img/lake.png"), 434, 250));
+            lake.addPart(new SpritePart("Tile/lake.png", 434, 250, 1));
             this.mapService.addEntity(lake);
         }
     }
