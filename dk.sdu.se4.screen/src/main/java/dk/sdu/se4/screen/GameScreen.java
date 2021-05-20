@@ -90,12 +90,6 @@ public class GameScreen extends SpriteHandler implements Screen {
         cam.position.set(x, y, 0.0f);
         cam.update();
         spriteBatch.setProjectionMatrix(cam.combined);
-        
-        if(this.mapService != null) {
-            for(Entity e : this.mapService.getEntities()) {
-                
-            }
-        }
 
         // the Mapservices validation for running the program
         if ( this.mapService != null) {
