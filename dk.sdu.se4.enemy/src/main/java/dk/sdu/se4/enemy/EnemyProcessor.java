@@ -22,8 +22,8 @@ import java.util.Collection;
  */
 public class EnemyProcessor extends EnemyCore implements ProcessorService {
 
-    //    private AIControlSystem aiControlSystem = null;
-    private int count = 0;
+    //private AIControlSystem aiControlSystem = null;
+    private int count =0;
 
     @Override
     public void process() {
@@ -73,7 +73,6 @@ public class EnemyProcessor extends EnemyCore implements ProcessorService {
         }
         count++;
     }
-
 
 
 //    public void addAIControlSystem(AIControlSystem aIControlSystem) {
