@@ -22,7 +22,7 @@ import java.util.Collection;
  */
 public class EnemyProcessor extends EnemyCore implements ProcessorService {
 
-    private AIControlSystem aiControlSystem = null;
+    //private AIControlSystem aiControlSystem = null;
     private int count =0;
 
     @Override
@@ -75,13 +75,13 @@ public class EnemyProcessor extends EnemyCore implements ProcessorService {
     }
 
 
-    public void addAIControlSystem(AIControlSystem aIControlSystem) {
-        log.debug("Add AIControlSystem on {}", this.getClass());
-        this.aiControlSystem = aIControlSystem;
-    }
-
-    public void removeAIControlSystem(AIControlSystem aiControlSystem) {
-        log.debug("Remove AIControlSystem from {}", this.getClass());
-        this.aiControlSystem = null;
-    }
+//    public void addAIControlSystem(AIControlSystem aIControlSystem) {
+//        log.debug("Add AIControlSystem on {}", this.getClass());
+//        this.aiControlSystem = aIControlSystem;
+//    }
+//
+//    public void removeAIControlSystem(AIControlSystem aiControlSystem) {
+//        log.debug("Remove AIControlSystem from {}", this.getClass());
+//        this.aiControlSystem = null;
+//    }
 }
