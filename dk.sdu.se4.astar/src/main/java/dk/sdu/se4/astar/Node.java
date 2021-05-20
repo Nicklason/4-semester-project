@@ -5,19 +5,20 @@ public class Node {
   private int g;
   private int f;
   private int h;
-  private int row;
-  private int col;
+  private int y;
+  private int x;
   private boolean isBlock;
   private Node parent;
 
-  public Node(int row, int col) {
+  public Node(int y, int x) {
     super();
-    this.row = row;
-    this.col = col;
+    this.y = y;
+
+    this.x = x;
   }
 
   public void calculateHeuristic(Node finalNode) {
-    this.h = Math.abs(finalNode.getRow() - getRow()) + Math.abs(finalNode.getCol() - getCol());
+    this.h = Math.abs(finalNode.getY() - getY()) + Math.abs(finalNode.getX() - getX());
   }
 
   public void setNodeData(Node currentNode, int cost) {
@@ -44,20 +45,12 @@ public class Node {
   @Override
   public boolean equals(Object arg0) {
     Node other = (Node) arg0;
-    return this.getRow() == other.getRow() && this.getCol() == other.getCol();
+    return this.getY() == other.getY() && this.getX() == other.getX();
   }
 
   @Override
   public String toString() {
-    return "Node [row=" + row + ", col=" + col + "]";
-  }
-
-  public int getH() {
-    return h;
-  }
-
-  public void setH(int h) {
-    this.h = h;
+    return "Node [y=" + y + ", x=" + x + "]";
   }
 
   public int getG() {
@@ -76,35 +69,43 @@ public class Node {
     this.f = f;
   }
 
-  public Node getParent() {
-    return parent;
+  public int getH() {
+    return h;
   }
 
-  public void setParent(Node parent) {
-    this.parent = parent;
+  public void setH(int h) {
+    this.h = h;
+  }
+
+  public int getY() {
+    return y;
+  }
+
+  public void setY(int y) {
+    this.y = y;
+  }
+
+  public int getX() {
+    return x;
+  }
+
+  public void setX(int x) {
+    this.x = x;
   }
 
   public boolean isBlock() {
     return isBlock;
   }
 
-  public void setBlock(boolean isBlock) {
-    this.isBlock = isBlock;
+  public void setBlock(boolean block) {
+    isBlock = block;
   }
 
-  public int getRow() {
-    return row;
+  public Node getParent() {
+    return parent;
   }
 
-  public void setRow(int row) {
-    this.row = row;
-  }
-
-  public int getCol() {
-    return col;
-  }
-
-  public void setCol(int col) {
-    this.col = col;
+  public void setParent(Node parent) {
+    this.parent = parent;
   }
 }

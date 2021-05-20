@@ -17,7 +17,7 @@ import dk.sdu.se4.common.service.PluginService;
  * @author steff
  */
 public class EnemyPlugin extends EnemyCore implements PluginService {
-    private int enemyCount = 10;
+    private int enemyCount = 2;
 
   
     
@@ -37,6 +37,7 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy.addPart(new SpritePart("Enemy/zombi.png",16,16,1));
                 enemy.addPart(new CollisionPart(16, 16));
                 enemy.addPart(new FriendlyPart(false));
+                enemy.addPart(new BlockPart(16,16,x,y));
                 this.mapService.addEntity(enemy);
             }
         } else {

@@ -83,8 +83,8 @@ public class AStar {
   }
 
   private void addAdjacentLowerRow(Node currentNode) {
-    int row = currentNode.getRow();
-    int col = currentNode.getCol();
+    int row = currentNode.getY();
+    int col = currentNode.getX();
     int lowerRow = row + 1;
     if (lowerRow < getSearchArea().length) {
       if (col - 1 >= 0) {
@@ -98,8 +98,8 @@ public class AStar {
   }
 
   private void addAdjacentMiddleRow(Node currentNode) {
-    int row = currentNode.getRow();
-    int col = currentNode.getCol();
+    int row = currentNode.getY();
+    int col = currentNode.getX();
     int middleRow = row;
     if (col - 1 >= 0) {
       checkNode(currentNode, col - 1, middleRow, getHvCost());
@@ -110,22 +110,22 @@ public class AStar {
   }
 
   private void addAdjacentUpperRow(Node currentNode) {
-    int row = currentNode.getRow();
-    int col = currentNode.getCol();
-    int upperRow = row - 1;
-    if (upperRow >= 0) {
-      if (col - 1 >= 0) {
-        checkNode(currentNode, col - 1, upperRow, getDiagonalCost()); // Comment this if diagonal movements are not allowed
+    int y = currentNode.getY();
+    int x = currentNode.getX();
+    int upperY = y - 1;
+    if (upperY >= 0) {
+      if (x - 1 >= 0) {
+        checkNode(currentNode, x - 1, upperY, getDiagonalCost()); // Comment this if diagonal movements are not allowed
       }
-      if (col + 1 < getSearchArea()[0].length) {
-        checkNode(currentNode, col + 1, upperRow, getDiagonalCost()); // Comment this if diagonal movements are not allowed
+      if (x + 1 < getSearchArea()[0].length) {
+        checkNode(currentNode, x + 1, upperY, getDiagonalCost()); // Comment this if diagonal movements are not allowed
       }
-      checkNode(currentNode, col, upperRow, getHvCost());
+      checkNode(currentNode, x, upperY, getHvCost());
     }
   }
 
-  private void checkNode(Node currentNode, int col, int row, int cost) {
-    Node adjacentNode = getSearchArea()[row][col];
+  private void checkNode(Node currentNode, int x, int y, int cost) {
+    Node adjacentNode = getSearchArea()[y][x];
     if (!adjacentNode.isBlock() && !getClosedSet().contains(adjacentNode)) {
       if (!getOpenList().contains(adjacentNode)) {
         adjacentNode.setNodeData(currentNode, cost);
@@ -150,8 +150,8 @@ public class AStar {
     return openList.size() == 0;
   }
 
-  private void setBlock(int row, int col) {
-    this.searchArea[row][col].setBlock(true);
+  private void setBlock(int y, int x) {
+    this.searchArea[y][x].setBlock(true);
   }
 
   public Node getInitialNode() {
