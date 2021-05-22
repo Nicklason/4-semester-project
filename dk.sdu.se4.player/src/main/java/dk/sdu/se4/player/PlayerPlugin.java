@@ -44,8 +44,8 @@ public class PlayerPlugin extends PlayerCore implements PluginService {
     
     public Entity createPlayer() {
         Player player = new Player();
-        int x = 0;
-        int y = 0;
+        int x = 200;
+        int y = 200;
         
         player.addPart(new PositionPart(x, y));
         player.addPart(new MovingPart(3));

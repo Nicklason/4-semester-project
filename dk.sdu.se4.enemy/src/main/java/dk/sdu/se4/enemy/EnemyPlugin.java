@@ -38,6 +38,7 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy.addPart(new CollisionPart(16, 16));
                 enemy.addPart(new FriendlyPart(false));
                 enemy.addPart(new BlockPart(16,16,x,y));
+                enemy.addPart(new PathPart(null));
                 this.mapService.addEntity(enemy);
             }
         } else {

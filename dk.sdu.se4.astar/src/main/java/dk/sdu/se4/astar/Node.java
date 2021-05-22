@@ -2,9 +2,9 @@ package dk.sdu.se4.astar;
 
 public class Node {
 
-  private int g;
-  private int f;
-  private int h;
+  private double g;
+  private double f;
+  private double h;
   private int y;
   private int x;
   private boolean isBlock;
@@ -18,18 +18,21 @@ public class Node {
   }
 
   public void calculateHeuristic(Node finalNode) {
-    this.h = Math.abs(finalNode.getY() - getY()) + Math.abs(finalNode.getX() - getX());
+    double ac = Math.abs(finalNode.getY() - getY());
+    double cb = Math.abs(finalNode.getX() - getX());
+    this.h =  5 * Math.hypot(ac, cb);  
+
   }
 
   public void setNodeData(Node currentNode, int cost) {
-    int gCost = currentNode.getG() + cost;
+    double gCost = currentNode.getG() + cost;
     setParent(currentNode);
     setG(gCost);
     calculateFinalCost();
   }
 
   public boolean checkBetterPath(Node currentNode, int cost) {
-    int gCost = currentNode.getG() + cost;
+    double gCost = currentNode.getG() + cost;
     if (gCost < getG()) {
       setNodeData(currentNode, cost);
       return true;
@@ -38,7 +41,7 @@ public class Node {
   }
 
   private void calculateFinalCost() {
-    int finalCost = getG() + getH();
+    double finalCost = getG() + getH();
     setF(finalCost);
   }
 
@@ -53,27 +56,27 @@ public class Node {
     return "Node [y=" + y + ", x=" + x + "]";
   }
 
-  public int getG() {
+  public double getG() {
     return g;
   }
 
-  public void setG(int g) {
+  public void setG(double g) {
     this.g = g;
   }
 
-  public int getF() {
+  public double getF() {
     return f;
   }
 
-  public void setF(int f) {
+  public void setF(double f) {
     this.f = f;
   }
 
-  public int getH() {
+  public double getH() {
     return h;
   }
 
-  public void setH(int h) {
+  public void setH(double h) {
     this.h = h;
   }
 
