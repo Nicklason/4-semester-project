@@ -7,14 +7,14 @@ import dk.sdu.se4.common.entity.Entity;
  * @author Steffen and Kasper jalris
  */
 public class MovingPart implements EntityPart {
-    private final int stepSize;
+    private final float stepSize;
 
     /**
      * Pythagoras constant thingy
      */
     private static final double DIAGONAL_SCALING_CONSTANT = Math.sqrt(2) / 2;
 
-    public MovingPart(int stepSize) {
+    public MovingPart(float stepSize) {
         this.stepSize = stepSize;
     }
 
@@ -69,6 +69,6 @@ public class MovingPart implements EntityPart {
         // x and y should be a float to move the correct distance
         // diagonally, but it is probably not that important anyway; if stepSize
         // is 10, then the change in x and y is +-7.0...
-        positionPart.translate((int)Math.round(deltaX), (int)Math.round(deltaY));
+        positionPart.translate((float)deltaX, (float)deltaY);
     }
 }

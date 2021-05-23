@@ -12,8 +12,8 @@ import dk.sdu.se4.common.entity.Entity;
  * @author Steffen and Kasper Jalris
  */
 public class PositionPart implements EntityPart{
-    private int x;
-    private int y;
+    private float x;
+    private float y;
 
     public PositionPart(int x, int y) {
         this.x = x;
@@ -21,14 +21,14 @@ public class PositionPart implements EntityPart{
     }
 
     public int getX() {
-        return x;
+        return (int)x;
     }
     
     public int getY() {
-        return y;
+        return (int)y;
     }
     
-    public void translate(int deltaX, int deltaY) {
+    public void translate(float deltaX, float deltaY) {
         this.x += deltaX;
         this.y += deltaY;
     }
