@@ -17,7 +17,7 @@ import dk.sdu.se4.common.service.PluginService;
  * @author steff
  */
 public class EnemyPlugin extends EnemyCore implements PluginService {
-    private int enemyCount = 10;
+    private int enemyCount = 100;
 
     @Override
     public void load() {
@@ -29,7 +29,7 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy.addPart(new EntityTypePart(EntityType.MOVINGENTITY));
                 enemy.addPart(new PositionPart(x, y));
 
-                float speed = (float)(Math.random() + 0.2);
+                float speed = (float)(Math.random() * 0.2 + 0.2);
                 enemy.addPart(new MovingPart(speed));
                 enemy.addPart(new DirectionPart(false, false, false, false));
                 enemy.addPart(new LifePart(5));
