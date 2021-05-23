@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.TimeUtils;
 import dk.sdu.se4.common.entity.Entity;
 import dk.sdu.se4.common.entity.part.*;
 import dk.sdu.se4.common.service.GameService;
@@ -31,6 +32,9 @@ public class GameScreen extends SpriteHandler implements Screen {
     private SpriteBatch spriteBatch;
     private QuickSort quicksort;
     private BitmapFont bitmapFont;
+    long lastTimeCounted;
+    private float sinceChange;
+    private float frameRate;
 
     int x = 1000;
     int y = 1000;
@@ -47,6 +51,10 @@ public class GameScreen extends SpriteHandler implements Screen {
         }
         this.quicksort= new QuickSort();
         loadAssets();
+        
+        lastTimeCounted = TimeUtils.millis();
+        sinceChange = 0;
+        frameRate = Gdx.graphics.getFramesPerSecond();
     }
 
     @Override
@@ -57,6 +65,17 @@ public class GameScreen extends SpriteHandler implements Screen {
     public void render(float deltaTime) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        
+        // FPS counter from https://gist.github.com/williamahartman/5584f037ed2748f57432
+        long delta = TimeUtils.timeSinceMillis(lastTimeCounted);
+        lastTimeCounted = TimeUtils.millis();
+
+        sinceChange += delta;
+        if (sinceChange >= 1000) {
+            sinceChange = 0;
+            frameRate = Gdx.graphics.getFramesPerSecond();
+        }
+        
         // set the position for the cammara
 
         OrthographicCamera cam = this.game.getCamera();
@@ -161,6 +180,10 @@ public class GameScreen extends SpriteHandler implements Screen {
             }
 
         }
+
+        this.spriteBatch.begin();
+        this.bitmapFont.draw(spriteBatch, (int)frameRate + " fps", 3, Gdx.graphics.getHeight() - 3);
+        this.spriteBatch.end();
 
 
   
