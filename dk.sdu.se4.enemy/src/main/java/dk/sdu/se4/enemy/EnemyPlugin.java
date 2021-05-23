@@ -19,9 +19,6 @@ import dk.sdu.se4.common.service.PluginService;
 public class EnemyPlugin extends EnemyCore implements PluginService {
     private int enemyCount = 10;
 
-  
-    
-
     @Override
     public void load() {
         if (this.mapService != null) {
@@ -31,7 +28,9 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 int y = (int) (Math.random() * 600) + 1;
                 enemy.addPart(new EntityTypePart(EntityType.MOVINGENTITY));
                 enemy.addPart(new PositionPart(x, y));
-                enemy.addPart(new MovingPart(2));
+
+                float speed = (float)(Math.random() + 0.2);
+                enemy.addPart(new MovingPart(speed));
                 enemy.addPart(new DirectionPart(false, false, false, false));
                 enemy.addPart(new LifePart(5));
                 enemy.addPart(new SpritePart("Enemy/zombi.png",16,16,1));

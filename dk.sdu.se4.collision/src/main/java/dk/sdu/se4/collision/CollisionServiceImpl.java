@@ -10,11 +10,15 @@ import dk.sdu.se4.common.service.GameDataService;
 import dk.sdu.se4.common.service.MapService;
 import dk.sdu.se4.common.service.PostProcessorService;
 import dk.sdu.se4.commonbullet.Bullet;
+import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class CollisionServiceImpl implements PostProcessorService {
     private MapService mapService = null;
     private GameDataService gameDataService = null;
+    private Quadtree quadtree = null;
     
     public void addMapService(MapService mapService) {
         this.mapService = mapService;
@@ -38,7 +42,43 @@ public class CollisionServiceImpl implements PostProcessorService {
             return;
         }
         
+        // Create quadtree if not already made
+        if (this.quadtree == null) {
+            this.quadtree = new Quadtree(0, new Rectangle(0, 0, this.mapService.getWeight(), this.mapService.getHeight()));
+        }
+        
+        // Clear quadtree
+        this.quadtree.clear();
+        
+        // Build quadtree
         Collection<Entity> entities = this.mapService.getEntities();
+        
+        for (Entity entity: entities) {
+            CollisionPart collisionPart = entity.getPart(CollisionPart.class);
+            PositionPart positionPart = entity.getPart(PositionPart.class);
+            FriendlyPart friendlyPart = entity.getPart(FriendlyPart.class);
+            // Only add relevant entities
+            if (collisionPart == null || positionPart == null || friendlyPart == null) {
+                continue;
+            }
+            
+            // Create quadtree element using entity and collision area
+            QuadtreeElement quadtreeElement = new QuadtreeElement(
+                    entity,
+                    new Rectangle(
+                            positionPart.getX(),
+                            positionPart.getY(),
+                            collisionPart.getWidth(),
+                            collisionPart.getHeight()
+                    )
+            );
+            
+            // Insert element into quadtree
+            this.quadtree.insert(quadtreeElement);
+        }
+        
+        // Create list used for result of quadtree query
+        List<QuadtreeElement> returnObjects = new ArrayList();
         
         for (Entity a: entities) {
             CollisionPart aCollisionPart = a.getPart(CollisionPart.class);
@@ -48,7 +88,18 @@ public class CollisionServiceImpl implements PostProcessorService {
                 continue;
             }
             
-            for (Entity b: entities) {
+            // Clear old result
+            returnObjects.clear();
+            // Query quadtree for relevant entities
+            this.quadtree.retrieve(returnObjects, new Rectangle(
+                    aPositionPart.getX(),
+                    aPositionPart.getY(),
+                    aCollisionPart.getWidth(),
+                    aCollisionPart.getHeight()
+            ));
+            
+            for (QuadtreeElement object: returnObjects) {
+                Entity b = object.getEntity();
                 if (a.equals(b)) {
                     continue;
                 }
