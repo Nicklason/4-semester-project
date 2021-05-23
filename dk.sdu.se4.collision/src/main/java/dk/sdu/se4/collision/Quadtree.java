@@ -25,6 +25,7 @@ class QuadtreeElement {
     }
 }
 
+// From https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
 public class Quadtree {
     private final static int MAX_OBJECTS = 10;
     private final static int MAX_LEVELS = 5;
