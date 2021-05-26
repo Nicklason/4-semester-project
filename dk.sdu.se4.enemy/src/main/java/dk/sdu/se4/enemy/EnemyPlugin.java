@@ -33,8 +33,8 @@ public class EnemyPlugin extends EnemyCore implements PluginService {
                 enemy.addPart(new MovingPart(speed));
                 enemy.addPart(new DirectionPart(false, false, false, false));
                 enemy.addPart(new LifePart(5));
-                enemy.addPart(new SpritePart("Enemy/zombi.png",16,16,1));
-                enemy.addPart(new CollisionPart(16, 16));
+                enemy.addPart(new SpritePart("Enemy/zombi.png",23,41,1));
+                enemy.addPart(new CollisionPart(23, 41));
                 enemy.addPart(new FriendlyPart(false));
                 this.mapService.addEntity(enemy);
             }
